@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="User">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="unionId" property="unionid" jdbcType="VARCHAR" />
+		<result column="openId" property="openid" jdbcType="VARCHAR" />
+		<result column="userGroupId" property="usergroupid" jdbcType="VARCHAR" />
+		<result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="sytemCode" property="sytemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, account, password, unionId, openId, userGroupId, createDate, status,
+		sytemCode
+	</sql>
+	<!-- 验证账号密码是否正确 微信端则验证两个ID值 -->
+	<select id="checkLogin" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		WHERE
+		<if test="account != null">
+			account=#{account,jdbcType=VARCHAR}
+		</if>
+		<if test="password != null">
+			AND password=#{password,jdbcType=VARCHAR}
+		</if>
+		<if test="unionid != null">
+			AND unionId= #{unionid,jdbcType=VARCHAR}
+		</if>
+		<if test="openid != null">
+			AND openId=#{openid,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.User" useGeneratedKeys="true" keyProperty="id">
+		insert into t_user (id, account, password,
+		unionId, openId, userGroupId,
+		createDate, status, sytemCode
+		)
+		values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{unionid,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{usergroupid,jdbcType=VARCHAR},
+		#{createdate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{sytemcode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.User" useGeneratedKeys="true" keyProperty="id">
+		insert into t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="unionid != null">
+				unionId,
+			</if>
+			<if test="openid != null">
+				openId,
+			</if>
+			<if test="usergroupid != null">
+				userGroupId,
+			</if>
+			<if test="createdate != null">
+				createDate,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="sytemcode != null">
+				sytemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="unionid != null">
+				#{unionid,jdbcType=VARCHAR},
+			</if>
+			<if test="openid != null">
+				#{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="usergroupid != null">
+				#{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				#{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="sytemcode != null">
+				#{sytemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.User">
+		update t_user
+		<set>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="unionid != null">
+				unionId = #{unionid,jdbcType=VARCHAR},
+			</if>
+			<if test="openid != null">
+				openId = #{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="usergroupid != null">
+				userGroupId = #{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="createdate != null">
+				createDate = #{createdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="sytemcode != null">
+				sytemCode = #{sytemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.User">
+		update t_user
+		set account = #{account,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		unionId = #{unionid,jdbcType=VARCHAR},
+		openId = #{openid,jdbcType=VARCHAR},
+		userGroupId = #{usergroupid,jdbcType=VARCHAR},
+		createDate = #{createdate,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		sytemCode = #{sytemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

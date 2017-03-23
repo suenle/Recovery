@@ -1,0 +1,80 @@
+.div_adjust_background {
+	display: none; 
+	position: absolute; 
+	top: 0%; 
+	left: 0%; 
+	width: 100%; 
+	height: 100%; 
+	background-color: black; 
+	z-index:10001;
+	-moz-opacity: 0.7; 
+	opacity:.70; 
+	filter: alpha(opacity=70);
+}
+.div_adjust_front{
+	display: none; 
+	position: absolute; 
+	top: 20%; 
+	left: 25%; 
+	width: 660px;
+	height: 510px; 
+	padding: 8px; 
+	border: 2px solid #E8E9F7;
+	border-radius: 20px;
+	background-color: #ffffff; 
+	z-index:10002;
+	overflow: auto;
+}
+.div_adjust_button {
+	width: 160px;
+	height: 30px;
+	line-height: 30px;
+	margin-right: 30px;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bolder;
+}
+
+.div_adjust_button:hover {
+	color: red;
+}
+/* ---------- */
+.div_front {
+	position: absolute;
+	padding: 4px;
+	margin: 0px;
+	top: 5%;
+	left: 5%;
+	width: 1500px;
+	height: 760px;
+	border: 2px solid #E8E9F7; /*E8E9F7*/
+	border-radius: 20px;
+	background-color: #EBEBEB;
+	z-index: 1001;
+	overflow: auto;
+}
+/*
+.div_text_title {
+	font-size: 28px;
+	margin-left: 10px;
+	font-weight: bolder;
+	line-height: 25px;
+}
+
+.div_front_prompt {
+	color: red;
+}
+
+.div_button {
+	width: 400px;
+	height: 45px;
+	line-height: 45px;
+	margin-right: 30px;
+	font-family: "宋体";
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.div_button:hover {
+	color: red;
+}*/

@@ -1,0 +1,407 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0;
+	padding:0;
+}
+
+
+#body{
+	min-width:1000px;
+	margin:0 auto; 
+	position:absolute;
+	width:100%; 
+	height:350px;
+}
+
+a.topbar-link:link, a.topbar-link:visited{
+	color:#fff;
+}
+a.topbar-link:hover{
+	text-decoration:none;
+}
+
+a.nav-link:link, a.nav-link:visited{
+	color:#fff;
+}
+a.nav-link:hover{
+	text-decoration:underline;
+}
+
+a.newslink:link, a.newslink:visited{
+	color:#1b324f;
+}
+
+a.newslink:hover{
+	text-decoration:underline;
+}
+
+a.newstitle-link:link, a.newstitle-link:visited{
+	color:#1b324f;
+}
+
+a.newstitle-link:hover{
+	text-decoration:none;
+}
+
+a.forgot-psw-link:link, a.forgot-psw-link:visited{
+	color:#c9c8c8;
+}
+
+a.forgot-psw-link:hover{
+	text-decoration:underline;
+}
+
+
+a.product-text-link:link, a.product-text-link:visited{
+	color:#1559ad;
+}
+
+a.product-text-link:hover{
+	text-decoration:none;
+}
+
+a.external-link-style:link, a.external-link-style:visited{
+	color:#515151;
+}
+
+a.external-link-style:hover{
+	text-decoration:underline;
+}
+
+.full-width{
+	width: 100%;
+	min-width:1000px;
+}
+.rt{
+	float: right;
+}
+.grid-990{
+	width: 1000px;
+	margin: 0 auto;
+}
+.grid-990 a {color:#666666; text-decoration:none;}
+.grid-990 a:hover {color:#666666; text-decoration:underline;}
+#top-bar{
+	background-color:#00417a;
+	height:26px;
+}
+#login-div{
+	line-height:26px;
+	font-size: 12px;
+	color: #fff;
+}
+#nav-bar{
+	background-color:#0363a4;
+	height:80px;
+}
+#yundao-img-logo{
+	margin-top:20px;
+	position:relative;
+	float:left;
+}
+#navigation{
+	margin-top:28px;
+	position:relative;
+	float:right;
+	font-size:18px;
+	font-family:Microsoft YaHei;	
+	color:#fff;
+	margin-left: 500px;
+}
+
+/*登录框部分beginning*/
+#login-background{
+	display: inline-block;
+	width:286px;
+	height:273px;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	margin-left:210px;
+	z-index: 100;
+	background:rgba(0,0,0,.35);
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#66000000', EndColorStr='#66000000'); 
+}
+
+#download-app{
+	display: inline-block;
+	width: 156px;
+	height: 253px;
+	position: absolute;
+	top: 140px;
+	right: 60%;
+	margin-right: 210px;
+	z-index: 100;
+	background:rgba(0,0,0,.35);
+	filter：alpha(opacity:0);
+	opacity:0;
+}
+
+#login-box{
+	margin-left:33px;
+}
+
+#download-link{
+	display:inline-block;
+	width:103px;
+	height:24px;
+	position:absolute;
+	left:464px;
+	top:249px;
+	z-index:100;
+}
+
+#login-title{
+	color:#fff;
+	font:18px tahoma,arial,"Microsoft Yahei";
+}
+
+
+#icon-username{
+	display:block;
+	float:left;
+	text-indent:-9999em;
+	font-size:12px;
+	background:#aaabab;
+	background-image:url(images/icon-user.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	height:38px;
+	width:39px;
+	border:1px solid #aaabab;
+}
+
+#icon-password{
+	display:block;
+	float:left;
+	text-indent:-9999em;
+	font-size:12px;
+	background:#aaabab;
+	background-image:url(images/icon-password.png);
+	background-position:center;
+	background-repeat:no-repeat;
+	height:38px;
+	width:39px;
+	border:1px solid #aaabab;
+	
+}
+
+#username-input{
+	width:159px;
+	padding:9px;
+	margin-bottom:11px;
+	height:20px;
+	border:1px solid #fff;
+	font-size:12px;
+	outline:none;
+}
+
+#password-input{
+	width:159px;
+	padding:9px;
+	margin-bottom:11px;
+	height:20px;
+	border:1px solid #fff;
+	outline:none;
+	font-size:12px;
+}
+
+#forgot-password{
+	font-size:12px;
+	color:#d5d5d5;
+	text-align:right;
+	margin-right:27px;
+	margin-bottom:13px;
+}
+
+#sign-in{
+	color:#fff;
+	font-family:"微软雅黑";
+	font-size:16px;
+	text-align:center;
+	line-height:40px;
+	background:#3aacfa;
+	width:220px;
+	border:0;
+	outline:none;
+	cursor:pointer;
+}
+/*登录框部分ending*/
+
+#waist{
+	height:270px;
+}
+
+#news{
+	display:inline-block;
+	position:relative;
+	float:left;
+	width:315px;
+	margin-top:35px;
+	border-right-style:solid;
+	border-width:1px;
+	border-color:#adacac;
+}
+
+#news-head-img{
+	display:inline-block;
+	position:relative;
+	float:left;	
+	margin-right:3px;
+}
+
+#news-title{
+	display:inline-block;
+	margin-top:2px;
+	width:215px;
+	font-family:"微软雅黑";
+	font-size:18px;
+	border-bottom:solid;
+	border-color:#237daf;
+}
+
+#more-text{
+	font-family:"微软雅黑";
+	font-size:12px;
+	position:absolute;
+	left:238px;
+	top:169px;
+}
+
+a.more:link, a.more:visited{
+	color:#4e4f50;
+}
+a.more:hover{
+	text-decoration:none;
+}
+
+#sing-in{
+	width:220px;
+	height:42px;
+	color:#fff;
+	font-size:18px;
+	background:#3aacfa;
+	letter-spacing:5px;
+}
+
+#ul-newslist{
+	list-style-image:url(images/ul-img.png);
+	font-family:"微软雅黑";
+	font-size:14px;
+	color:#1b324f;
+	line-height:160%;
+	margin-left:15px;
+	margin-top:8px;
+	padding:0;
+}
+	
+#products{
+	position:relative;
+	float:right;
+	width:668px;
+}
+
+#product01{
+	display:inline-block;
+	margin-top:35px;
+	margin-left:70px;
+	width:270px;
+	float: left;
+	
+}
+
+#product02{
+	display:inline-block;
+	position:relative;
+	float:right;
+	margin-top:35px;
+	width:270px;
+}
+
+.product-text{
+	margin-top:12px;
+	font-family:"微软雅黑";
+	font-size:14px;
+	line-height:140%;
+	color:#1559ad;
+	}
+
+#foot{
+	background-image:url(images/foot-background.png);
+	background-repeat:repeat-x;
+	height:240px;
+}
+
+#external-body{
+	margin: 0 auto;
+	width:1000px;
+	min-width:1000px;
+}
+
+#external-links{
+	padding-top:42px;
+	height:110px;
+	width:441px;
+	margin:0 auto;
+}
+
+#external-link-01{
+	display:inline-block;
+	position:relative;
+	float:left;
+	margin-right:40px;
+}
+
+#external-link-02{
+	display:inline-block;
+	position:relative;
+	float:left;
+	margin-right:40px;
+}
+#external-link-03{
+	display:inline-block;
+	position:relative;
+	float:left;
+	margin-right:40px;
+}
+
+.external-link-text{
+	font-family:"微软雅黑";
+	font-size:14px;
+	text-align:center;
+}
+
+.external-link-img01{
+	margin:5px;
+}
+
+.external-link-img02{
+	margin:12px;
+}
+.external-link-img03{
+	margin:12px;
+}
+
+#rights-info{
+	text-align:center;
+	font-family:"SimSun";
+	line-height:18px;
+	color:#666666;
+	font-size:12px;
+	border-top:solid;
+	border-color:#c3c4c6;
+	border-width:1px;
+	padding-top:30px;
+	
+}
+
+#bottom-bar{
+	height:17px;
+	background-color:#2762AF;
+	min-width:1000px;
+}
+
+.loc {
+	text-decoration: underline !important;
+}

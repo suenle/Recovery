@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE generatorConfiguration
+    PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  <generatorConfiguration>
+	  <!-- 将jar包拷贝至src下，然后进行引用 -->
+      <classPathEntry location="E:\huifuWorkspace\Recovery\src\mysql-connector-java-5.1.25-bin.jar"/>
+      <context id="DB2Tables" targetRuntime="MyBatis3">
+          <commentGenerator>
+             <property name="suppressDate" value="true"/>
+             <property name="suppressAllComments" value="true"/>
+         </commentGenerator>
+         <!-- 此种数据库名为storedb -->
+         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/huifudb" userId="root" password="root">
+         </jdbcConnection>
+         <javaTypeResolver>
+             <property name="forceBigDecimals" value="false"/>
+         </javaTypeResolver>
+         <javaModelGenerator targetPackage="com.huifu.entity" targetProject="Recovery/src">
+             <property name="enableSubPackages" value="true"/>
+             <property name="trimStrings" value="true"/>
+         </javaModelGenerator>
+         <sqlMapGenerator targetPackage="com.huifu.entity.mapper" targetProject="Recovery/src">
+             <property name="enableSubPackages" value="true"/>
+         </sqlMapGenerator>
+         <javaClientGenerator type="XMLMAPPER" targetPackage="com.huifu.dao" targetProject="Recovery/src">
+             <property name="enableSubPackages" value="true"/>
+         </javaClientGenerator>
+         <!-- 数据库中表明·对·映·类名 -->
+         <table tableName="t_home" domainObjectName="Home" 
+         enableCountByExample="false" enableUpdateByExample="false" 
+         enableDeleteByExample="false" enableSelectByExample="false" 
+         selectByExampleQueryId="false"></table>
+     </context>
+ </generatorConfiguration>

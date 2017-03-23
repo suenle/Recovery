@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Church">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.Church">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="churchCode" property="churchcode" jdbcType="VARCHAR" />
+		<result column="churchName" property="churchname" jdbcType="VARCHAR" />
+		<result column="churchAddress" property="churchaddress"
+			jdbcType="VARCHAR" />
+		<result column="churchDesc" property="churchdesc" jdbcType="VARCHAR" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, churchCode, churchName, churchAddress, churchDesc, systemCode
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_church
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_church
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.Church">
+		insert into t_church (id, churchCode, churchName,
+		churchAddress, churchDesc, systemCode
+		)
+		values (#{id,jdbcType=INTEGER}, #{churchcode,jdbcType=VARCHAR},
+		#{churchname,jdbcType=VARCHAR},
+		#{churchaddress,jdbcType=VARCHAR}, #{churchdesc,jdbcType=VARCHAR}, #{systemcode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.Church">
+		insert into t_church
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="churchcode != null">
+				churchCode,
+			</if>
+			<if test="churchname != null">
+				churchName,
+			</if>
+			<if test="churchaddress != null">
+				churchAddress,
+			</if>
+			<if test="churchdesc != null">
+				churchDesc,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="churchcode != null">
+				#{churchcode,jdbcType=VARCHAR},
+			</if>
+			<if test="churchname != null">
+				#{churchname,jdbcType=VARCHAR},
+			</if>
+			<if test="churchaddress != null">
+				#{churchaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="churchdesc != null">
+				#{churchdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.Church">
+		update t_church
+		<set>
+			<if test="churchcode != null">
+				churchCode = #{churchcode,jdbcType=VARCHAR},
+			</if>
+			<if test="churchname != null">
+				churchName = #{churchname,jdbcType=VARCHAR},
+			</if>
+			<if test="churchaddress != null">
+				churchAddress = #{churchaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="churchdesc != null">
+				churchDesc = #{churchdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.Church">
+		update t_church
+		set churchCode = #{churchcode,jdbcType=VARCHAR},
+		churchName = #{churchname,jdbcType=VARCHAR},
+		churchAddress = #{churchaddress,jdbcType=VARCHAR},
+		churchDesc = #{churchdesc,jdbcType=VARCHAR},
+		systemCode = #{systemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getAllChurch" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_church
+
+	</select>
+
+
+
+</mapper>

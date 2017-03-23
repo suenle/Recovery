@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="RecoveryLife" >
+  <resultMap id="BaseResultMap" type="com.huifu.entity.RecoveryLife" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="morningRevial" property="morningrevial" jdbcType="VARCHAR" />
+    <result column="morningRevialScore" property="morningrevialscore" jdbcType="INTEGER" />
+    <result column="twoAltarPray" property="twoaltarpray" jdbcType="VARCHAR" />
+    <result column="twoAltarPrayScore" property="twoaltarprayscore" jdbcType="INTEGER" />
+    <result column="PSRP" property="psrp" jdbcType="VARCHAR" />
+    <result column="PSRPScore" property="psrpscore" jdbcType="INTEGER" />
+    <result column="threeOld" property="threeold" jdbcType="VARCHAR" />
+    <result column="threeOldScore" property="threeoldscore" jdbcType="INTEGER" />
+    <result column="oneNew" property="onenew" jdbcType="VARCHAR" />
+    <result column="oneNewScore" property="onenewscore" jdbcType="INTEGER" />
+    <result column="personalPray" property="personalpray" jdbcType="VARCHAR" />
+    <result column="personalPrayScore" property="personalprayscore" jdbcType="INTEGER" />
+    <result column="shepherd" property="shepherd" jdbcType="VARCHAR" />
+    <result column="shepherdScore" property="shepherdscore" jdbcType="INTEGER" />
+    <result column="gospel" property="gospel" jdbcType="VARCHAR" />
+    <result column="gospelScore" property="gospelscore" jdbcType="INTEGER" />
+    <result column="meeting" property="meeting" jdbcType="VARCHAR" />
+    <result column="meetingType" property="meetingtype" jdbcType="INTEGER" />
+    <result column="meetingScore" property="meetingscore" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, morningRevial, morningRevialScore, twoAltarPray, twoAltarPrayScore, PSRP, 
+    PSRPScore, threeOld, threeOldScore, oneNew, oneNewScore, personalPray, personalPrayScore, 
+    shepherd, shepherdScore, gospel, gospelScore, meeting, meetingType, meetingScore, 
+    time, systemCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_recoverylife
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_recoverylife
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huifu.entity.RecoveryLife"  useGeneratedKeys="true" keyProperty="id" >
+    insert into t_recoverylife (id, userId, morningRevial, 
+      morningRevialScore, twoAltarPray, twoAltarPrayScore, 
+      PSRP, PSRPScore, threeOld, 
+      threeOldScore, oneNew, oneNewScore, 
+      personalPray, personalPrayScore, shepherd, 
+      shepherdScore, gospel, gospelScore, 
+      meeting, meetingType, meetingScore, 
+      time, systemCode)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{morningrevial,jdbcType=VARCHAR}, 
+      #{morningrevialscore,jdbcType=INTEGER}, #{twoaltarpray,jdbcType=VARCHAR}, #{twoaltarprayscore,jdbcType=INTEGER}, 
+      #{psrp,jdbcType=VARCHAR}, #{psrpscore,jdbcType=INTEGER}, #{threeold,jdbcType=VARCHAR}, 
+      #{threeoldscore,jdbcType=INTEGER}, #{onenew,jdbcType=VARCHAR}, #{onenewscore,jdbcType=INTEGER}, 
+      #{personalpray,jdbcType=VARCHAR}, #{personalprayscore,jdbcType=INTEGER}, #{shepherd,jdbcType=VARCHAR}, 
+      #{shepherdscore,jdbcType=INTEGER}, #{gospel,jdbcType=VARCHAR}, #{gospelscore,jdbcType=INTEGER}, 
+      #{meeting,jdbcType=VARCHAR}, #{meetingtype,jdbcType=INTEGER}, #{meetingscore,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{systemcode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huifu.entity.RecoveryLife" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_recoverylife
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="morningrevial != null" >
+        morningRevial,
+      </if>
+      <if test="morningrevialscore != null" >
+        morningRevialScore,
+      </if>
+      <if test="twoaltarpray != null" >
+        twoAltarPray,
+      </if>
+      <if test="twoaltarprayscore != null" >
+        twoAltarPrayScore,
+      </if>
+      <if test="psrp != null" >
+        PSRP,
+      </if>
+      <if test="psrpscore != null" >
+        PSRPScore,
+      </if>
+      <if test="threeold != null" >
+        threeOld,
+      </if>
+      <if test="threeoldscore != null" >
+        threeOldScore,
+      </if>
+      <if test="onenew != null" >
+        oneNew,
+      </if>
+      <if test="onenewscore != null" >
+        oneNewScore,
+      </if>
+      <if test="personalpray != null" >
+        personalPray,
+      </if>
+      <if test="personalprayscore != null" >
+        personalPrayScore,
+      </if>
+      <if test="shepherd != null" >
+        shepherd,
+      </if>
+      <if test="shepherdscore != null" >
+        shepherdScore,
+      </if>
+      <if test="gospel != null" >
+        gospel,
+      </if>
+      <if test="gospelscore != null" >
+        gospelScore,
+      </if>
+      <if test="meeting != null" >
+        meeting,
+      </if>
+      <if test="meetingtype != null" >
+        meetingType,
+      </if>
+      <if test="meetingscore != null" >
+        meetingScore,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="systemcode != null" >
+        systemCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="morningrevial != null" >
+        #{morningrevial,jdbcType=VARCHAR},
+      </if>
+      <if test="morningrevialscore != null" >
+        #{morningrevialscore,jdbcType=INTEGER},
+      </if>
+      <if test="twoaltarpray != null" >
+        #{twoaltarpray,jdbcType=VARCHAR},
+      </if>
+      <if test="twoaltarprayscore != null" >
+        #{twoaltarprayscore,jdbcType=INTEGER},
+      </if>
+      <if test="psrp != null" >
+        #{psrp,jdbcType=VARCHAR},
+      </if>
+      <if test="psrpscore != null" >
+        #{psrpscore,jdbcType=INTEGER},
+      </if>
+      <if test="threeold != null" >
+        #{threeold,jdbcType=VARCHAR},
+      </if>
+      <if test="threeoldscore != null" >
+        #{threeoldscore,jdbcType=INTEGER},
+      </if>
+      <if test="onenew != null" >
+        #{onenew,jdbcType=VARCHAR},
+      </if>
+      <if test="onenewscore != null" >
+        #{onenewscore,jdbcType=INTEGER},
+      </if>
+      <if test="personalpray != null" >
+        #{personalpray,jdbcType=VARCHAR},
+      </if>
+      <if test="personalprayscore != null" >
+        #{personalprayscore,jdbcType=INTEGER},
+      </if>
+      <if test="shepherd != null" >
+        #{shepherd,jdbcType=VARCHAR},
+      </if>
+      <if test="shepherdscore != null" >
+        #{shepherdscore,jdbcType=INTEGER},
+      </if>
+      <if test="gospel != null" >
+        #{gospel,jdbcType=VARCHAR},
+      </if>
+      <if test="gospelscore != null" >
+        #{gospelscore,jdbcType=INTEGER},
+      </if>
+      <if test="meeting != null" >
+        #{meeting,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtype != null" >
+        #{meetingtype,jdbcType=INTEGER},
+      </if>
+      <if test="meetingscore != null" >
+        #{meetingscore,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemcode != null" >
+        #{systemcode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.RecoveryLife" >
+    update t_recoverylife
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="morningrevial != null" >
+        morningRevial = #{morningrevial,jdbcType=VARCHAR},
+      </if>
+      <if test="morningrevialscore != null" >
+        morningRevialScore = #{morningrevialscore,jdbcType=INTEGER},
+      </if>
+      <if test="twoaltarpray != null" >
+        twoAltarPray = #{twoaltarpray,jdbcType=VARCHAR},
+      </if>
+      <if test="twoaltarprayscore != null" >
+        twoAltarPrayScore = #{twoaltarprayscore,jdbcType=INTEGER},
+      </if>
+      <if test="psrp != null" >
+        PSRP = #{psrp,jdbcType=VARCHAR},
+      </if>
+      <if test="psrpscore != null" >
+        PSRPScore = #{psrpscore,jdbcType=INTEGER},
+      </if>
+      <if test="threeold != null" >
+        threeOld = #{threeold,jdbcType=VARCHAR},
+      </if>
+      <if test="threeoldscore != null" >
+        threeOldScore = #{threeoldscore,jdbcType=INTEGER},
+      </if>
+      <if test="onenew != null" >
+        oneNew = #{onenew,jdbcType=VARCHAR},
+      </if>
+      <if test="onenewscore != null" >
+        oneNewScore = #{onenewscore,jdbcType=INTEGER},
+      </if>
+      <if test="personalpray != null" >
+        personalPray = #{personalpray,jdbcType=VARCHAR},
+      </if>
+      <if test="personalprayscore != null" >
+        personalPrayScore = #{personalprayscore,jdbcType=INTEGER},
+      </if>
+      <if test="shepherd != null" >
+        shepherd = #{shepherd,jdbcType=VARCHAR},
+      </if>
+      <if test="shepherdscore != null" >
+        shepherdScore = #{shepherdscore,jdbcType=INTEGER},
+      </if>
+      <if test="gospel != null" >
+        gospel = #{gospel,jdbcType=VARCHAR},
+      </if>
+      <if test="gospelscore != null" >
+        gospelScore = #{gospelscore,jdbcType=INTEGER},
+      </if>
+      <if test="meeting != null" >
+        meeting = #{meeting,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingtype != null" >
+        meetingType = #{meetingtype,jdbcType=INTEGER},
+      </if>
+      <if test="meetingscore != null" >
+        meetingScore = #{meetingscore,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemcode != null" >
+        systemCode = #{systemcode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huifu.entity.RecoveryLife" >
+    update t_recoverylife
+    set userId = #{userid,jdbcType=INTEGER},
+      morningRevial = #{morningrevial,jdbcType=VARCHAR},
+      morningRevialScore = #{morningrevialscore,jdbcType=INTEGER},
+      twoAltarPray = #{twoaltarpray,jdbcType=VARCHAR},
+      twoAltarPrayScore = #{twoaltarprayscore,jdbcType=INTEGER},
+      PSRP = #{psrp,jdbcType=VARCHAR},
+      PSRPScore = #{psrpscore,jdbcType=INTEGER},
+      threeOld = #{threeold,jdbcType=VARCHAR},
+      threeOldScore = #{threeoldscore,jdbcType=INTEGER},
+      oneNew = #{onenew,jdbcType=VARCHAR},
+      oneNewScore = #{onenewscore,jdbcType=INTEGER},
+      personalPray = #{personalpray,jdbcType=VARCHAR},
+      personalPrayScore = #{personalprayscore,jdbcType=INTEGER},
+      shepherd = #{shepherd,jdbcType=VARCHAR},
+      shepherdScore = #{shepherdscore,jdbcType=INTEGER},
+      gospel = #{gospel,jdbcType=VARCHAR},
+      gospelScore = #{gospelscore,jdbcType=INTEGER},
+      meeting = #{meeting,jdbcType=VARCHAR},
+      meetingType = #{meetingtype,jdbcType=INTEGER},
+      meetingScore = #{meetingscore,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      systemCode = #{systemcode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

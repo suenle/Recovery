@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Group">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.Group">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="groupCode" property="groupcode" jdbcType="VARCHAR" />
+		<result column="groupName" property="groupname" jdbcType="VARCHAR" />
+		<result column="districtId" property="districtid" jdbcType="INTEGER" />
+		<result column="groupAddress" property="groupaddress" jdbcType="VARCHAR" />
+		<result column="groupDesc" property="groupdesc" jdbcType="VARCHAR" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, groupCode, groupName, districtId, groupAddress, groupDesc, systemCode
+	</sql>
+
+
+
+	<select id="getAllGroup" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_group
+	</select>
+
+
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_group
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_group
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.Group">
+		insert into t_group (id, groupCode, groupName,
+		districtId, groupAddress, groupDesc,
+		systemCode)
+		values (#{id,jdbcType=INTEGER}, #{groupcode,jdbcType=VARCHAR},
+		#{groupname,jdbcType=VARCHAR},
+		#{districtid,jdbcType=INTEGER}, #{groupaddress,jdbcType=VARCHAR}, #{groupdesc,jdbcType=VARCHAR},
+		#{systemcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.Group">
+		insert into t_group
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="groupcode != null">
+				groupCode,
+			</if>
+			<if test="groupname != null">
+				groupName,
+			</if>
+			<if test="districtid != null">
+				districtId,
+			</if>
+			<if test="groupaddress != null">
+				groupAddress,
+			</if>
+			<if test="groupdesc != null">
+				groupDesc,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="groupcode != null">
+				#{groupcode,jdbcType=VARCHAR},
+			</if>
+			<if test="groupname != null">
+				#{groupname,jdbcType=VARCHAR},
+			</if>
+			<if test="districtid != null">
+				#{districtid,jdbcType=INTEGER},
+			</if>
+			<if test="groupaddress != null">
+				#{groupaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="groupdesc != null">
+				#{groupdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.Group">
+		update t_group
+		<set>
+			<if test="groupcode != null">
+				groupCode = #{groupcode,jdbcType=VARCHAR},
+			</if>
+			<if test="groupname != null">
+				groupName = #{groupname,jdbcType=VARCHAR},
+			</if>
+			<if test="districtid != null">
+				districtId = #{districtid,jdbcType=INTEGER},
+			</if>
+			<if test="groupaddress != null">
+				groupAddress = #{groupaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="groupdesc != null">
+				groupDesc = #{groupdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.Group">
+		update t_group
+		set groupCode = #{groupcode,jdbcType=VARCHAR},
+		groupName = #{groupname,jdbcType=VARCHAR},
+		districtId = #{districtid,jdbcType=INTEGER},
+		groupAddress = #{groupaddress,jdbcType=VARCHAR},
+		groupDesc = #{groupdesc,jdbcType=VARCHAR},
+		systemCode = #{systemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="District">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.District">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="districtCode" property="districtcode" jdbcType="VARCHAR" />
+		<result column="districtName" property="districtname" jdbcType="VARCHAR" />
+		<result column="churchId" property="churchid" jdbcType="INTEGER" />
+		<result column="districtAddress" property="districtaddress"
+			jdbcType="VARCHAR" />
+		<result column="districtDesc" property="districtdesc" jdbcType="VARCHAR" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, districtCode, districtName, churchId, districtAddress, districtDesc,
+		systemCode
+	</sql>
+
+
+	<select id="getAllDistrict" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_district
+	</select>
+
+
+
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_district
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_district
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.District">
+		insert into t_district (id, districtCode, districtName,
+		churchId, districtAddress, districtDesc,
+		systemCode)
+		values (#{id,jdbcType=INTEGER}, #{districtcode,jdbcType=VARCHAR},
+		#{districtname,jdbcType=VARCHAR},
+		#{churchid,jdbcType=INTEGER}, #{districtaddress,jdbcType=VARCHAR},
+		#{districtdesc,jdbcType=VARCHAR},
+		#{systemcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.District">
+		insert into t_district
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="districtcode != null">
+				districtCode,
+			</if>
+			<if test="districtname != null">
+				districtName,
+			</if>
+			<if test="churchid != null">
+				churchId,
+			</if>
+			<if test="districtaddress != null">
+				districtAddress,
+			</if>
+			<if test="districtdesc != null">
+				districtDesc,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="districtcode != null">
+				#{districtcode,jdbcType=VARCHAR},
+			</if>
+			<if test="districtname != null">
+				#{districtname,jdbcType=VARCHAR},
+			</if>
+			<if test="churchid != null">
+				#{churchid,jdbcType=INTEGER},
+			</if>
+			<if test="districtaddress != null">
+				#{districtaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="districtdesc != null">
+				#{districtdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.District">
+		update t_district
+		<set>
+			<if test="districtcode != null">
+				districtCode = #{districtcode,jdbcType=VARCHAR},
+			</if>
+			<if test="districtname != null">
+				districtName = #{districtname,jdbcType=VARCHAR},
+			</if>
+			<if test="churchid != null">
+				churchId = #{churchid,jdbcType=INTEGER},
+			</if>
+			<if test="districtaddress != null">
+				districtAddress = #{districtaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="districtdesc != null">
+				districtDesc = #{districtdesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.District">
+		update t_district
+		set districtCode = #{districtcode,jdbcType=VARCHAR},
+		districtName = #{districtname,jdbcType=VARCHAR},
+		churchId = #{churchid,jdbcType=INTEGER},
+		districtAddress = #{districtaddress,jdbcType=VARCHAR},
+		districtDesc = #{districtdesc,jdbcType=VARCHAR},
+		systemCode = #{systemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

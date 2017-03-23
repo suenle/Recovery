@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<link href="/StoreManagement/css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/stylemain.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#full{
+		     position:absolute;
+		     top:0;
+		     left:0;
+		     height:100%;
+		     width:100%;
+		     background-image:url('/StoreManagement/images/mainpage/welcome.png'); 
+		     background-position: center 0;
+		     background-repeat: no-repeat;
+		     background-attachment:fixed;	/* fixed */
+		     background-size: cover;
+		     -webkit-background-size: cover;/* 兼容Webkit内核浏览器如Chrome和Safari */
+		     -o-background-size: cover;/* 兼容Opera */
+		     zoom: 1;
+		     z-index: 101;
+		}
+</style>
+</head>
+<body>
+	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+		<!-- background-color: #99ccff;border-left-radius: 10px; -->
+			<td height="34" width="100%" style="padding:0px;position:absolute;z-index: 1001;">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height: 34px;height: 34px;">
+					<tr>
+						<td class="barWord">
+							&nbsp;&nbsp;<img src="/StoreManagement/images/icon_card.gif" width="16" height="16" align="absmiddle" style="margin-bottom: 4px;">
+							当前位置&nbsp;<img src="/StoreManagement/images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
+							云道仓储首页&nbsp;<img src="/StoreManagement/images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
+							欢迎页面
+						</td>
+						<td align="right" class="white" style="padding-right:20px">
+							<a href="#" class="barBtn" onClick="javascript:history.go(-1);">
+								<img src="/StoreManagement/images/btn_left.gif" width="18" height="18" align="absmiddle"> 后退
+							</a> 
+							<a href="#" class="barBtn" onClick="javascript:history.go(+1);">
+								<img src="/StoreManagement/images/btn_right.gif" width="18" height="18" align="absmiddle"> 前进
+							</a> 
+							<a href="#" class="barBtn" onclick="javascript:location.reload();">
+								<img src="/StoreManagement/images/btn_refresh.gif" width="18" height="18" align="absmiddle"> 刷新
+							</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="background-color:#bddbff;height: 100%;width: 100%;padding: 0px;" id="full">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

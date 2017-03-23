@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Home">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.Home">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="homeCode" property="homecode" jdbcType="VARCHAR" />
+		<result column="homeName" property="homename" jdbcType="VARCHAR" />
+		<result column="groupId" property="groupid" jdbcType="INTEGER" />
+		<result column="homeAddress" property="homeaddress" jdbcType="VARCHAR" />
+		<result column="homeDesc" property="homedesc" jdbcType="VARCHAR" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, homeCode, homeName, groupId, homeAddress, homeDesc, systemCode
+	</sql>
+
+	<select id="getAllHome" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_home
+	</select>
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_home
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_home
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.Home">
+		insert into t_home (id, homeCode, homeName,
+		groupId, homeAddress, homeDesc,
+		systemCode)
+		values (#{id,jdbcType=INTEGER}, #{homecode,jdbcType=VARCHAR},
+		#{homename,jdbcType=VARCHAR},
+		#{groupid,jdbcType=INTEGER}, #{homeaddress,jdbcType=VARCHAR}, #{homedesc,jdbcType=VARCHAR},
+		#{systemcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.Home">
+		insert into t_home
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="homecode != null">
+				homeCode,
+			</if>
+			<if test="homename != null">
+				homeName,
+			</if>
+			<if test="groupid != null">
+				groupId,
+			</if>
+			<if test="homeaddress != null">
+				homeAddress,
+			</if>
+			<if test="homedesc != null">
+				homeDesc,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="homecode != null">
+				#{homecode,jdbcType=VARCHAR},
+			</if>
+			<if test="homename != null">
+				#{homename,jdbcType=VARCHAR},
+			</if>
+			<if test="groupid != null">
+				#{groupid,jdbcType=INTEGER},
+			</if>
+			<if test="homeaddress != null">
+				#{homeaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="homedesc != null">
+				#{homedesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.Home">
+		update t_home
+		<set>
+			<if test="homecode != null">
+				homeCode = #{homecode,jdbcType=VARCHAR},
+			</if>
+			<if test="homename != null">
+				homeName = #{homename,jdbcType=VARCHAR},
+			</if>
+			<if test="groupid != null">
+				groupId = #{groupid,jdbcType=INTEGER},
+			</if>
+			<if test="homeaddress != null">
+				homeAddress = #{homeaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="homedesc != null">
+				homeDesc = #{homedesc,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.Home">
+		update t_home
+		set homeCode = #{homecode,jdbcType=VARCHAR},
+		homeName = #{homename,jdbcType=VARCHAR},
+		groupId = #{groupid,jdbcType=INTEGER},
+		homeAddress = #{homeaddress,jdbcType=VARCHAR},
+		homeDesc = #{homedesc,jdbcType=VARCHAR},
+		systemCode = #{systemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

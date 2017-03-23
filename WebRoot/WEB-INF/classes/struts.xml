@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts-default.xml" />
+    <!-- struts的URL扩展名 -->
+    <constant name="struts.action.extension" value="do" />
+    <!-- 允许访问静态成员变量 -->
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.enable.SlashesInActionNames" value="true" />
+    <!-- 修改最大传输大小为1G -->
+    <constant name="struts.multipart.maxSize" value="1073741824" />
+
+	<!-- 
+    <package name="custom-default" extends="struts-default">
+        <result-types>
+            <result-type name="direct" class="cn.org.rapid_framework.struts2.dispatcher.DirectResult" />
+        </result-types>
+        <interceptors>
+            <interceptor name="trim" class="com.yundao.store.base.TrimInterceptor" />
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="trim"></interceptor-ref>
+                <interceptor-ref name="paramsPrepareParamsStack">
+                    <param name="exception.logCategory">sec.exception</param>
+                    <param name="exception.logLevel">error</param>
+                    <param name="exception.logEnabled">true</param>
+                </interceptor-ref>
+                <interceptor-ref name="timer"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="mystack" />
+        <default-action-ref name="login"></default-action-ref>
+        <global-results>
+            <result name="bussiness_error">/commons/business_error.jsp</result>
+            <result name="error">/commons/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="com.yundao.store.base.SecRuntimeException" result="bussiness_error" />
+        </global-exception-mappings>
+    </package>	
+    -->
+
+	<!-- 以json形式返回  -->
+    <package name="custom-rest-default" extends="struts-default">
+    	<result-types>
+            <result-type name="direct" class="cn.org.rapid_framework.struts2.dispatcher.DirectResult" />
+            <result-type name="gson" class="com.huifu.base.GsonResult" />
+        </result-types>
+    </package>
+	
+	<package name="json" extends="custom-rest-default">
+		<!-- 登录页面配置  -->
+		<action name="login" class="com.huifu.action.UserAction" method="login">
+			<result name="success" type="dispatcher" >
+				<param name="location" >/pages/recoveryLifeInfo.jsp</param>
+			</result>
+			<result name="input">/login.html</result>
+			<result name="addinfo">/addInfo.jsp</result>
+			<result name="ajax" type="gson">
+				<param name="envlope">false</param>
+			</result>
+		</action>
+		
+		<action name="register" class="com.huifu.action.UserAction" method="register">
+			<result name="success" type="dispatcher" >
+				<param name="location">/addInfo.jsp</param>
+			</result>
+			<result name="input">/login.html</result>
+			<result name="addinfo">/addInfo.jsp</result>
+			<result name="ajax" type="gson">
+				<param name="envlope">false</param>
+			</result>
+		</action>
+		
+	
+		
+		
+		<!-- 通用配置 -->
+		<action name="*/*" method="{2}" class="com.huifu.action.{1}Action" >
+			<result name="ajax" type="gson">
+            	<param name="envlope">false</param>
+            </result>
+            <result name="*" type="direct">通过Action直接返回，这一行无需修改</result>
+		</action>
+	</package>
+	
+	
+	
+</struts>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <setting name="useColumnLabel" value="true"/>
+        <setting name="useGeneratedKeys" value="false"/>
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <setting name="defaultStatementTimeout" value="25000"/>
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <setting name="localCacheScope" value="SESSION"/>
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.huifu.mybatis.handler.Like" alias="Like"/>
+        <typeAlias type="com.huifu.mybatis.handler.UUID" alias="UUID"/>
+    </typeAliases>
+    <typeHandlers>
+        <typeHandler handler="com.huifu.mybatis.handler.UUIDTypeHandler" javaType="com.huifu.mybatis.handler.UUID" jdbcType="VARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.LikeTypeHandler" javaType="com.huifu.mybatis.handler.Like" jdbcType="VARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimStringTypeHandler" javaType="String" jdbcType="VARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimStringTypeHandler" javaType="String" jdbcType="CHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimNStringTypeHandler" javaType="String" jdbcType="NVARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimNStringTypeHandler" javaType="String" jdbcType="NCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimStringTypeHandler" jdbcType="VARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimStringTypeHandler" jdbcType="CHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimNStringTypeHandler" jdbcType="NVARCHAR"/>
+        <typeHandler handler="com.huifu.mybatis.handler.TrimNStringTypeHandler" jdbcType="NCHAR"/>
+    </typeHandlers>
+    <plugins>
+        <!-- 指定数据库分页方言Dialect, 其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect,HSQLDialect-->
+        <plugin
+            interceptor="com.huifu.mybatis.handler.OffsetLimitInterceptor">
+            <property name="dialectClass"
+                value="cn.org.rapid_framework.jdbc.dialect.MySQLDialect" />
+        </plugin>
+    </plugins>
+</configuration>
