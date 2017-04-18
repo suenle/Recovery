@@ -1,6 +1,7 @@
 package com.huifu.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huifu.entity.District;
 
@@ -18,4 +19,10 @@ public interface IDistrictService {
 	public int updateByPrimaryKey(District record);
 
 	public List<District> getAllDistrict();
+	
+	public District DistrictIsExist(District record);
+
+	public List<District> queryDistrict(Map<String, Object> data);
+
+	public int getDistrictNum(Map<String, Object> data);
 }

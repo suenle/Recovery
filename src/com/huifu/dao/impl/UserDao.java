@@ -53,6 +53,11 @@ public class UserDao extends BaseIbatis3Dao<User, Integer> implements IUserDao {
 		return getSqlSession().selectOne("User.checkLogin", record);
 	}
 
+	public List<User> listAllUserId() {
+		
+		return getSqlSession().selectList("User.listAllUserId");
+	}
+
 
 
 

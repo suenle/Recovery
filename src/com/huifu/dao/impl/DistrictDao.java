@@ -58,6 +58,21 @@ public class DistrictDao extends BaseIbatis3Dao<District, Integer> implements ID
 		return getSqlSession().selectList("District.getAllDistrict");
 	}
 
+	public District DistrictIsExist(District record) {
+		
+		return getSqlSession().selectOne("District.DistrictIsExist", record);
+	}
+
+	public List<District> queryDistrict(Map<String, Object> data) {
+
+		return getSqlSession().selectList("District.queryDistrict", data);
+	}
+
+	public int getDistrictNum(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("District.getDistrictNum", data);
+	}
+
 
 
 

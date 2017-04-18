@@ -1,10 +1,10 @@
 package com.huifu.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
-
 
 import com.huifu.dao.impl.RecoveryLifeDao;
 import com.huifu.entity.RecoveryLife;
@@ -52,6 +52,38 @@ public class RecoveryLifeService implements IRecoveryLifeService {
 	public RecoveryLife checkLogin(RecoveryLife record) {
 
 		return getRecoveryLifeDao().checkLogin(record);
+	}
+
+	public RecoveryLife getTodayInfoByUseridAndTime(Map<String, Object> data) {
+
+		return getRecoveryLifeDao().getTodayInfoByUseridAndTime(data);
+	}
+
+	public RecoveryLife getLastdayInfoByUseridAndTime(Map<String, Object> data) {
+
+		return getRecoveryLifeDao().getLastdayInfoByUseridAndTime(data);
+	}
+
+	public List<RecoveryLife> getLifeInfoBySomeDate(Map<String, Object> data) {
+
+		return getRecoveryLifeDao().getLifeInfoBySomeDate(data);
+	}
+
+	public List<RecoveryLife> getLifeInfoListByUserId(Map<String, Object> data) {
+		return getRecoveryLifeDao().getLifeInfoListByUserId(data);
+	}
+
+	public List<RecoveryLife> queryLifeInfoListByUserId(Map<String, Object> data) {
+		return getRecoveryLifeDao().queryLifeInfoListByUserId(data);
+	}
+
+	public int queryLifeInfoListByUserIdNum(Map<String, Object> data) {
+		return getRecoveryLifeDao().queryLifeInfoListByUserIdNum(data);
+	}
+
+	public List<RecoveryLife> listLifeInfoByUserIdAndTime(
+			Map<String, Object> data) {
+		return getRecoveryLifeDao().listLifeInfoByUserIdAndTime(data);
 	}
 
 }

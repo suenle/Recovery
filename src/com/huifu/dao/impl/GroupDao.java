@@ -61,4 +61,23 @@ public class GroupDao extends BaseIbatis3Dao<Group, Integer> implements
 		return getSqlSession().selectList("Group.getAllGroup");
 	}
 
+	public Group selectByName(Group record) {
+		
+		return getSqlSession().selectOne("Group.selectByName", record);
+	}
+
+	public Group GroupIsExist(Group record) {
+		
+		return getSqlSession().selectOne("Group.GroupIsExist", record);
+	}
+
+	public List<Group> queryGroup(Map<String, Object> data) {
+		return getSqlSession().selectList("Group.queryGroup", data);
+	}
+
+	public int getGroupNum(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("Group.getGroupNum", data);
+	}
+
 }

@@ -14,8 +14,21 @@ public class District {
     private String districtdesc;
 
     private String systemcode;
+    
+    
+    private String churchname;
+    
+    
 
-    public Integer getId() {
+    public String getChurchname() {
+		return churchname;
+	}
+
+	public void setChurchname(String churchname) {
+		this.churchname = churchname;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -11,8 +11,75 @@
 		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, homeCode, homeName, groupId, homeAddress, homeDesc, systemCode
+		id, homeCode, homeName, groupId, homeAddress, homeDesc,
+		systemCode
 	</sql>
+
+	<!-- 验证货物类型名称唯一 -->
+	<select id="HomeIsExist" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_home
+		where homeName=#{homename,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据条件查询所有货品大类数量(分页) -->
+	<select id="getHomeNum" resultType="java.lang.Integer">
+		select count(*)
+		from t_home
+		where 1 = 1
+		<if test="@Ognl@isNotBlank(homeName)">
+			and homeName like #{homeName,javaType=Like,
+			jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+	</select>
+	<!-- 根据条件查询所有货品大类数据列表(分页) -->
+	<select id="queryHome" resultMap="BaseResultMap">
+		SELECT
+		t3.id AS id,t3.groupId AS districtId,
+		t3.homeName AS
+		homeName,
+		t3.homeDesc AS homeDesc,
+		t1.districtName AS districtName,
+		t1.districtDesc AS
+		districtDesc,
+		t1.churchId AS churchId,
+		t2.churchName
+		AS churchName
+		FROM
+		t_district t1,
+		t_church t2,
+		t_home t3
+		WHERE
+		t3.groupId=t1.id AND
+		t1.churchId = t2.id
+		<if test="@Ognl@isNotBlank(homeName)">
+			and t3.homeName like #{homeName,
+			javaType=Like,jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+		<if test="@Ognl@isNotBlank(churchId)">
+			and t1.churchId = #{churchId,jdbcType=INTEGER}
+		</if>
+		<if test="@Ognl@isNotBlank(districtId)">
+			and t3.groupId = #{districtId,jdbcType=INTEGER}
+		</if>
+		order by id
+		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		jdbcType=INTEGER}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
 
 	<select id="getAllHome" resultMap="BaseResultMap">
 		select
@@ -20,6 +87,13 @@
 		from t_home
 	</select>
 
+
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_home
+		where homeName = #{homename,jdbcType=INTEGER}
+	</select>
 
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -33,16 +107,22 @@
 		delete from t_home
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.huifu.entity.Home">
-		insert into t_home (id, homeCode, homeName,
+	<insert id="insert" parameterType="com.huifu.entity.Home"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into t_home (id,
+		homeCode,
+		homeName,
 		groupId, homeAddress, homeDesc,
 		systemCode)
-		values (#{id,jdbcType=INTEGER}, #{homecode,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{homecode,jdbcType=VARCHAR},
 		#{homename,jdbcType=VARCHAR},
-		#{groupid,jdbcType=INTEGER}, #{homeaddress,jdbcType=VARCHAR}, #{homedesc,jdbcType=VARCHAR},
+		#{groupid,jdbcType=INTEGER},
+		#{homeaddress,jdbcType=VARCHAR}, #{homedesc,jdbcType=VARCHAR},
 		#{systemcode,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.huifu.entity.Home">
+	<insert id="insertSelective" parameterType="com.huifu.entity.Home"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into t_home
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -117,12 +197,16 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.Home">
 		update t_home
-		set homeCode = #{homecode,jdbcType=VARCHAR},
-		homeName = #{homename,jdbcType=VARCHAR},
+		set
+		homeCode = #{homecode,jdbcType=VARCHAR},
+		homeName =
+		#{homename,jdbcType=VARCHAR},
 		groupId = #{groupid,jdbcType=INTEGER},
 		homeAddress = #{homeaddress,jdbcType=VARCHAR},
-		homeDesc = #{homedesc,jdbcType=VARCHAR},
-		systemCode = #{systemcode,jdbcType=VARCHAR}
+		homeDesc =
+		#{homedesc,jdbcType=VARCHAR},
+		systemCode =
+		#{systemcode,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

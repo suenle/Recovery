@@ -1,27 +1,83 @@
 package com.huifu.entity;
 
 public class UserInfo {
-    private Integer id;
+	private Integer id;
 
-    private Integer userid;
+	private Integer userid;
 
-    private String name;
+	private String username;
 
-    private Integer sex;
+	private Integer sex;
 
-    private Integer age;
+	private Integer age;
 
-    private Integer groupid;
+	private Integer groupid;
 
-    private Integer homeid;
+	private Integer homeid;
 
-    private Integer phone;
+	private Integer phone;
 
-    private String address;
+	private String address;
 
-    private String emaill;
+	private String emaill;
 
-    private String systemcode;
+	private String systemcode;
+
+	private String homename;
+
+	private String groupname;
+	private Integer districtid;
+	private String districtname;
+	private String churchname;
+	private Integer churchid;
+
+	public String getHomename() {
+		return homename;
+	}
+
+	public void setHomename(String homename) {
+		this.homename = homename;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public Integer getDistrictid() {
+		return districtid;
+	}
+
+	public void setDistrictid(Integer districtid) {
+		this.districtid = districtid;
+	}
+
+	public String getDistrictname() {
+		return districtname;
+	}
+
+	public void setDistrictname(String districtname) {
+		this.districtname = districtname;
+	}
+
+	public String getChurchname() {
+		return churchname;
+	}
+
+	public void setChurchname(String churchname) {
+		this.churchname = churchname;
+	}
+
+	public Integer getChurchid() {
+		return churchid;
+	}
+
+	public void setChurchid(Integer churchid) {
+		this.churchid = churchid;
+	}
 
 	public Integer getId() {
 		return id;
@@ -39,12 +95,12 @@ public class UserInfo {
 		this.userid = userid;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username == null ? null : username.trim();
 	}
 
 	public Integer getSex() {
@@ -92,7 +148,7 @@ public class UserInfo {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		this.address = address == null ? null : address.trim();
 	}
 
 	public String getEmaill() {
@@ -100,7 +156,7 @@ public class UserInfo {
 	}
 
 	public void setEmaill(String emaill) {
-		this.emaill = emaill;
+		this.emaill = emaill == null ? null : emaill.trim();
 	}
 
 	public String getSystemcode() {
@@ -108,8 +164,6 @@ public class UserInfo {
 	}
 
 	public void setSystemcode(String systemcode) {
-		this.systemcode = systemcode;
+		this.systemcode = systemcode == null ? null : systemcode.trim();
 	}
-
- 
 }

@@ -5,6 +5,22 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name>Store Management</display-name>	
+  
+   <filter>
+    <filter-name>loginFilter</filter-name>
+    <filter-class>com.huifu.base.loginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+   <filter-mapping>
+    <filter-name>loginFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  
+  
+   
   <filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
@@ -15,6 +31,11 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	
+	
+	
 	<display-name>Recovery</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -36,10 +57,10 @@
 	</servlet>  
 	<!-- 设置session会话永不过期 -->
 	<session-config>
-		<session-timeout>-1</session-timeout>
+		<session-timeout>20</session-timeout>
 	</session-config>
 	<welcome-file-list>
-		<welcome-file>login.html</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 	
 

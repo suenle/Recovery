@@ -5,9 +5,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-
-
 import com.huifu.dao.impl.GroupDao;
+import com.huifu.entity.District;
 import com.huifu.entity.Group;
 import com.huifu.service.IGroupService;
 
@@ -51,9 +50,25 @@ public class GroupService implements IGroupService {
 	}
 
 	public List<Group> getAllGroup() {
-		
+
 		return getGroupDao().getAllGroup();
 	}
 
+	public Group selectByName(Group record) {
+
+		return getGroupDao().selectByName(record);
+	}
+
+	public Group GroupIsExist(Group record) {
+		return getGroupDao().GroupIsExist(record);
+	}
+
+	public List<Group> queryGroup(Map<String, Object> data) {
+		return getGroupDao().queryGroup(data);
+	}
+
+	public int getGroupNum(Map<String, Object> data) {
+		return getGroupDao().getGroupNum(data);
+	}
 
 }

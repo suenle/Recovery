@@ -37,6 +37,11 @@
 	</select>
 
 
+   <select id="listAllUserId" resultMap="BaseResultMap">
+   select id from t_user 
+   </select>
+
+
 
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"

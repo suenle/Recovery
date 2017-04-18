@@ -101,9 +101,120 @@ public class UserInfoAction extends BaseAction {
 	/**
 	 * 添加个人信息
 	 * 
-	 * @return
 	 */
 	public String addInfo() {
+		setUtfEncoding();
+		String name = getRequest().getParameter("userName");
+		String strsex = getRequest().getParameter("sex");
+		String strgroupID = getRequest().getParameter("groupId");
+		String strhomeID = getRequest().getParameter("homeID");
+
+		Integer sex = null;
+
+		Integer groupID = null;
+
+		Integer homeID = null;
+
+		String errorMsg = "";
+		Map<String, Object> result = new HashMap<String, Object>();
+		// 获取session中的id
+		Integer userid = (Integer) getSession().getAttribute("userId");
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("userid", userid);
+		UserInfo queryuserInfo = getUserInfoService().getInfoByUserId(data);
+
+		if (queryuserInfo != null) {
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUsername(name);
+			userInfo.setSex(sex);
+			userInfo.setGroupid(groupID);
+			userInfo.setHomeid(homeID);
+			userInfo.setUserid(userid);
+			userInfo.setId(queryuserInfo.getId());
+
+			int iNum = getUserInfoService().updateByPrimaryKeySelective(
+					userInfo);
+
+			if (iNum > 0) {
+				// 跳转至单天操练信息
+				return "redirect:/RecoveryLife/recoveryLifeInfo.do";
+			} else {
+				errorMsg = "数据处理失败";
+				result.put("error", errorMsg);
+				this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+				return "/pages/addInfo.jsp";
+			}
+
+		}
+		if (null == strsex || "".equals(strsex)) {
+			errorMsg = "获取性别值失败！";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/addInfo.jsp";
+		} else if (strsex.equals("-1")) {
+			sex = null;
+		} else {
+			sex = Integer.valueOf(strsex);
+		}
+
+		if (null == strgroupID || "".equals(strgroupID)) {
+			errorMsg = "获取所属排失败！";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/addInfo.jsp";
+		} else if (strgroupID.equals("-1")) {
+			sex = null;
+		} else {
+			groupID = Integer.valueOf(strgroupID);
+		}
+		if (null == strhomeID || "".equals(strhomeID)) {
+			errorMsg = "获取所属家失败！";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/addInfo.jsp";
+		} else if (strhomeID.equals("-1")) {
+			homeID = null;
+		} else {
+			homeID = Integer.valueOf(strhomeID);
+		}
+
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUsername(name);
+		userInfo.setSex(sex);
+		userInfo.setGroupid(groupID);
+		userInfo.setHomeid(homeID);
+		userInfo.setUserid(userid);
+		// 更改状态为已填个人信息
+		User user = new User();
+		user.setId(userid);
+		user.setStatus(1);
+		int iNum = 0;
+		// 暂时用这种方式控制事物
+		try {
+			iNum = getTransactionManagerService()
+					.addinfoservice(user, userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (iNum > 0) {
+			// 跳转至单天操练信息
+			return "redirect:/RecoveryLife/recoveryLifeInfo.do";
+		} else {
+			errorMsg = "数据处理失败";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/addInfo.jsp";
+		}
+	}
+
+	/**
+	 * 添加个人信息
+	 * 
+	 * @return
+	 */
+	public String updateInfo() {
 		setUtfEncoding();
 		String name = getRequest().getParameter("userName");
 		String strsex = getRequest().getParameter("sex");
@@ -127,31 +238,31 @@ public class UserInfoAction extends BaseAction {
 		Integer userid = (Integer) getSession().getAttribute("userId");
 
 		UserInfo userInfo = new UserInfo();
-		userInfo.setName(name);
+		userInfo.setUsername(name);
 		userInfo.setSex(sex);
 		userInfo.setGroupid(groupID);
 		userInfo.setHomeid(homeID);
 		userInfo.setUserid(userid);
 
-		// 更改状态为已填个人信息
-		User user = new User();
-		user.setId(userid);
-		user.setStatus(1);
 		int iNum = 0;
 		// 暂时用这种方式控制事物
 		try {
-			iNum = getTransactionManagerService()
-					.addinfoservice(user, userInfo);
+			iNum = getUserInfoService().updateByPrimaryKeySelectiveByUserID(
+					userInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		if (iNum > 0) {
 			// 跳转至单天操练信息
-			return "/pages/recoveryLifeInfo.jsp";
+			return "redirect:/RecoveryLife/recoveryLifeInfo.do";
 		} else {
 			// 跳转提醒重新填写
-			return "/login.html";
+			Map<String, Object> result = new HashMap<String, Object>();
+			String errorMsg = "修改出错请重试";
+			result.put("errorMsg", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/login.jsp";
 		}
 	}
 

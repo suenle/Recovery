@@ -14,8 +14,20 @@ public class Group {
     private String groupdesc;
 
     private String systemcode;
+    
+    private String districtname;
+    
+    
 
-    public Integer getId() {
+    public String getDistrictname() {
+		return districtname;
+	}
+
+	public void setDistrictname(String districtname) {
+		this.districtname = districtname;
+	}
+
+	public Integer getId() {
         return id;
     }
 

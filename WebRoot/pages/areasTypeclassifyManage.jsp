@@ -6,7 +6,7 @@
 <head>
 	<title>江苏云道仓储管理系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="../css/style.css" rel="stylesheet" type="text/css">
+	<link href="../css/beforestyle.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
 	<script src="../js/jquery-1.9.1.min.js"></script>
 	<script src="../js/jqGrid/i18n/grid.locale-en.js" type="text/javascript"></script>
@@ -28,9 +28,9 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" style="line-height: 34px;height: 34px;">
 				<tr>
 					<td class="barWord">
-						&nbsp;&nbsp;<img src="/StoreManagement/images/icon_card.gif" width="16" height="16" align="absmiddle" style="margin-bottom: 4px;">
-						当前位置&nbsp;<img src="/StoreManagement/images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
-						基础数据配置&nbsp;<img src="/StoreManagement/images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
+						&nbsp;&nbsp;<img src="../images/icon_card.gif" width="16" height="16" align="absmiddle" style="margin-bottom: 4px;">
+						当前位置&nbsp;<img src="../images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
+						基础数据配置&nbsp;<img src="../images/common/rightArrow.png" width="8" height="14" align="absmiddle" style="margin-bottom: 2px;">
 						区域类型管理
 					</td>
 					<td align="right" class="white" style="padding-right:20px">
@@ -44,13 +44,13 @@
 			          		<img src="../images/delete.gif" width="18" height="18" align="absmiddle" /> 删除
 			          	</a>
 						<a href="#" class="barBtn" onClick="javascript:history.go(-1);">
-							<img src="/StoreManagement/images/btn_left.gif" width="18" height="18" align="absmiddle"> 后退
+							<img src="../images/btn_left.gif" width="18" height="18" align="absmiddle"> 后退
 						</a> 
 						<a href="#" class="barBtn" onClick="javascript:history.go(+1);">
-							<img src="/StoreManagement/images/btn_right.gif" width="18" height="18" align="absmiddle"> 前进
+							<img src="../images/btn_right.gif" width="18" height="18" align="absmiddle"> 前进
 						</a> 
 						<a href="#" class="barBtn" onclick="javascript:location.reload();">
-							<img src="/StoreManagement/images/btn_refresh.gif" width="18" height="18" align="absmiddle"> 刷新
+							<img src="../images/btn_refresh.gif" width="18" height="18" align="absmiddle"> 刷新
 						</a>
 					</td>
 				</tr>

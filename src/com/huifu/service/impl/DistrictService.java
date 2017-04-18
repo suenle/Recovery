@@ -3,6 +3,7 @@ package com.huifu.service.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,19 @@ public class DistrictService implements IDistrictService {
 
 	public List<District> getAllDistrict() {
 		return getDistrictDao().getAllDistrict();
+	}
+
+	public District DistrictIsExist(District record) {
+		return getDistrictDao().DistrictIsExist(record);
+	}
+
+	public List<District> queryDistrict(Map<String, Object> data) {
+		return getDistrictDao().queryDistrict(data);
+	}
+
+	public int getDistrictNum(Map<String, Object> data) {
+		
+		return getDistrictDao().getDistrictNum(data);
 	}
 
 }

@@ -12,10 +12,56 @@
 		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, districtCode, districtName, churchId, districtAddress, districtDesc,
+		id, districtCode, districtName, churchId, districtAddress,
+		districtDesc,
 		systemCode
 	</sql>
 
+	<!-- 验证货物类型名称唯一 -->
+	<select id="DistrictIsExist" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_district
+		where districtName=#{districtname,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据条件查询所有货品大类数量(分页) -->
+	<select id="getDistrictNum" resultType="java.lang.Integer">
+		select count(*)
+		from t_district
+		where 1 = 1
+		<if test="@Ognl@isNotBlank(districtName)">
+			and districtName like #{districtName,javaType=Like,
+			jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+	</select>
+	<!-- 根据条件查询所有货品大类数据列表(分页) -->
+	<select id="queryDistrict" resultMap="BaseResultMap">
+		SELECT
+		t1.id AS id,
+		t1.districtName AS districtName,
+		t1.districtDesc AS
+		districtDesc,
+		t1.churchId AS churchId,
+		t2.churchName AS churchName
+		FROM
+		t_district t1,
+		t_church t2
+		WHERE
+		t1.churchId = t2.id
+		<if test="@Ognl@isNotBlank(districtName)">
+			and t1.districtName like #{districtName,
+			javaType=Like,jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+		<if test="@Ognl@isNotBlank(churchId)">
+			and t1.churchId = #{churchId,jdbcType=INTEGER}
+		</if>
+		order by id
+		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		jdbcType=INTEGER}
+	</select>
 
 	<select id="getAllDistrict" resultMap="BaseResultMap">
 		select
@@ -36,20 +82,23 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_district
+		delete from
+		t_district
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.huifu.entity.District">
-		insert into t_district (id, districtCode, districtName,
+	<insert id="insert" parameterType="com.huifu.entity.District" 	useGeneratedKeys="true" keyProperty="id">
+		insert into t_district (id,
+		districtCode, districtName,
 		churchId, districtAddress, districtDesc,
 		systemCode)
-		values (#{id,jdbcType=INTEGER}, #{districtcode,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER},
+		#{districtcode,jdbcType=VARCHAR},
 		#{districtname,jdbcType=VARCHAR},
 		#{churchid,jdbcType=INTEGER}, #{districtaddress,jdbcType=VARCHAR},
 		#{districtdesc,jdbcType=VARCHAR},
 		#{systemcode,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.huifu.entity.District">
+	<insert id="insertSelective" parameterType="com.huifu.entity.District" 	useGeneratedKeys="true" keyProperty="id">
 		insert into t_district
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -125,11 +174,16 @@
 	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.District">
 		update t_district
 		set districtCode = #{districtcode,jdbcType=VARCHAR},
-		districtName = #{districtname,jdbcType=VARCHAR},
-		churchId = #{churchid,jdbcType=INTEGER},
-		districtAddress = #{districtaddress,jdbcType=VARCHAR},
-		districtDesc = #{districtdesc,jdbcType=VARCHAR},
-		systemCode = #{systemcode,jdbcType=VARCHAR}
+		districtName =
+		#{districtname,jdbcType=VARCHAR},
+		churchId =
+		#{churchid,jdbcType=INTEGER},
+		districtAddress =
+		#{districtaddress,jdbcType=VARCHAR},
+		districtDesc =
+		#{districtdesc,jdbcType=VARCHAR},
+		systemCode =
+		#{systemcode,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

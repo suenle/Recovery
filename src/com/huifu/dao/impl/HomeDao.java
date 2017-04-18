@@ -54,4 +54,24 @@ public class HomeDao extends BaseIbatis3Dao<Home, Integer> implements IHomeDao {
 		return getSqlSession().selectList("Home.getAllHome");
 	}
 
+	public Home selectByName(Home record) {
+		
+		return getSqlSession().selectOne("Home.selectByName", record);
+	}
+
+	public Home HomeIsExist(Home record) {
+		
+		return getSqlSession().selectOne("Home.HomeIsExist", record);
+	}
+
+	public List<Home> queryHome(Map<String, Object> data) {
+		
+		return getSqlSession().selectList("Home.queryHome", data);
+	}
+
+	public int getHomeNum(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("Home.getHomeNum", data);
+	}
+
 }

@@ -26,6 +26,7 @@ import com.huifu.service.impl.UserService;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.LogManager;
@@ -40,6 +41,46 @@ public class UserAction extends BaseAction {
 	private UserService userService;
 	private UserInfoService userInfoService;
 	static Logger logger = LogManager.getLogger(UserAction.class.getName());
+
+	/**
+	 * 用户登录
+	 */
+
+	public String OAlogin() {
+		setUtfEncoding();
+		String userCode = getRequest().getParameter("userCode");
+		String password = getRequest().getParameter("password");
+		String errorMsg = "";
+		Map<String, Object> result = new HashMap<String, Object>();
+		// 超级管理员登陆入口
+		if (Constant.USER_SUPER_USERCODE.equals(userCode)
+				&& Constant.USER_SUPER_PASSWORD.equals(password)) {
+			this.getRequest().setAttribute("userCode", userCode);
+			this.getRequest().setAttribute("userName",
+					Constant.USER_SUPER_USERNAME);
+			this.getRequest()
+					.setAttribute("userId", Constant.USER_SUPER_USERID);
+			User user = new User();
+			user.setAccount(userCode);
+			user.setPassword(password);
+			user.setId(Constant.USER_SUPER_USERID);
+			user.setUsergroupid(Constant.USER_SUPER_USERGROUPID.toString());
+			this.getSession().setAttribute("user", user);
+			return SUCCESS;
+		} else {
+			ServletContext sc = getServletContext();
+			if (null == userCode || "".equals(userCode)
+					|| userCode.trim().length() == 0 || null == password
+					|| "".equals(password) || password.trim().length() == 0) {
+				errorMsg = "用户工号或密码为空";
+				result.put("error", errorMsg);
+				this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+				return INPUT;
+			}
+
+		}
+		return SUCCESS;
+	}
 
 	/**
 	 * 用户登录
@@ -81,6 +122,12 @@ public class UserAction extends BaseAction {
 		this.getRequest().setAttribute("userId", user.getId());
 		this.getSession().setAttribute("user", user);
 		this.getRequest().getSession().setAttribute("userId", user.getId());
+
+		Cookie userIdcookie = new Cookie("userId", user.getId().toString());
+		userIdcookie.setMaxAge(365 * 24 * 3600);
+		userIdcookie.setPath("/");
+		this.getResponse().addCookie(userIdcookie);
+
 		// 如果为0则为无个人信息进入信息配置界面
 		if (user.getStatus() == 0) {
 			return "addinfo";
@@ -104,26 +151,51 @@ public class UserAction extends BaseAction {
 			errorMsg = "账户或密码为空";
 			result.put("error", errorMsg);
 			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return INPUT;
+			return "/pages/register.jsp";
+		}
+		Integer accountNum = account.length();
+		Integer passwordNum = password.length();
+		if (accountNum < 6 || passwordNum < 6) {
+			errorMsg = "账户和密码不能小于6位";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/register.jsp";
+		}
+
+		User checkuser = new User();
+		checkuser.setAccount(account);
+		// user.setPassword(password);
+		// 验证用户工号密码是否匹配
+		User newcheckuser = getUserService().checkLogin(checkuser);
+		if (newcheckuser != null) {
+			errorMsg = "该账户已被占用";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/register.jsp";
 		}
 		User user = new User();
 		user.setAccount(account);
 		user.setPassword(password);
 		user.setStatus(0);
+		user.setUsergroupid("0");
 		int iNum = getUserService().insertSelective(user);
-
+		if (iNum < 0) {
+			errorMsg = "注册失败";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+			return "/pages/register.jsp";
+		}
+		Cookie userIdcookie = new Cookie("userId", user.getId().toString());
+		userIdcookie.setMaxAge(365 * 24 * 3600);
+		userIdcookie.setPath("/");
+		this.getResponse().addCookie(userIdcookie);
 		this.getRequest().getSession().setAttribute("userId", user.getId());
-
-		return SUCCESS;
-
+		return "redirect:User/addinfo.do";
 	}
 
-	public String toaddinfo() {
-
-		return "/addInfo.jsp";
+	public String addinfo() {
+		return "/pages/addInfo.jsp";
 	}
-
-
 
 	/**
 	 * 验证登录用户 return: int (0:用户工号、密码正确； 1：无此用户； 2：密码不正确； 3：用户无效; )
@@ -163,6 +235,58 @@ public class UserAction extends BaseAction {
 		}
 
 		return errorMsg;
+	}
+
+	// 菜单控制
+	public String getMeun() {
+		setUtfEncoding();
+
+		String errorMsg = "";
+
+		// 获取session中的id
+		Integer userid = (Integer) getSession().getAttribute("userId");
+
+		User user = getUserService().selectByPrimaryKey(userid);
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("userid", userid);
+		UserInfo userInfo = getUserInfoService().getInfoByUserId(data);
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		result.put("errorMsg", errorMsg);
+
+		result.put("userGroup", user.getUsergroupid());
+
+		result.put("userName", userInfo.getUsername());
+
+		result.put("sex", returnSex(userInfo.getSex()));
+
+		this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+
+		return "ajax";
+	}
+
+	public String returnSex(Integer sex) {
+
+		if (sex == 0) {
+			return "弟兄";
+		} else {
+			return "姊妹";
+		}
+
+	}
+
+	/**
+	 * 注销登录
+	 */
+	public String outlogin() {
+		this.getSession().removeAttribute("userId");
+		Cookie userId = new Cookie("userId", null);
+		userId.setMaxAge(0);
+		userId.setPath("/");
+		this.getResponse().addCookie(userId);
+		return "redirect:/login.jsp";
 	}
 
 	public UserService getUserService() {

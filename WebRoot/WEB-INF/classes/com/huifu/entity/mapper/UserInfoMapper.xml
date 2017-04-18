@@ -1,163 +1,330 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="UserInfo" >
-  <resultMap id="BaseResultMap" type="com.huifu.entity.UserInfo" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="INTEGER" />
-    <result column="age" property="age" jdbcType="INTEGER" />
-    <result column="groupId" property="groupid" jdbcType="INTEGER" />
-    <result column="homeId" property="homeid" jdbcType="INTEGER" />
-    <result column="phone" property="phone" jdbcType="INTEGER" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="emaill" property="emaill" jdbcType="VARCHAR" />
-    <result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, userId, name, sex, age, groupId, homeId, phone, address, emaill, systemCode
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_userinfo
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_userinfo
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.huifu.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_userinfo (id, userId, name, 
-      sex, age, groupId, 
-      homeId, phone, address, 
-      emaill, systemCode)
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, 
-      #{homeid,jdbcType=INTEGER}, #{phone,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
-      #{emaill,jdbcType=VARCHAR}, #{systemcode,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.huifu.entity.UserInfo" useGeneratedKeys="true" keyProperty="id" >
-    insert into t_userinfo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userid != null" >
-        userId,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="age != null" >
-        age,
-      </if>
-      <if test="groupid != null" >
-        groupId,
-      </if>
-      <if test="homeid != null" >
-        homeId,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="address != null" >
-        address,
-      </if>
-      <if test="emaill != null" >
-        emaill,
-      </if>
-      <if test="systemcode != null" >
-        systemCode,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
-      </if>
-      <if test="groupid != null" >
-        #{groupid,jdbcType=INTEGER},
-      </if>
-      <if test="homeid != null" >
-        #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=INTEGER},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="emaill != null" >
-        #{emaill,jdbcType=VARCHAR},
-      </if>
-      <if test="systemcode != null" >
-        #{systemcode,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.UserInfo" >
-    update t_userinfo
-    <set >
-      <if test="userid != null" >
-        userId = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
-      </if>
-      <if test="groupid != null" >
-        groupId = #{groupid,jdbcType=INTEGER},
-      </if>
-      <if test="homeid != null" >
-        homeId = #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="phone != null" >
-        phone = #{phone,jdbcType=INTEGER},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="emaill != null" >
-        emaill = #{emaill,jdbcType=VARCHAR},
-      </if>
-      <if test="systemcode != null" >
-        systemCode = #{systemcode,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.huifu.entity.UserInfo" >
-    update t_userinfo
-    set userId = #{userid,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      age = #{age,jdbcType=INTEGER},
-      groupId = #{groupid,jdbcType=INTEGER},
-      homeId = #{homeid,jdbcType=INTEGER},
-      phone = #{phone,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
-      emaill = #{emaill,jdbcType=VARCHAR},
-      systemCode = #{systemcode,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="UserInfo">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.UserInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="groupId" property="groupid" jdbcType="INTEGER" />
+		<result column="homeId" property="homeid" jdbcType="INTEGER" />
+		<result column="phone" property="phone" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="emaill" property="emaill" jdbcType="VARCHAR" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, userName, sex, age, groupId, homeId, phone,
+		address, emaill,
+		systemCode
+	</sql>
+
+  
+
+
+	<select id="getInfoByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_userinfo
+		where userId = #{userid,jdbcType=INTEGER}
+	</select>
+
+	<select id="queryLifeInfoBySomeDate" resultMap="BaseResultMap">
+		SELECT
+		t1.id AS id,
+		t1.userId AS userId,
+		t1.sex AS sex,
+		t1.userName AS userName,
+		t1.homeId AS homeId,
+		t2.homeName AS homeName,
+		t1.groupId AS groupId,
+		t3.groupName AS groupName,
+		t3.districtId AS districtId,
+		t4.districtName AS districtName,
+		t5.churchName AS churchName,
+		t4.churchId AS churchId
+		FROM
+		t_userinfo t1,
+		t_home t2,
+		t_group t3,
+		t_district t4,
+		t_church t5
+		WHERE
+		t1.homeId = t2.id
+		AND t1.groupId = t3.id
+		AND t3.districtId = t4.id
+		AND t4.churchId = t5.id
+		<if test="username != null">
+			AND t1.userName=#{username,jdbcType=VARCHAR}
+		</if>
+		<if test="homeid != null">
+			AND t1.homeId=#{homeid,jdbcType=INTEGER}
+		</if>
+		<if test="groupid != null">
+			AND t1.groupId=#{groupid,jdbcType=INTEGER}
+		</if>
+		<if test="districtid != null">
+			AND t3.districtId=#{districtid,jdbcType=INTEGER}
+		</if>
+		<if test="churchId != null">
+			AND t4.churchId=#{churchid,jdbcType=INTEGER}
+		</if>
+		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		jdbcType=INTEGER}
+	</select>
+
+	<select id="queryLifeInfoBySomeDateNum" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM t_userinfo t1,t_home
+		t2,t_group t3,t_district
+		t4,t_church t5
+		WHERE t1.homeId=t2.id
+		AND
+		t1.groupId=t3.id
+		AND
+		t3.districtId=t4.id
+		AND t4.churchId =t5.id
+		<if test="username != null">
+			AND t1.userName=#{username,jdbcType=VARCHAR}
+		</if>
+		<if test="homeid != null">
+			AND t1.homeId=#{homeid,jdbcType=INTEGER}
+		</if>
+		<if test="groupid != null">
+			AND t1.groupId=#{groupid,jdbcType=INTEGER}
+		</if>
+		<if test="districtid != null">
+			AND t3.districtId=#{districtid,jdbcType=INTEGER}
+		</if>
+		<if test="churchId != null">
+			AND t4.churchId=#{churchid,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+
+	<select id="getLifeInfoBySomeDate" resultMap="BaseResultMap">
+		SELECT t1.id AS id ,t1.userId AS userId,t1.userName
+		AS
+		userName,t1.sex AS sex,t1.homeId AS homeId,t2.homeName AS homeName,
+		t1.groupId AS
+		groupId ,t3.groupName AS groupName ,t3.districtId AS
+		districtId,t4.districtName AS districtName ,t5.churchName AS
+		churchName ,t4.churchId AS churchId
+		FROM t_userinfo t1,t_home
+		t2,t_group t3,t_district
+		t4,t_church t5
+		WHERE t1.homeId=t2.id
+		AND
+		t1.groupId=t3.id
+		AND t3.districtId=t4.id
+		AND t4.churchId =t5.id
+		<if test="username != null">
+			AND t1.userName=#{username,jdbcType=VARCHAR}
+		</if>
+		<if test="homeid != null">
+			AND t1.homeId=#{homeid,jdbcType=INTEGER}
+		</if>
+		<if test="groupid != null">
+			AND t1.groupId=#{groupid,jdbcType=INTEGER}
+		</if>
+		<if test="districtid != null">
+			AND t3.districtId=#{districtid,jdbcType=INTEGER}
+		</if>
+		<if test="churchId != null">
+			AND t4.churchId=#{churchid,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<update id="updateByPrimaryKeySelectiveByUserID" parameterType="com.huifu.entity.UserInfo">
+		update t_userinfo
+		<set>
+			<if test="username != null">
+				userName = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="age != null">
+				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="groupid != null">
+				groupId = #{groupid,jdbcType=INTEGER},
+			</if>
+			<if test="homeid != null">
+				homeId = #{homeid,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="emaill != null">
+				emaill = #{emaill,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where userId = #{userid,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_userinfo
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_userinfo
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.UserInfo">
+		insert into t_userinfo (id,
+		userId, userName,
+		sex, age, groupId,
+		homeId, phone, address,
+		emaill,
+		systemCode)
+		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
+		#{sex,jdbcType=INTEGER},
+		#{age,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER},
+		#{homeid,jdbcType=INTEGER}, #{phone,jdbcType=INTEGER},
+		#{address,jdbcType=VARCHAR},
+		#{emaill,jdbcType=VARCHAR},
+		#{systemcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.UserInfo">
+		insert into t_userinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userid != null">
+				userId,
+			</if>
+			<if test="username != null">
+				userName,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="age != null">
+				age,
+			</if>
+			<if test="groupid != null">
+				groupId,
+			</if>
+			<if test="homeid != null">
+				homeId,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="emaill != null">
+				emaill,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="age != null">
+				#{age,jdbcType=INTEGER},
+			</if>
+			<if test="groupid != null">
+				#{groupid,jdbcType=INTEGER},
+			</if>
+			<if test="homeid != null">
+				#{homeid,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="emaill != null">
+				#{emaill,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.UserInfo">
+		update t_userinfo
+		<set>
+			<if test="userid != null">
+				userId = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				userName = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="age != null">
+				age = #{age,jdbcType=INTEGER},
+			</if>
+			<if test="groupid != null">
+				groupId = #{groupid,jdbcType=INTEGER},
+			</if>
+			<if test="homeid != null">
+				homeId = #{homeid,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="emaill != null">
+				emaill = #{emaill,jdbcType=VARCHAR},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.UserInfo">
+		update t_userinfo
+		set userId = #{userid,jdbcType=INTEGER},
+		userName =
+		#{username,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		age =
+		#{age,jdbcType=INTEGER},
+		groupId = #{groupid,jdbcType=INTEGER},
+		homeId =
+		#{homeid,jdbcType=INTEGER},
+		phone = #{phone,jdbcType=INTEGER},
+		address =
+		#{address,jdbcType=VARCHAR},
+		emaill = #{emaill,jdbcType=VARCHAR},
+		systemCode = #{systemcode,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
 </mapper>

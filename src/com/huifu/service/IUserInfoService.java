@@ -1,5 +1,9 @@
 package com.huifu.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.huifu.entity.RecoveryLife;
 import com.huifu.entity.UserInfo;
 
 public interface IUserInfoService {
@@ -14,4 +18,14 @@ public interface IUserInfoService {
 	public int updateByPrimaryKeySelective(UserInfo record);
 
 	public int updateByPrimaryKey(UserInfo record);
+
+	public int updateByPrimaryKeySelectiveByUserID(UserInfo record);
+	
+	public List<UserInfo> getLifeInfoBySomeDate(Map<String, Object> data);
+	
+	public UserInfo getInfoByUserId(Map<String, Object> data);
+	
+	public List<UserInfo> queryLifeInfoBySomeDate(Map<String, Object> data);
+	
+	public int queryLifeInfoBySomeDateNum(Map<String, Object> data);
 }

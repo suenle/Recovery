@@ -4,7 +4,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 	<head>
-		<title>云道仓储管理系统 —— 登 录</title>
+		<title>后台 —— 登 录</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 		<script src="js/jquery-1.9.1.min.js"></script>
@@ -25,14 +25,14 @@
 	  		<tr height="60%">
 	    		<td height="100%" align="center">
 	    		<img src="images/store/userlogin.png" width="300" height="120" style="position: relative;float: left;left: 6%;">
-	    			<form method="post" action="login.do" name="loginForm" onsubmit="return check()" theme="simple">
+	    			<form method="post" action="OAlogin.do" name="loginForm" onsubmit="return check()" theme="simple">
 		    			<table width="620" height="435" border="0" bordercolor="blue" cellpadding="0" cellspacing="0" style="margin-right: 24px;margin-top: 180px;">
 			      			<tr>
 			        			<td>
 			        				<table width="500" height="200" border="0" bordercolor="gold" align="center" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
 				          				<tr style="height: 80px;">
 				          					<td colspan="2" align="center" style="font-family: 微软雅黑;color: #ffffff;font-size: 36px;" >
-				          						江苏云道仓储管理系统
+				          						后台管理系统
 				          					</td>
 				          				</tr>
 				          				<!-- 用户框 -->
@@ -40,7 +40,7 @@
 				            				<td colspan="2" align="center" >
 				            				<div style="position:relative;background:url(images/store/bg_input.png) no-repeat; width:300px; height:40px;">
 				            					<img alt="" src="images/store/bg_user.png" width="19" height="19" style="position:absolute;z-index: 2;margin-left: 13px;margin-top: 11px;margin-left: -137px;" />
-				            					<input class="inputbox" id="keyword_id_loginName" name="account" type="text" autocomplete="off" placeholder="请输入用户名" style="border:none; outline:none;position:absolute;z-index: 1;margin-left: -106px;font-size: 14px;color: white;margin-top: 7px;width: 240px;height: 26px;background-color:#0a79d0;" />
+				            					<input class="inputbox" id="keyword_id_loginName" name="userCode" type="text" autocomplete="off" placeholder="请输入用户名" style="border:none; outline:none;position:absolute;z-index: 1;margin-left: -106px;font-size: 14px;color: white;margin-top: 7px;width: 240px;height: 26px;background-color:#0a79d0;" />
 				            				</div>
 				            				</td>
 				           	 			</tr>

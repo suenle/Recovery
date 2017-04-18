@@ -2,9 +2,13 @@ package com.huifu.service.impl;
 
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.huifu.dao.impl.UserInfoDao;
+import com.huifu.entity.RecoveryLife;
 import com.huifu.entity.UserInfo;
 import com.huifu.service.IUserInfoService;
 
@@ -45,6 +49,27 @@ public class UserInfoService implements IUserInfoService {
 
 	public int updateByPrimaryKey(UserInfo record) {
 		return getUserInfoDao().updateByPrimaryKey(record);
+	}
+
+	public int updateByPrimaryKeySelectiveByUserID(UserInfo record) {
+		return getUserInfoDao().updateByPrimaryKeySelectiveByUserID(record);
+	}
+
+	public List<UserInfo> getLifeInfoBySomeDate(Map<String, Object> data) {
+		
+		return getUserInfoDao().getLifeInfoBySomeDate(data);
+	}
+
+	public UserInfo getInfoByUserId(Map<String, Object> data) {
+		return getUserInfoDao().getInfoByUserId(data);
+	}
+
+	public List<UserInfo> queryLifeInfoBySomeDate(Map<String, Object> data) {
+		return getUserInfoDao().queryLifeInfoBySomeDate(data);
+	}
+
+	public int queryLifeInfoBySomeDateNum(Map<String, Object> data) {
+		return getUserInfoDao().queryLifeInfoBySomeDateNum(data);
 	}
 
 

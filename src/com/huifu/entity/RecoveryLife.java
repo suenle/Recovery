@@ -3,233 +3,309 @@ package com.huifu.entity;
 import java.util.Date;
 
 public class RecoveryLife {
-    private Integer id;
+	private Integer id;
 
-    private Integer userid;
+	private Integer userid;
 
-    private String morningrevial;
+	private Integer morningrevial;
 
-    private Integer morningrevialscore;
+	private Integer twoaltarpray;
 
-    private String twoaltarpray;
+	private Integer psrp;
 
-    private Integer twoaltarprayscore;
+	private Integer threeold;
 
-    private String psrp;
+	private Integer threeoldnum;
 
-    private Integer psrpscore;
+	private Integer onenew;
 
-    private String threeold;
+	private Integer onenewnum;
 
-    private Integer threeoldscore;
+	private Integer personalpray;
 
-    private String onenew;
+	private Double shepherd;
 
-    private Integer onenewscore;
+	private Double gospel;
 
-    private String personalpray;
+	private Integer meeting;
 
-    private Integer personalprayscore;
+	private Integer meetingtype;
 
-    private String shepherd;
+	private Integer prophesy;
 
-    private Integer shepherdscore;
+	private Date time;
 
-    private String gospel;
+	private String username;
 
-    private Integer gospelscore;
+	private Integer sex;
 
-    private String meeting;
+	private Integer age;
 
-    private Integer meetingtype;
+	private Integer groupid;
 
-    private Integer meetingscore;
+	private Integer homeid;
 
-    private Date time;
+	private Integer phone;
 
-    private String systemcode;
+	private String address;
 
-    public Integer getId() {
-        return id;
-    }
+	private String emaill;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private String systemcode;
 
-    public Integer getUserid() {
-        return userid;
-    }
+	private String homename;
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	private String groupname;
+	private Integer districtid;
+	private String districtname;
+	private String churchname;
+	private Integer churchid;
 
-    public String getMorningrevial() {
-        return morningrevial;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setMorningrevial(String morningrevial) {
-        this.morningrevial = morningrevial == null ? null : morningrevial.trim();
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public Integer getMorningrevialscore() {
-        return morningrevialscore;
-    }
+	public Integer getSex() {
+		return sex;
+	}
 
-    public void setMorningrevialscore(Integer morningrevialscore) {
-        this.morningrevialscore = morningrevialscore;
-    }
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
 
-    public String getTwoaltarpray() {
-        return twoaltarpray;
-    }
+	public Integer getAge() {
+		return age;
+	}
 
-    public void setTwoaltarpray(String twoaltarpray) {
-        this.twoaltarpray = twoaltarpray == null ? null : twoaltarpray.trim();
-    }
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
-    public Integer getTwoaltarprayscore() {
-        return twoaltarprayscore;
-    }
+	public Integer getGroupid() {
+		return groupid;
+	}
 
-    public void setTwoaltarprayscore(Integer twoaltarprayscore) {
-        this.twoaltarprayscore = twoaltarprayscore;
-    }
+	public void setGroupid(Integer groupid) {
+		this.groupid = groupid;
+	}
 
-    public String getPsrp() {
-        return psrp;
-    }
+	public Integer getHomeid() {
+		return homeid;
+	}
 
-    public void setPsrp(String psrp) {
-        this.psrp = psrp == null ? null : psrp.trim();
-    }
-
-    public Integer getPsrpscore() {
-        return psrpscore;
-    }
-
-    public void setPsrpscore(Integer psrpscore) {
-        this.psrpscore = psrpscore;
-    }
-
-    public String getThreeold() {
-        return threeold;
-    }
-
-    public void setThreeold(String threeold) {
-        this.threeold = threeold == null ? null : threeold.trim();
-    }
-
-    public Integer getThreeoldscore() {
-        return threeoldscore;
-    }
-
-    public void setThreeoldscore(Integer threeoldscore) {
-        this.threeoldscore = threeoldscore;
-    }
-
-    public String getOnenew() {
-        return onenew;
-    }
-
-    public void setOnenew(String onenew) {
-        this.onenew = onenew == null ? null : onenew.trim();
-    }
-
-    public Integer getOnenewscore() {
-        return onenewscore;
-    }
-
-    public void setOnenewscore(Integer onenewscore) {
-        this.onenewscore = onenewscore;
-    }
-
-    public String getPersonalpray() {
-        return personalpray;
-    }
-
-    public void setPersonalpray(String personalpray) {
-        this.personalpray = personalpray == null ? null : personalpray.trim();
-    }
-
-    public Integer getPersonalprayscore() {
-        return personalprayscore;
-    }
-
-    public void setPersonalprayscore(Integer personalprayscore) {
-        this.personalprayscore = personalprayscore;
-    }
-
-    public String getShepherd() {
-        return shepherd;
-    }
-
-    public void setShepherd(String shepherd) {
-        this.shepherd = shepherd == null ? null : shepherd.trim();
-    }
-
-    public Integer getShepherdscore() {
-        return shepherdscore;
-    }
-
-    public void setShepherdscore(Integer shepherdscore) {
-        this.shepherdscore = shepherdscore;
-    }
-
-    public String getGospel() {
-        return gospel;
-    }
-
-    public void setGospel(String gospel) {
-        this.gospel = gospel == null ? null : gospel.trim();
-    }
-
-    public Integer getGospelscore() {
-        return gospelscore;
-    }
-
-    public void setGospelscore(Integer gospelscore) {
-        this.gospelscore = gospelscore;
-    }
-
-    public String getMeeting() {
-        return meeting;
-    }
-
-    public void setMeeting(String meeting) {
-        this.meeting = meeting == null ? null : meeting.trim();
-    }
-
-    public Integer getMeetingtype() {
-        return meetingtype;
-    }
-
-    public void setMeetingtype(Integer meetingtype) {
-        this.meetingtype = meetingtype;
-    }
-
-    public Integer getMeetingscore() {
-        return meetingscore;
-    }
-
-    public void setMeetingscore(Integer meetingscore) {
-        this.meetingscore = meetingscore;
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public String getSystemcode() {
-        return systemcode;
-    }
-
-    public void setSystemcode(String systemcode) {
-        this.systemcode = systemcode == null ? null : systemcode.trim();
-    }
+	public void setHomeid(Integer homeid) {
+		this.homeid = homeid;
+	}
+
+	public Integer getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmaill() {
+		return emaill;
+	}
+
+	public void setEmaill(String emaill) {
+		this.emaill = emaill;
+	}
+
+	public String getHomename() {
+		return homename;
+	}
+
+	public void setHomename(String homename) {
+		this.homename = homename;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public Integer getDistrictid() {
+		return districtid;
+	}
+
+	public void setDistrictid(Integer districtid) {
+		this.districtid = districtid;
+	}
+
+	public String getDistrictname() {
+		return districtname;
+	}
+
+	public void setDistrictname(String districtname) {
+		this.districtname = districtname;
+	}
+
+	public String getChurchname() {
+		return churchname;
+	}
+
+	public void setChurchname(String churchname) {
+		this.churchname = churchname;
+	}
+
+	public Integer getChurchid() {
+		return churchid;
+	}
+
+	public void setChurchid(Integer churchid) {
+		this.churchid = churchid;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public Integer getMorningrevial() {
+		return morningrevial;
+	}
+
+	public void setMorningrevial(Integer morningrevial) {
+		this.morningrevial = morningrevial;
+	}
+
+	public Integer getTwoaltarpray() {
+		return twoaltarpray;
+	}
+
+	public void setTwoaltarpray(Integer twoaltarpray) {
+		this.twoaltarpray = twoaltarpray;
+	}
+
+	public Integer getPsrp() {
+		return psrp;
+	}
+
+	public void setPsrp(Integer psrp) {
+		this.psrp = psrp;
+	}
+
+	public Integer getThreeold() {
+		return threeold;
+	}
+
+	public void setThreeold(Integer threeold) {
+		this.threeold = threeold;
+	}
+
+	public Integer getThreeoldnum() {
+		return threeoldnum;
+	}
+
+	public void setThreeoldnum(Integer threeoldnum) {
+		this.threeoldnum = threeoldnum;
+	}
+
+	public Integer getOnenew() {
+		return onenew;
+	}
+
+	public void setOnenew(Integer onenew) {
+		this.onenew = onenew;
+	}
+
+	public Integer getOnenewnum() {
+		return onenewnum;
+	}
+
+	public void setOnenewnum(Integer onenewnum) {
+		this.onenewnum = onenewnum;
+	}
+
+	public Integer getPersonalpray() {
+		return personalpray;
+	}
+
+	public void setPersonalpray(Integer personalpray) {
+		this.personalpray = personalpray;
+	}
+
+	public Double getShepherd() {
+		return shepherd;
+	}
+
+	public void setShepherd(Double shepherd) {
+		this.shepherd = shepherd;
+	}
+
+	public Double getGospel() {
+		return gospel;
+	}
+
+	public void setGospel(Double gospel) {
+		this.gospel = gospel;
+	}
+
+	public Integer getMeeting() {
+		return meeting;
+	}
+
+	public void setMeeting(Integer meeting) {
+		this.meeting = meeting;
+	}
+
+	public Integer getMeetingtype() {
+		return meetingtype;
+	}
+
+	public void setMeetingtype(Integer meetingtype) {
+		this.meetingtype = meetingtype;
+	}
+
+	public Integer getProphesy() {
+		return prophesy;
+	}
+
+	public void setProphesy(Integer prophesy) {
+		this.prophesy = prophesy;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public String getSystemcode() {
+		return systemcode;
+	}
+
+	public void setSystemcode(String systemcode) {
+		this.systemcode = systemcode == null ? null : systemcode.trim();
+	}
 }

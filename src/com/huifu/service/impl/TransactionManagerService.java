@@ -2,8 +2,10 @@ package com.huifu.service.impl;
 
 import org.springframework.stereotype.Service;
 
+import com.huifu.dao.impl.RequestInfoDao;
 import com.huifu.dao.impl.UserDao;
 import com.huifu.dao.impl.UserInfoDao;
+import com.huifu.entity.RequestInfo;
 import com.huifu.entity.User;
 import com.huifu.entity.UserInfo;
 
@@ -13,6 +15,8 @@ public class TransactionManagerService {
 	private UserDao userDao;
 
 	private UserInfoDao userInfoDao;
+
+	private RequestInfoDao requestInfoDao;
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -30,6 +34,14 @@ public class TransactionManagerService {
 		this.userInfoDao = userInfoDao;
 	}
 
+	public RequestInfoDao getRequestInfoDao() {
+		return requestInfoDao;
+	}
+
+	public void setRequestInfoDao(RequestInfoDao requestInfoDao) {
+		this.requestInfoDao = requestInfoDao;
+	}
+
 	public Integer addinfoservice(User user, UserInfo userInfo) {
 
 		int iNumStatus = getUserDao().updateByPrimaryKeySelective(user);
@@ -37,6 +49,15 @@ public class TransactionManagerService {
 		int iNum = getUserInfoDao().insert(userInfo);
 
 		return iNum;
+	}
+
+	public Integer becomeCarer(User user, RequestInfo requestInfo) {
+		int iNum = getRequestInfoDao().insertSelective(requestInfo);
+
+		int iNumUser = getUserDao().updateByPrimaryKeySelective(user);
+
+		return iNumUser;
+
 	}
 
 }

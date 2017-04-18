@@ -11,8 +11,67 @@
 		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, groupCode, groupName, districtId, groupAddress, groupDesc, systemCode
+		id, groupCode, groupName, districtId, groupAddress,
+		groupDesc, systemCode
 	</sql>
+
+
+	<!-- 验证货物类型名称唯一 -->
+	<select id="GroupIsExist" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_group
+		where groupName=#{groupname,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据条件查询所有货品大类数量(分页) -->
+	<select id="getGroupNum" resultType="java.lang.Integer">
+		select count(*)
+		from t_group
+		where 1 = 1
+		<if test="@Ognl@isNotBlank(groupName)">
+			and groupName like #{groupName,javaType=Like,
+			jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+	</select>
+	<!-- 根据条件查询所有货品大类数据列表(分页) -->
+	<select id="queryGroup" resultMap="BaseResultMap">
+		SELECT
+		t3.id AS id,t3.districtId AS districtId,
+		t3.groupName AS groupName,
+		t3.groupDesc AS groupDesc,
+		t1.districtName AS districtName,
+		t1.districtDesc AS
+		districtDesc,
+		t1.churchId AS churchId,
+		t2.churchName AS churchName
+		FROM
+		t_district t1,
+		t_church t2,
+		t_group t3
+		WHERE
+		t3.districtId=t1.id AND
+		t1.churchId = t2.id
+		<if test="@Ognl@isNotBlank(groupName)">
+			and t3.groupName like #{groupName,
+			javaType=Like,jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+		<if test="@Ognl@isNotBlank(churchId)">
+			and t1.churchId = #{churchId,jdbcType=INTEGER}
+		</if>
+		<if test="@Ognl@isNotBlank(districtId)">
+			and t3.districtId = #{districtId,jdbcType=INTEGER}
+		</if>
+		order by id
+		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		jdbcType=INTEGER}
+	</select>
+
+
+
+
 
 
 
@@ -23,7 +82,12 @@
 	</select>
 
 
-
+	<select id="selectByName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_group
+		where groupName = #{groupname,jdbcType=INTEGER}
+	</select>
 
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -34,19 +98,24 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_group
+		delete from
+		t_group
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.huifu.entity.Group">
-		insert into t_group (id, groupCode, groupName,
+	<insert id="insert" parameterType="com.huifu.entity.Group"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into t_group (id,
+		groupCode, groupName,
 		districtId, groupAddress, groupDesc,
 		systemCode)
 		values (#{id,jdbcType=INTEGER}, #{groupcode,jdbcType=VARCHAR},
 		#{groupname,jdbcType=VARCHAR},
-		#{districtid,jdbcType=INTEGER}, #{groupaddress,jdbcType=VARCHAR}, #{groupdesc,jdbcType=VARCHAR},
+		#{districtid,jdbcType=INTEGER},
+		#{groupaddress,jdbcType=VARCHAR}, #{groupdesc,jdbcType=VARCHAR},
 		#{systemcode,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.huifu.entity.Group">
+	<insert id="insertSelective" parameterType="com.huifu.entity.Group"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into t_group
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -121,12 +190,18 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.Group">
 		update t_group
-		set groupCode = #{groupcode,jdbcType=VARCHAR},
-		groupName = #{groupname,jdbcType=VARCHAR},
-		districtId = #{districtid,jdbcType=INTEGER},
-		groupAddress = #{groupaddress,jdbcType=VARCHAR},
-		groupDesc = #{groupdesc,jdbcType=VARCHAR},
-		systemCode = #{systemcode,jdbcType=VARCHAR}
+		set
+		groupCode = #{groupcode,jdbcType=VARCHAR},
+		groupName =
+		#{groupname,jdbcType=VARCHAR},
+		districtId =
+		#{districtid,jdbcType=INTEGER},
+		groupAddress =
+		#{groupaddress,jdbcType=VARCHAR},
+		groupDesc =
+		#{groupdesc,jdbcType=VARCHAR},
+		systemCode =
+		#{systemcode,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

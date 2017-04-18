@@ -27,7 +27,7 @@
              <property name="enableSubPackages" value="true"/>
          </javaClientGenerator>
          <!-- 数据库中表明·对·映·类名 -->
-         <table tableName="t_home" domainObjectName="Home" 
+         <table tableName="t_lifescore" domainObjectName="LifeScore" 
          enableCountByExample="false" enableUpdateByExample="false" 
          enableDeleteByExample="false" enableSelectByExample="false" 
          selectByExampleQueryId="false"></table>

@@ -57,25 +57,33 @@
 			<result name="success" type="dispatcher" >
 				<param name="location" >/pages/recoveryLifeInfo.jsp</param>
 			</result>
-			<result name="input">/login.html</result>
+			<result name="input">/login.jsp</result>
 			<result name="addinfo">/addInfo.jsp</result>
 			<result name="ajax" type="gson">
 				<param name="envlope">false</param>
 			</result>
 		</action>
 		
-		<action name="register" class="com.huifu.action.UserAction" method="register">
+		
+		<!-- 登录页面配置  -->
+		<action name="OAlogin" class="com.huifu.action.UserAction" method="OAlogin">
 			<result name="success" type="dispatcher" >
-				<param name="location">/addInfo.jsp</param>
+				<param name="location">/mainpage.jsp</param>
 			</result>
-			<result name="input">/login.html</result>
-			<result name="addinfo">/addInfo.jsp</result>
+			<result name="input">/index.jsp</result>
 			<result name="ajax" type="gson">
 				<param name="envlope">false</param>
 			</result>
 		</action>
 		
-	
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		<!-- 通用配置 -->

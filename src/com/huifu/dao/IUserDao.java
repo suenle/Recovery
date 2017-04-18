@@ -1,5 +1,7 @@
 package com.huifu.dao;
 
+import java.util.List;
+
 import com.huifu.entity.User;
 
 public interface IUserDao {
@@ -17,6 +19,8 @@ public interface IUserDao {
 	public int updateByPrimaryKey(User record);
 	
 	public User checkLogin(User record);
+	
+	public List<User> listAllUserId();
 	
 	
 }

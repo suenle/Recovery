@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.huifu.base.BaseIbatis3Dao;
 import com.huifu.dao.IUserInfoDao;
+import com.huifu.entity.RecoveryLife;
 import com.huifu.entity.UserInfo;
 
 /**
@@ -51,6 +52,30 @@ public class UserInfoDao extends BaseIbatis3Dao<UserInfo, Integer> implements IU
 	public UserInfo checkLogin(UserInfo record) {
 		
 		return getSqlSession().selectOne("UserInfo.checkLogin", record);
+	}
+
+	public int updateByPrimaryKeySelectiveByUserID(UserInfo record) {
+		
+		return getSqlSession().update("UserInfo.updateByPrimaryKeySelectiveByUserID", record);
+	}
+
+	public List<UserInfo> getLifeInfoBySomeDate(Map<String, Object> data) {
+		
+		return getSqlSession().selectList("UserInfo.getLifeInfoBySomeDate", data);
+	}
+
+	public UserInfo getInfoByUserId(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("UserInfo.getInfoByUserId", data);
+	}
+
+	public List<UserInfo> queryLifeInfoBySomeDate(Map<String, Object> data) {
+		return getSqlSession().selectList("UserInfo.queryLifeInfoBySomeDate", data);
+	}
+
+	public int queryLifeInfoBySomeDateNum(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("UserInfo.queryLifeInfoBySomeDateNum", data);
 	}
 
 

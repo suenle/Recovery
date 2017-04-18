@@ -1,8 +1,6 @@
 package com.huifu.service.impl;
 
-
-
-
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -15,9 +13,7 @@ import com.huifu.service.IUserService;
  */
 @Service
 public class UserService implements IUserService {
-	private UserDao  userDao;
-	
-	
+	private UserDao userDao;
 
 	public UserDao getUserDao() {
 		return userDao;
@@ -54,6 +50,11 @@ public class UserService implements IUserService {
 	public User checkLogin(User record) {
 
 		return getUserDao().checkLogin(record);
+	}
+
+	public List<User> listAllUserId() {
+
+		return getUserDao().listAllUserId();
 	}
 
 }

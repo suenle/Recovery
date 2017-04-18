@@ -1,3 +1,7 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ include file="/pages/commons/taglibs.jsp"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
   <head>
     <title>登录页面</title>
@@ -17,21 +21,11 @@
 			<tr style="height:20px;">
 				<td colspan="2"
 					style="border-bottom:1px solid gainsboro;padding-top: 5px;"><h1
-						class="h1">登录页面</h1></td>
+						class="h1"></h1></td>
 			</tr>
-		    <tr style="height:20px;">
-				<td class=""><span class="div_front_prompt">*</span>账 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</td>
-				<td><input accept="middle" class="input_class" type="text"
-					id="keyword_id_areasTypeClassify_areasTypeName"  name="account"  placeholder="请输入账号" />
-				</td>
-				
-			</tr>
+		   
 			<tr style="height:20px;">
-				<td class=""><span class="div_front_prompt">*</span>密 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
-				<td><input accept="middle" class="input_class" type="password" name="password"
-					id="keyword_id_areasTypeClassify_areasTypeName" placeholder="请输入密码" />
-				</td>
-				
+				<td colspan="2"><h1 class="h1">提交成功</h1></td>
 			</tr>
 			
 			
@@ -40,18 +34,25 @@
 			</tr>
 			<tr style="height:50px;">
 				<td colspan="2" style="border-top:1px solid gainsboro;">
-					<div
-						style="text-align:center;padding-top: 7px;padding-bottom: 7px;">
-						<input type="submit" class="div_button_submit div_button_submit_2"
-							value="登 录" onclick="javascript:areasTypeClassifyAddCommit();" />
-						  <a href="register.html" ><input type="button" class="div_button_cancel div_button_cancel_2"
-							value="注 册" onclick="javascript:areasTypeClassifyAddCancel();" /></a>
-
-					</div>
 				</td>
 			</tr>
 		</table>
 		</form>
+	</div>
+	<div id="menu" class="menu">
+		<a href="${ctx}/RecoveryLife/recoveryLifeInfo.do"><div id="one"
+				class="subMenu text-center">
+				<img class="menu_img" style="margin-top: 3px" />
+				<div class="menu_name">
+					<span style="color: black">神人生活操练</span>
+				</div>
+			</div> </a> <a href="../pages/meun.jsp"><div id="two"
+				class="subMenu text-center">
+				<img class="menu_img" style="margin-top: 3px" />
+				<div class="menu_name">
+					<span style="color: black">我的</span>
+				</div>
+			</div> </a>
 	</div>
 </body>
  

@@ -1,6 +1,7 @@
 package com.huifu.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.huifu.entity.Home;
 
@@ -18,4 +19,13 @@ public interface IHomeService {
 	public int updateByPrimaryKey(Home record);
 
 	public List<Home> getAllHome();
+	
+	public Home selectByName(Home record);
+	
+	public Home HomeIsExist(Home record);
+
+	public List<Home> queryHome(Map<String, Object> data);
+
+	public int getHomeNum(Map<String, Object> data);
+
 }

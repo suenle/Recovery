@@ -24,6 +24,8 @@ public interface IUserService {
 	public int updateByPrimaryKey(User record);
 	
 	public User checkLogin(User record);
+	
+	public List<User> listAllUserId();
 
 
 

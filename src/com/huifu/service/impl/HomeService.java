@@ -49,8 +49,25 @@ public class HomeService implements IHomeService {
 	}
 
 	public List<Home> getAllHome() {
-		
+
 		return getHomeDao().getAllHome();
+	}
+
+	public Home selectByName(Home record) {
+		return getHomeDao().selectByName(record);
+	}
+
+	public Home HomeIsExist(Home record) {
+
+		return getHomeDao().HomeIsExist(record);
+	}
+
+	public List<Home> queryHome(Map<String, Object> data) {
+		return getHomeDao().queryHome(data);
+	}
+
+	public int getHomeNum(Map<String, Object> data) {
+		return getHomeDao().getHomeNum(data);
 	}
 
 }
