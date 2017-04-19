@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.huifu.base.BaseIbatis3Dao;
 import com.huifu.dao.IRequestInfoDao;
+import com.huifu.entity.Home;
 import com.huifu.entity.RequestInfo;
 
 /**
@@ -52,6 +53,16 @@ public class RequestInfoDao extends BaseIbatis3Dao<RequestInfo, Integer>
 
 	public RequestInfo selectByUserid(Map<String, Object> data) {
 		return getSqlSession().selectOne("RequestInfo.selectByUserid", data);
+	}
+	
+	public List<RequestInfo> queryRequestInfo(Map<String, Object> data) {
+		
+		return getSqlSession().selectList("RequestInfo.queryRequestInfo", data);
+	}
+
+	public int queryRequestInfoNum(Map<String, Object> data) {
+		
+		return getSqlSession().selectOne("RequestInfo.queryRequestInfoNum", data);
 	}
 
 }

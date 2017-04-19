@@ -23,23 +23,6 @@
         </property>
     </bean>       
 
-<!-- 预警信息任务执行bean -->
-   <!--  
-    <bean id="preAlarmInfoDetail" class="org.springframework.scheduling.quartz.JobDetailBean">
-    	<property name="jobClass">
-    		<value>com.yundao.platformex.service.impl.PreAlarmInfoDetail</value>
-    	</property>
-    </bean>
-
-    预警信息触发器bean定义
-    <bean id="preAlarmInfoCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
-    	<property name="jobDetail" ref="preAlarmInfoDetail" />
-    	每天7点到20点之间,每隔1小时逢整点时执行1次
-    	
-    	<property name="cronExpression" value="0 0 7-20/1 * * ?" />
-    	
-    	<property name="cronExpression" value="0 0 0/1 * * ?" />
-    </bean> -->
     
  <!-- comet -->   
  	<bean id="jobtask" class="org.springframework.scheduling.quartz.JobDetailBean">
@@ -58,29 +41,7 @@
     	<property name="cronExpression" value="0/30 * * * * ?" />
     </bean> 
  
- <!-- 
- <bean id="jobtask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
-            <property name="targetObject">  
-               <bean class="com.yundao.platformex.action.UserAction"/>      
-            </property>  
-           <property name="targetMethod" value="Line"></property> 
-        </bean>  
-        <bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerBean">  
-            <property name="jobDetail">  
-                <ref bean="jobtask"/>  
-            </property>  
-            <property name="cronExpression">  
-                <value>0/10 * * * * ?</value>  
-            </property>  
-        </bean>  
-          <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-            <property name="triggers">
-                <list>
-                    <ref bean="doTime"/>
-                </list>
-            </property>
-        </bean>
- -->
+ 
 
 
 </beans>

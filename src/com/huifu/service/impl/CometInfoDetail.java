@@ -26,6 +26,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.google.gson.Gson;
 import com.huifu.base.BaseUtils;
 import com.huifu.constant.Constant;
+import com.huifu.entity.LifeScore;
 import com.huifu.entity.RecoveryLife;
 import com.huifu.entity.User;
 import com.opensymphony.xwork2.ActionContext;
@@ -40,6 +41,17 @@ public class CometInfoDetail implements Job {
 
 	private static RecoveryLifeService recoveryLifeService = (RecoveryLifeService) ApplicationContextHolder
 			.getBean("recoveryLifeService");
+
+	private static LifeScoreService lifeScoreService = (LifeScoreService) ApplicationContextHolder
+			.getBean("lifeScoreService");
+
+	public static LifeScoreService getLifeScoreService() {
+		return lifeScoreService;
+	}
+
+	public static void setLifeScoreService(LifeScoreService lifeScoreService) {
+		CometInfoDetail.lifeScoreService = lifeScoreService;
+	}
 
 	public static UserService getUserService() {
 		return userService;
@@ -87,14 +99,23 @@ public class CometInfoDetail implements Job {
 			Integer threeOldScore = 0;
 			Integer oneNewScore = 0;
 			Integer personalPrayScore = 0;
-			Integer meetingScore = 0;
-			Integer meetingType = 0;
-			Integer prophesyScore = 0;
-			Integer startTime = 0;
-			Integer endTime = 0;
-			Integer scoreType = 0;
+
+			Integer scoreType = 1;
 			Integer totalScore = 0;
-			
+
+			Integer shepherdScore = 0;
+			Integer gospelScore = 0;
+
+			Integer birdsEyeMeeting = 0;
+
+			Integer PSRPMeeting = 0;
+			Integer prayMeeting = 0;
+
+			Integer groupShare = 0;
+			Integer groupMeeting = 0;
+			Integer sundayProphesy = 0;
+			Integer sundayScore = 0;
+
 			Double shepherdTime = 0.0;
 			Double gospelTime = 0.0;
 
@@ -127,17 +148,101 @@ public class CometInfoDetail implements Job {
 				Double shepherd = recoveryLife.getShepherd();
 				shepherdTime = BaseUtils.add(shepherd, shepherdTime);
 				// 聚会
+				// 7主日聚会
+				// 2祷告聚会
+				// 5小排聚会
+				// 1周初PSRP追求聚会
+				// 6脱稿鸟瞰展览
+				Integer meeting = recoveryLife.getMeeting();
+				Integer meetingType = recoveryLife.getMeetingtype();
+				if (meeting.equals(7)) {
+					// 迟到不迟到
+					if (meetingType.equals(1)) {
+						sundayScore = sundayScore + 2;
 
-				
-				
-				//
+					} else {
+						sundayScore = sundayScore + 1;
+					}
+					Integer prophesy = recoveryLife.getProphesy();
+					if (prophesy == 1) {
+						sundayProphesy = sundayProphesy + 3;
 
-				//
-				//
-				//
-				//
+					}
+
+				} else if (meeting.equals(5)) {
+					// 迟到不迟到
+					if (meetingType.equals(1)) {
+						groupMeeting = groupMeeting + 2;
+					} else {
+						groupMeeting = groupMeeting + 1;
+					}
+					Integer prophesy = recoveryLife.getProphesy();
+					if (prophesy == 1) {
+						groupShare = groupShare + 3;
+
+					}
+
+				} else if (meeting.equals(1)) {
+
+					PSRPMeeting = PSRPMeeting + 3;
+
+				} else if (meeting.equals(2)) {
+
+					if (meetingType.equals(1)) {
+						prayMeeting = prayMeeting + 2;
+					} else {
+						prayMeeting = prayMeeting + 1;
+					}
+				} else if (meeting.equals(6)) {
+
+					birdsEyeMeeting = birdsEyeMeeting + 3;
+				}
 
 			}
+			if (shepherdTime >= 1) {
+				shepherdScore = shepherdScore + 3;
+			}
+			if (gospelTime >= 2) {
+				gospelScore = gospelScore + 4;
+			} else if (gospelTime < 2 && gospelTime > 1) {
+				gospelScore = gospelScore + 2;
+			} else if (gospelTime > 0.5 && gospelTime < 1) {
+				gospelScore = gospelScore + 1;
+			}
+
+			LifeScore lifeScore = new LifeScore();
+
+			lifeScore.setUserid(user.getId());
+			lifeScore.setMorningrevialscore(morningRevialScore);
+			lifeScore.setTwoaltarprayscore(twoAltarPrayScore);
+			lifeScore.setPsrpscore(PSRPScore);
+			// 三旧
+			lifeScore.setThreeoldscore(threeOldScore);
+			// 一新
+			lifeScore.setOnenewscore(oneNewScore);
+			lifeScore.setPersonalprayscore(personalPrayScore);
+			lifeScore.setGospelscore(gospelScore);
+			lifeScore.setShepherdscore(shepherdScore);
+			lifeScore.setSundayscore(sundayScore);
+			lifeScore.setSundayprophesy(sundayProphesy);
+			lifeScore.setPsrpmeeting(PSRPMeeting);
+			lifeScore.setPraymeeting(prayMeeting);
+			lifeScore.setGroupmeeting(groupMeeting);
+			lifeScore.setGroupshare(groupShare);
+			lifeScore.setBirdseyemeeting(birdsEyeMeeting);
+			lifeScore.setStarttime(startdate);
+			lifeScore.setEndtime(enddate);
+			lifeScore.setScoretype(scoreType);
+			// 总分
+			totalScore = morningRevialScore + twoAltarPrayScore + PSRPScore
+					+ threeOldScore + oneNewScore + personalPrayScore
+					+ gospelScore + shepherdScore + sundayScore
+					+ sundayProphesy + PSRPMeeting + prayMeeting + groupMeeting
+					+ groupShare + birdsEyeMeeting;
+			lifeScore.setTotalscore(totalScore);
+
+			getLifeScoreService().insertSelective(lifeScore);
+
 		}
 
 	}

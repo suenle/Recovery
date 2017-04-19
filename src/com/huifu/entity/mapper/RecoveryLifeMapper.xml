@@ -9,9 +9,9 @@
 		<result column="twoAltarPray" property="twoaltarpray" jdbcType="INTEGER" />
 		<result column="PSRP" property="psrp" jdbcType="INTEGER" />
 		<result column="threeOld" property="threeold" jdbcType="INTEGER" />
-		<result column="threeOldNum" property="threeoldnum" jdbcType="INTEGER" />
+		<result column="threeOldNum" property="threeoldnum" jdbcType="VARCHAR" />
 		<result column="oneNew" property="onenew" jdbcType="INTEGER" />
-		<result column="oneNewNum" property="onenewnum" jdbcType="INTEGER" />
+		<result column="oneNewNum" property="onenewnum" jdbcType="VARCHAR" />
 		<result column="personalPray" property="personalpray" jdbcType="INTEGER" />
 		<result column="shepherd" property="shepherd" jdbcType="DOUBLE" />
 		<result column="gospel" property="gospel" jdbcType="DOUBLE" />
@@ -35,11 +35,11 @@
 	 FROM t_recoverylife
 	 WHERE userId=#{userid,jdbcType=VARCHAR}
 	 <if test="@Ognl@isNotBlank(startTime)">
-			and t1.time <![CDATA[>=]]>
+			and time <![CDATA[>=]]>
 			#{startTime, jdbcType=DATE}
 		</if>
 		<if test="@Ognl@isNotBlank(endTime)">
-			and t1.time <![CDATA[<=]]>
+			and time <![CDATA[<=]]>
 			#{endTime, jdbcType=DATE}
 		</if>
 	
@@ -235,9 +235,9 @@
 		#{morningrevial,jdbcType=INTEGER},
 		#{twoaltarpray,jdbcType=INTEGER}, #{psrp,jdbcType=INTEGER},
 		#{threeold,jdbcType=INTEGER},
-		#{threeoldnum,jdbcType=INTEGER},
+		#{threeoldnum,jdbcType=VARCHAR},
 		#{onenew,jdbcType=INTEGER},
-		#{onenewnum,jdbcType=INTEGER},
+		#{onenewnum,jdbcType=VARCHAR},
 		#{personalpray,jdbcType=INTEGER}, #{shepherd,jdbcType=DOUBLE},
 		#{gospel,jdbcType=DOUBLE},
 		#{meeting,jdbcType=INTEGER},
@@ -320,13 +320,13 @@
 				#{threeold,jdbcType=INTEGER},
 			</if>
 			<if test="threeoldnum != null">
-				#{threeoldnum,jdbcType=INTEGER},
+				#{threeoldnum,jdbcType=VARCHAR},
 			</if>
 			<if test="onenew != null">
 				#{onenew,jdbcType=INTEGER},
 			</if>
 			<if test="onenewnum != null">
-				#{onenewnum,jdbcType=INTEGER},
+				#{onenewnum,jdbcType=VARCHAR},
 			</if>
 			<if test="personalpray != null">
 				#{personalpray,jdbcType=INTEGER},
@@ -373,13 +373,13 @@
 				threeOld = #{threeold,jdbcType=INTEGER},
 			</if>
 			<if test="threeoldnum != null">
-				threeOldNum = #{threeoldnum,jdbcType=INTEGER},
+				threeOldNum = #{threeoldnum,jdbcType=VARCHAR},
 			</if>
 			<if test="onenew != null">
 				oneNew = #{onenew,jdbcType=INTEGER},
 			</if>
 			<if test="onenewnum != null">
-				oneNewNum = #{onenewnum,jdbcType=INTEGER},
+				oneNewNum = #{onenewnum,jdbcType=VARCHAR},
 			</if>
 			<if test="personalpray != null">
 				personalPray = #{personalpray,jdbcType=INTEGER},
@@ -419,9 +419,9 @@
 		PSRP = #{psrp,jdbcType=INTEGER},
 		threeOld = #{threeold,jdbcType=INTEGER},
 		threeOldNum =
-		#{threeoldnum,jdbcType=INTEGER},
+		#{threeoldnum,jdbcType=VARCHAR},
 		oneNew = #{onenew,jdbcType=INTEGER},
-		oneNewNum = #{onenewnum,jdbcType=INTEGER},
+		oneNewNum = #{onenewnum,jdbcType=VARCHAR},
 		personalPray =
 		#{personalpray,jdbcType=INTEGER},
 		shepherd =

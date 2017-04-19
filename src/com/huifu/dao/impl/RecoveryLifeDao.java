@@ -92,7 +92,7 @@ public class RecoveryLifeDao extends BaseIbatis3Dao<RecoveryLife, Integer>
 	public List<RecoveryLife> listLifeInfoByUserIdAndTime(
 			Map<String, Object> data) {
 		return getSqlSession().selectList(
-				"RecoveryLife.queryLifeInfoListByUserId", data);
+				"RecoveryLife.listLifeInfoByUserIdAndTime", data);
 	}
 
 }

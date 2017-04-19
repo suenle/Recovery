@@ -15,11 +15,11 @@ public class RecoveryLife {
 
 	private Integer threeold;
 
-	private Integer threeoldnum;
+	private String threeoldnum;
 
 	private Integer onenew;
 
-	private Integer onenewnum;
+	private String onenewnum;
 
 	private Integer personalpray;
 
@@ -221,12 +221,22 @@ public class RecoveryLife {
 		this.threeold = threeold;
 	}
 
-	public Integer getThreeoldnum() {
+
+
+	public String getThreeoldnum() {
 		return threeoldnum;
 	}
 
-	public void setThreeoldnum(Integer threeoldnum) {
+	public void setThreeoldnum(String threeoldnum) {
 		this.threeoldnum = threeoldnum;
+	}
+
+	public String getOnenewnum() {
+		return onenewnum;
+	}
+
+	public void setOnenewnum(String onenewnum) {
+		this.onenewnum = onenewnum;
 	}
 
 	public Integer getOnenew() {
@@ -237,13 +247,7 @@ public class RecoveryLife {
 		this.onenew = onenew;
 	}
 
-	public Integer getOnenewnum() {
-		return onenewnum;
-	}
 
-	public void setOnenewnum(Integer onenewnum) {
-		this.onenewnum = onenewnum;
-	}
 
 	public Integer getPersonalpray() {
 		return personalpray;

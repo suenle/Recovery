@@ -10,8 +10,81 @@ public class RequestInfo {
     private Integer statusinfo;
 
     private String systemcode;
+    
+    private String homename;
+    
+    private String groupname;
+    
+	private String username;
 
-    public Integer getId() {
+	private Integer sex;
+
+	private Integer age;
+
+	private Integer groupid;
+
+	private Integer homeid;
+	
+	
+	
+
+    public String getHomename() {
+		return homename;
+	}
+
+	public void setHomename(String homename) {
+		this.homename = homename;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Integer getGroupid() {
+		return groupid;
+	}
+
+	public void setGroupid(Integer groupid) {
+		this.groupid = groupid;
+	}
+
+	public Integer getHomeid() {
+		return homeid;
+	}
+
+	public void setHomeid(Integer homeid) {
+		this.homeid = homeid;
+	}
+
+	public Integer getId() {
         return id;
     }
 

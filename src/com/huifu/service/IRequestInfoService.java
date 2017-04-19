@@ -3,6 +3,7 @@ package com.huifu.service;
 import java.util.List;
 import java.util.Map;
 
+import com.huifu.entity.Home;
 import com.huifu.entity.RecoveryLife;
 import com.huifu.entity.RequestInfo;
 
@@ -20,4 +21,8 @@ public interface IRequestInfoService {
 	public int updateByPrimaryKey(RequestInfo record);
 	
 	public RequestInfo selectByUserid(Map<String, Object> data);
+	
+	public List<RequestInfo> queryRequestInfo(Map<String, Object> data);
+
+	public int queryRequestInfoNum(Map<String, Object> data);
 }

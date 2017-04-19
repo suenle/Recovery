@@ -201,7 +201,7 @@ li {
 																src="images/menuTree/arrow.png" height="8" width="8"
 																align="absmiddle" />&nbsp;&nbsp;<span class="text">家管理</span></a></li>
 																<li><a class="childrenMenu"
-															href="${ctx}/pages/areasTypeclassifyManage.jsp"
+															href="${ctx}/pages/requestInfoManage.jsp"
 															target="page"
 															style="width:100%;height:41px;line-height:41px;display:block;padding-left: 45px;padding-right: 0px;outline:none;"><img
 																src="images/menuTree/arrow.png" height="8" width="8"

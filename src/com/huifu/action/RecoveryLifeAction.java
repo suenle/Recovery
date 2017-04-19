@@ -134,6 +134,9 @@ public class RecoveryLifeAction extends BaseAction {
 				recoveryLife.setMorningrevial(morningrevialTime);
 			}
 
+		} else {
+			recoveryLife.setMorningrevial(0);
+
 		}
 
 		// 两坛的祷告
@@ -165,7 +168,10 @@ public class RecoveryLifeAction extends BaseAction {
 				recoveryLife.setTwoaltarpray(twoaltarprayTime);
 			}
 
+		} else {
+			recoveryLife.setTwoaltarpray(0);
 		}
+
 		// 祷言背讲
 		String psrp = getRequest().getParameter("psrp");
 		// String strpsrpnum = getRequest().getParameter("psrpNum");
@@ -173,24 +179,29 @@ public class RecoveryLifeAction extends BaseAction {
 		Integer psrpTime = 30;
 		if (!(psrp == null)) {
 			recoveryLife.setPsrp(1);
+		} else {
+			recoveryLife.setPsrp(0);
 		}
 
 		// 三旧
+		String threeOldAndoneNew = getRequest().getParameter(
+				"threeOldAndoneNew");
+		if (!(threeOldAndoneNew == null)) {
+			recoveryLife.setThreeold(1);
+		} else {
+			recoveryLife.setThreeold(0);
+		}
+
 		String strthreeold = getRequest().getParameter("threeOld");
 		String strthreeoldNum = getRequest().getParameter("threeOldNum");
-		Integer threeold = Integer.valueOf(strthreeold);
-		Integer threeoldNum = Integer.valueOf(strthreeoldNum);
 
-		recoveryLife.setThreeold(threeold);
-		recoveryLife.setThreeoldnum(threeoldNum);
+		recoveryLife.setThreeoldnum(strthreeold + "," + strthreeoldNum);
 
 		// 一新
 		String stronenew = getRequest().getParameter("oneNew");
 		String stronenewNum = getRequest().getParameter("oneNewNum");
-		Integer onenew = Integer.valueOf(stronenew);
-		Integer onenewNum = Integer.valueOf(stronenewNum);
-		recoveryLife.setOnenew(onenew);
-		recoveryLife.setOnenewnum(onenewNum);
+		recoveryLife.setOnenew(0);
+		recoveryLife.setOnenewnum(stronenew + "," + stronenewNum);
 
 		// 个祷
 		String personalpray = getRequest().getParameter("personalPray");
@@ -222,6 +233,8 @@ public class RecoveryLifeAction extends BaseAction {
 				recoveryLife.setPersonalpray(personalprayTime);
 			}
 
+		} else {
+			recoveryLife.setPersonalpray(0);
 		}
 		// 牧养次数
 		// String shepherd = getRequest().getParameter("shepherd");
@@ -239,6 +252,8 @@ public class RecoveryLifeAction extends BaseAction {
 				return "/pages/recoveryLifeInfo.jsp";
 			}
 			recoveryLife.setShepherd(shepherdnum);
+		} else {
+			recoveryLife.setShepherd(0.0);
 		}
 
 		// 传福音时数
@@ -255,6 +270,8 @@ public class RecoveryLifeAction extends BaseAction {
 				return "/pages/recoveryLifeInfo.jsp";
 			}
 			recoveryLife.setGospel(gospelnum);
+		} else {
+			recoveryLife.setGospel(0.0);
 		}
 		// 聚会
 		String strmeeting = getRequest().getParameter("meeting");
@@ -272,6 +289,10 @@ public class RecoveryLifeAction extends BaseAction {
 				prophesy = Integer.valueOf(strprophesy);
 				recoveryLife.setProphesy(prophesy);
 			}
+		} else {
+			recoveryLife.setMeeting(0);
+			recoveryLife.setMeetingtype(0);
+			recoveryLife.setProphesy(0);
 		}
 
 		// String strmeeting = getRequest().getParameter("meeting");
@@ -639,16 +660,11 @@ public class RecoveryLifeAction extends BaseAction {
 					returnTwoaltarpray(recoverylife.getTwoaltarpray()));
 
 			rowObj.put("psrp", returnPsrp(recoverylife.getPsrp()));
-			rowObj.put(
-					"threeold",
-					returnThreeold(recoverylife.getThreeold(),
-							recoverylife.getThreeoldnum()));
+			rowObj.put("threeold",
+					returnThreeold(recoverylife.getThreeoldnum()));
 			// rowObj.put("threeoldnum", recoverylife.getThreeoldnum());
 
-			rowObj.put(
-					"onenew",
-					returnOnenew(recoverylife.getOnenew(),
-							recoverylife.getOnenewnum()));
+			rowObj.put("onenew", returnOnenew(recoverylife.getOnenewnum()));
 			// rowObj.put("onenewnum", recoverylife.getOnenewnum());
 			rowObj.put("personalpray",
 					returnPersonalpray(recoverylife.getPersonalpray()));
@@ -744,7 +760,7 @@ public class RecoveryLifeAction extends BaseAction {
 		Integer dataStartNum = (pageIndex - 1) * pageRowCount; // 初始页
 		data.put("dataStartNum", dataStartNum); // 开始的下一条记录
 		data.put("dataCount", pageRowCount); // 检索的记录数
-		
+
 		data.put("startTime", startTime); // 开始时间
 		data.put("endTime", endTime); // 截止时间
 
@@ -781,16 +797,11 @@ public class RecoveryLifeAction extends BaseAction {
 					returnTwoaltarpray(recoverylife.getTwoaltarpray()));
 
 			rowObj.put("psrp", returnPsrp(recoverylife.getPsrp()));
-			rowObj.put(
-					"threeold",
-					returnThreeold(recoverylife.getThreeold(),
-							recoverylife.getThreeoldnum()));
+			rowObj.put("threeold",
+					returnThreeold(recoverylife.getThreeoldnum()));
 			// rowObj.put("threeoldnum", recoverylife.getThreeoldnum());
 
-			rowObj.put(
-					"onenew",
-					returnOnenew(recoverylife.getOnenew(),
-							recoverylife.getOnenewnum()));
+			rowObj.put("onenew", returnOnenew(recoverylife.getOnenewnum()));
 			// rowObj.put("onenewnum", recoverylife.getOnenewnum());
 			rowObj.put("personalpray",
 					returnPersonalpray(recoverylife.getPersonalpray()));
@@ -852,12 +863,12 @@ public class RecoveryLifeAction extends BaseAction {
 		}
 	}
 
-	public String returnThreeold(Integer threeold, Integer threeoldnum) {
-		return threeold + "," + threeoldnum;
+	public String returnThreeold(String threeoldnum) {
+		return threeoldnum;
 	}
 
-	public String returnOnenew(Integer Onenew, Integer Onenewnum) {
-		return Onenew + "," + Onenewnum;
+	public String returnOnenew(String Onenewnum) {
+		return Onenewnum;
 	}
 
 	public String returnPersonalpray(Integer personalpray) {

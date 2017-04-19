@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.huifu.dao.impl.RequestInfoDao;
+import com.huifu.entity.Home;
 import com.huifu.entity.RequestInfo;
 import com.huifu.entity.RequestInfo;
 import com.huifu.service.IRequestInfoService;
@@ -49,6 +50,14 @@ public class RequestInfoService implements IRequestInfoService {
 
 	public RequestInfo selectByUserid(Map<String, Object> data) {
 		return getRequestInfoDao().selectByUserid(data);
+	}
+
+	public List<RequestInfo> queryRequestInfo(Map<String, Object> data) {
+		return getRequestInfoDao().queryRequestInfo(data);
+	}
+
+	public int queryRequestInfoNum(Map<String, Object> data) {
+		return getRequestInfoDao().queryRequestInfoNum(data);
 	}
 
 }

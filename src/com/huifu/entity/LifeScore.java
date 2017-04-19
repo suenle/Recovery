@@ -23,11 +23,19 @@ public class LifeScore {
 
     private Integer gospelscore;
 
-    private Integer meetingscore;
+    private Integer sundayscore;
 
-    private Integer meetingtype;
+    private Integer sundayprophesy;
 
-    private Integer prophesyscore;
+    private Integer praymeeting;
+
+    private Integer groupmeeting;
+
+    private Integer groupshare;
+
+    private Integer psrpmeeting;
+
+    private Integer birdseyemeeting;
 
     private Date starttime;
 
@@ -119,28 +127,60 @@ public class LifeScore {
         this.gospelscore = gospelscore;
     }
 
-    public Integer getMeetingscore() {
-        return meetingscore;
+    public Integer getSundayscore() {
+        return sundayscore;
     }
 
-    public void setMeetingscore(Integer meetingscore) {
-        this.meetingscore = meetingscore;
+    public void setSundayscore(Integer sundayscore) {
+        this.sundayscore = sundayscore;
     }
 
-    public Integer getMeetingtype() {
-        return meetingtype;
+    public Integer getSundayprophesy() {
+        return sundayprophesy;
     }
 
-    public void setMeetingtype(Integer meetingtype) {
-        this.meetingtype = meetingtype;
+    public void setSundayprophesy(Integer sundayprophesy) {
+        this.sundayprophesy = sundayprophesy;
     }
 
-    public Integer getProphesyscore() {
-        return prophesyscore;
+    public Integer getPraymeeting() {
+        return praymeeting;
     }
 
-    public void setProphesyscore(Integer prophesyscore) {
-        this.prophesyscore = prophesyscore;
+    public void setPraymeeting(Integer praymeeting) {
+        this.praymeeting = praymeeting;
+    }
+
+    public Integer getGroupmeeting() {
+        return groupmeeting;
+    }
+
+    public void setGroupmeeting(Integer groupmeeting) {
+        this.groupmeeting = groupmeeting;
+    }
+
+    public Integer getGroupshare() {
+        return groupshare;
+    }
+
+    public void setGroupshare(Integer groupshare) {
+        this.groupshare = groupshare;
+    }
+
+    public Integer getPsrpmeeting() {
+        return psrpmeeting;
+    }
+
+    public void setPsrpmeeting(Integer psrpmeeting) {
+        this.psrpmeeting = psrpmeeting;
+    }
+
+    public Integer getBirdseyemeeting() {
+        return birdseyemeeting;
+    }
+
+    public void setBirdseyemeeting(Integer birdseyemeeting) {
+        this.birdseyemeeting = birdseyemeeting;
     }
 
     public Date getStarttime() {

@@ -37,29 +37,44 @@
 							<br>20’：</td>
 						<td width="30%"><input type="checkbox" class="chk_3"
 							style="display:none" id="keyword_id_recoveryLife_morningRevial"
-							name="morningRevial" /><label
-							for="keyword_id_recoveryLife_morningRevial"></label></td>
+							name="morningRevial" value="1" /><label
+							for="keyword_id_recoveryLife_morningRevial"></label>
+						</td>
 						<td width="30%"><input class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_morningRevialNum" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+							id="keyword_id_recoveryLife_morningRevialNum"
+							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
 							name="morningRevialNum" placeholder=" 时间/分钟" />
 						<td></td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>两坛祷告 <br>（同伴）30’：</td>
 						<td><input type="checkbox" class="chk_3" style="display:none"
-							id="keyword_id_recoveryLife_twoAltarPray" name="twoAltarPray" /><label
-							for="keyword_id_recoveryLife_twoAltarPray"></label></td>
+							id="keyword_id_recoveryLife_twoAltarPray" name="twoAltarPray"
+							value="1" /><label for="keyword_id_recoveryLife_twoAltarPray"></label>
+						</td>
 						<td><input class="input_class_re" type="text"
-							name="twoAltarPrayNum"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+							name="twoAltarPrayNum"
+							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
 							id="keyword_id_recoveryLife_twoAltarPrayNum" placeholder=" 时间/分钟" />
 						</td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>祷研背讲<br>默想主话：</td>
 						<td><input type="checkbox" class="chk_3" style="display:none"
-							id="keyword_id_recoveryLife_psrp" name="psrp" /><label
-							for="keyword_id_recoveryLife_psrp"></label></td>
+							id="keyword_id_recoveryLife_psrp" name="psrp" value="1" /><label
+							for="keyword_id_recoveryLife_psrp"></label>
+						</td>
 
+					</tr>
+					<tr style="height:20px;">
+						<td class=""><span class="div_front_prompt">*</span>三旧一新：</td>
+						<td><input type="checkbox" class="chk_3" style="display:none"
+							id="keyword_id_recoveryLife_threeOldAndoneNew"
+							name="threeOldAndoneNew" value="1" /><label
+							for="keyword_id_recoveryLife_threeOldAndoneNew"></label>
+						</td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>三章旧约：</td>
@@ -67,10 +82,12 @@
 								<select class="input_class_re" name="threeOld"
 									id="keyword_id_recoveryLife_threeOld">
 								</select>
-							</div></td>
+							</div>
+						</td>
 						<td><select class="input_class_re" name="threeOldNum"
 							id="keyword_id_recoveryLife_threeOldNum">
-						</select></td>
+						</select>
+						</td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>一章新约：</td>
@@ -78,34 +95,42 @@
 								<select class="input_class_re" name="oneNew"
 									id="keyword_id_recoveryLife_oneNew">
 								</select>
-							</div></td>
+							</div>
+						</td>
 						<td><select class="input_class_re" name="oneNewNum"
 							id="keyword_id_recoveryLife_oneNewNum">
-						</select></td>
+						</select>
+						</td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>个人祷告 <br>15’：</td>
 						<td><input type="checkbox" class="chk_3" style="display:none"
 							name="personalPray" id="keyword_id_recoveryLife_personalPray" /><label
-							for="keyword_id_recoveryLife_personalPray"></label></td>
+							for="keyword_id_recoveryLife_personalPray"></label>
+						</td>
 						<td><input accept="middle" class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_personalPrayNum"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
-							name="personalPrayNum" placeholder=" 时间/分钟" /></td>
+							id="keyword_id_recoveryLife_personalPrayNum"
+							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+							name="personalPrayNum" placeholder=" 时间/分钟" />
+						</td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>传福音时数 <br>（同伴）：</td>
 						<td><input class="input_class_re" type="text"
-							name="gospelNum" id="keyword_id_recoveryLife_gospelNum"  onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
-							placeholder=" 时间/小时" />
-						</td>
+							name="gospelNum" id="keyword_id_recoveryLife_gospelNum"
+							onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
+							onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
+							placeholder=" 时间/小时" /></td>
 						<td></td>
 					</tr>
 					<tr style="height:20px;">
 						<td class=""><span class="div_front_prompt">*</span>牧养、看望、 <br>爱筵（同伴）：</td>
 						<td><input class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_shepherdNum" name="shepherdNum"  onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
-							placeholder=" 时间/小时" />
-						</td>
+							id="keyword_id_recoveryLife_shepherdNum" name="shepherdNum"
+							onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
+							onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
+							placeholder=" 时间/小时" /></td>
 						<td></td>
 
 					</tr>
@@ -119,12 +144,14 @@
 								<option value="5">小排聚会</option>
 								<option value="1">周初PSRP追求聚会</option>
 								<option value="6">脱稿鸟瞰展览</option>
-						</select></td>
+						</select>
+						</td>
 						<td><select class="input_class_re" name="meetingType"
 							id="keyword_id_recoveryLife_meetingType">
 								<option value="1">准时</option>
 								<option value="2">迟到</option>
-						</select></td>
+						</select>
+						</td>
 					</tr>
 					<tr style="height:20px; display: none"
 						id="keyword_id_recoveryLife_tr_prophesy">
@@ -133,8 +160,7 @@
 						</td>
 						<td><input type="checkbox" class="chk_3" style="display:none"
 							name="prophesy" id="keyword_id_recoveryLife_prophesy" value="1" /><label
-							for="keyword_id_recoveryLife_prophesy"></label>
-						</td>
+							for="keyword_id_recoveryLife_prophesy"></label></td>
 
 					</tr>
 					<tr style="height:10px;">
@@ -148,7 +174,8 @@
 									onclick="javascript:areasTypeClassifyAddCommit();"
 									style="width: 90%;height: 45px" />
 
-							</div></td>
+							</div>
+						</td>
 					</tr>
 				</table>
 			</form>
@@ -357,8 +384,11 @@
 							var psrp = recoveryLife.psrp;
 							var threeold = recoveryLife.threeold;
 							var threeoldnum = recoveryLife.threeoldnum;
-							var onenew = recoveryLife.onenew;
+							//var onenew = recoveryLife.onenew;
+							var arrthreeoldnum = threeoldnum.split(",");
+
 							var onenewnum = recoveryLife.onenewnum;
+							var arronenewnum = onenewnum.split(",");
 							var personalpray = recoveryLife.personalpray;
 							var shepherd = recoveryLife.shepherd;
 							var gospel = recoveryLife.gospel;
@@ -385,21 +415,22 @@
 								$("#keyword_id_recoveryLife_psrp").attr(
 										"checked", "true");
 							}
-							if (threeold != null || undefined != threeold) {
-								$("#keyword_id_recoveryLife_threeOld").val(
-										threeold);
+							if (threeold == 1) {
+								$("#keyword_id_recoveryLife_threeOldAndoneNew")
+										.attr("checked", "true");
 							}
+
 							if (threeoldnum != null || undefined != threeoldnum) {
+								$("#keyword_id_recoveryLife_threeOld").val(
+										arrthreeoldnum[0]);
 								$("#keyword_id_recoveryLife_threeOldNum").val(
-										threeoldnum);
-							}
-							if (onenew != null || undefined != onenew) {
-								$("#keyword_id_recoveryLife_oneNew")
-										.val(onenew);
+										arrthreeoldnum[1]);
 							}
 							if (onenewnum != null || undefined != onenewnum) {
+								$("#keyword_id_recoveryLife_oneNew").val(
+										arronenewnum[0]);
 								$("#keyword_id_recoveryLife_oneNewNum").val(
-										onenewnum);
+										arronenewnum[1]);
 							}
 							if ((personalpray != null || undefined != personalpray)
 									&& 0 < personalpray) {

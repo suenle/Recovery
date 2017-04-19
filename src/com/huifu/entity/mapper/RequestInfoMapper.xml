@@ -11,47 +11,115 @@
 	<sql id="Base_Column_List">
 		id, userId, info, statusinfo, systemCode
 	</sql>
-<!-- 根据条件查询所有货品大类数据列表(分页) -->
+	
 	<select id="queryRequestInfo" resultMap="BaseResultMap">
 		SELECT
-		t2.id AS id,
+		t1.id AS id,
 		t1.userName AS userName,
 		t1.userId AS userId,
-		t2.statusinfo AS statusinfo,
-		t2.info AS info,
-		t3.groupName AS groupName,
-		t4.homeName AS homeName
+		t1.statusinfo AS
+		statusinfo,
+		t1.info AS info,
+		t1.groupName AS groupName,
+		t2.homeName AS
+		homeName
+		FROM
+		(
+		SELECT
+		t2.id,
+		t1.userName,
+		t1.userId,
+		t2.statusinfo,
+		t2.info,
+		t3.groupName,
+		t1.homeId
 		FROM
 		t_userinfo t1,
 		t_requestinfo t2,
-		t_group t3,
-		t_home t4
+		t_group t3
 		WHERE
 		t1.userId = t2.userId
 		AND t3.id = t1.groupId
-		AND t4.id = t1.homeId
-		order by t2.id,t2.statusinfo
-		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		<if test="@Ognl@isNotBlank(userName)">
+			and t1.userName like #{userName,javaType=Like,
+			jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+		) t1
+		LEFT JOIN t_home
+		t2 ON t1.homeId = t2.id
+		ORDER BY
+		t1.id,
+		t1.statusinfo
+		limit
+		#{dataStartNum, jdbcType=INTEGER}, #{dataCount,
 		jdbcType=INTEGER}
+	</select>
+	
+	<select id="queryRequestInfoNum" resultType="java.lang.Integer">
+		SELECT
+	    count(*)
+		FROM
+		(
+		SELECT
+		t2.id,
+		t1.userName,
+		t1.userId,
+		t2.statusinfo,
+		t2.info,
+		t3.groupName,
+		t1.homeId
+		FROM
+		t_userinfo t1,
+		t_requestinfo t2,
+		t_group t3
+		WHERE
+		t1.userId = t2.userId
+		AND t3.id = t1.groupId
+		<if test="@Ognl@isNotBlank(userName)">
+			and t1.userName like #{userName,javaType=Like,
+			jdbcType=VARCHAR}
+			ESCAPE '\\'
+		</if>
+		) t1
+		LEFT JOIN t_home
+		t2 ON t1.homeId = t2.id
+		ORDER BY
+		t1.id,
+		t1.statusinfo
+	
 	</select>
 	<select id="ListAllRequest" resultMap="BaseResultMap">
 		SELECT
-		t2.id AS id,
+		t1.id AS id,
 		t1.userName AS userName,
 		t1.userId AS userId,
-		t2.statusinfo AS statusinfo,
-		t2.info AS info,
-		t3.groupName AS groupName,
-		t4.homeName AS homeName
+		t1.statusinfo AS statusinfo,
+		t1.info AS info,
+		t1.groupName AS groupName,
+		t2.homeName AS homeName
+		FROM
+		(
+		SELECT
+		t2.id,
+		t1.userName,
+		t1.userId,
+		t2.statusinfo,
+		t2.info,
+		t3.groupName,
+		t1.homeId
 		FROM
 		t_userinfo t1,
 		t_requestinfo t2,
-		t_group t3,
-		t_home t4
+		t_group t3
 		WHERE
 		t1.userId = t2.userId
 		AND t3.id = t1.groupId
-		AND t4.id = t1.homeId
+		) t1
+		LEFT JOIN t_home t2 ON t1.homeId = t2.id
+		ORDER BY
+		t1.id,
+		t1.statusinfo
 	</select>
 
 
@@ -64,13 +132,16 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from t_requestinfo
+		delete from
+		t_requestinfo
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.huifu.entity.RequestInfo">
-		insert into t_requestinfo (id, userId, info,
+		insert into t_requestinfo (id,
+		userId, info,
 		statusinfo, systemCode)
-		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
+		values (#{id,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
 		#{info,jdbcType=VARCHAR},
 		#{statusinfo,jdbcType=INTEGER}, #{systemcode,jdbcType=VARCHAR})
 	</insert>
@@ -130,11 +201,14 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.RequestInfo">
-		update t_requestinfo
+		update
+		t_requestinfo
 		set userId = #{userid,jdbcType=INTEGER},
-		info = #{info,jdbcType=VARCHAR},
+		info =
+		#{info,jdbcType=VARCHAR},
 		statusinfo = #{statusinfo,jdbcType=INTEGER},
 		systemCode = #{systemcode,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 </mapper>

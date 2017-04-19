@@ -1,7 +1,9 @@
 package com.huifu.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import com.huifu.entity.Home;
 import com.huifu.entity.RequestInfo;
 
 public interface IRequestInfoDao {
@@ -18,4 +20,8 @@ public interface IRequestInfoDao {
 	public int updateByPrimaryKey(RequestInfo record);
 	
 	public RequestInfo selectByUserid(Map<String, Object> data);
+	
+	public List<RequestInfo> queryRequestInfo(Map<String, Object> data);
+
+	public int queryRequestInfoNum(Map<String, Object> data);
 }

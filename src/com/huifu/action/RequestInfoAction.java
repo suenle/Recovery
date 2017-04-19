@@ -17,130 +17,22 @@ import com.alibaba.fastjson.JSONObject;
 import com.huifu.base.BaseAction;
 import com.huifu.base.BaseUtils;
 import com.huifu.constant.Constant;
-import com.huifu.entity.Home;
-import com.huifu.service.impl.HomeService;
+import com.huifu.entity.RequestInfo;
+import com.huifu.service.impl.RequestInfoService;
 
 /**
- * 区域Action操作
+ * 申请信息Action操作
  */
 @Controller
 public class RequestInfoAction extends BaseAction {
-	private HomeService homeService;
-	static Logger logger = LogManager.getLogger(RequestInfoAction.class.getName());
+	private RequestInfoService requestInfoService;
+	static Logger logger = LogManager.getLogger(RequestInfoAction.class
+			.getName());
 
 	/**
-	 * 添加区域操作
+	 * 更新申请信息操作
 	 */
-	public String addHome() {
-		try {
-			this.getRequest().setCharacterEncoding("UTF-8");
-			this.getResponse().setContentType("text/html;charset=utf-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// 获取页面参数
-		String homeName = getRequest().getParameter("homeName");
-		String homeDesc = getRequest().getParameter("homeDesc");
-		String strdistrictId = getRequest().getParameter("districtId");
-		String errorMsg = "";
-		Integer districtId = null;
-
-		Map<String, Object> result = new HashMap<String, Object>();
-		if (null == homeName || "".equals(homeName)
-				|| homeName.trim().length() == 0) {
-			errorMsg += "页面传递的区名称为空\n";
-		}
-		if (null == strdistrictId || "".equals(strdistrictId)
-				|| "-1".equals(strdistrictId)) {
-			errorMsg += "页面传递的区名称为空\n";
-		}
-		if (!"".equals(errorMsg)) {
-			result.put("errorMsg", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return "ajax";
-		}
-		try {
-			districtId = Integer.valueOf(strdistrictId);
-		} catch (Exception e) {
-			errorMsg += "数据转换失败\n";
-			result.put("errorMsg", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return "ajax";
-		}
-
-		Home gtc = new Home();
-		gtc.setHomename(homeName);
-
-		Home strGtc = getHomeService().HomeIsExist(gtc);
-
-		if (null != strGtc) {
-			errorMsg += "该区名称已存在\n";
-			result.put("errorMsg", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return "ajax";
-		}
-		gtc.setGroupid(districtId);
-		gtc.setHomedesc(homeDesc);
-		gtc.setSystemcode(Constant.SYSTEM_CODE);
-		Integer iNum = getHomeService().insertSelective(gtc);
-		if (0 >= iNum) {
-			errorMsg += "区域类型在数据库中添加失败\n";
-		}
-
-		result.put("homeId", gtc.getId());
-		System.out.println(gtc.getId());
-		result.put("errorMsg", errorMsg);
-		this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-		return "ajax";
-	}
-
-	/**
-	 * 删除区域操作
-	 */
-	public String deleteHome() {
-		try {
-			this.getRequest().setCharacterEncoding("UTF-8");
-			this.getResponse().setContentType("text/html;charset=utf-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		String strId = getRequest().getParameter("id");
-		String errorMsg = "";
-		Integer id = null;
-		Map<String, Object> result = new HashMap<String, Object>();
-		if (null == strId || "".equals(strId)) {
-			errorMsg += "页面输入的区域类型id为空\n";
-		}
-		try {
-			id = Integer.valueOf(strId);
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			errorMsg += "页面输入的区域类型数据格式错误\n";
-		}
-		if (!"".equals(errorMsg)) {
-			result.put("errorMsg", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return "ajax";
-		}
-
-		Integer iNum = getHomeService().deleteByPrimaryKey(id);
-		if (0 >= iNum) {
-			errorMsg = "该区域类型已被使用，暂时无法修改";
-			result.put("errorMsg", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-			return "ajax";
-		}
-
-		result.put("errorMsg", errorMsg);
-		this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-		return "ajax";
-	}
-
-	/**
-	 * 更新区域操作
-	 */
-	public String updateHome() {
+	public String updateRequestInfo() {
 		try {
 			this.getRequest().setCharacterEncoding("UTF-8");
 			this.getResponse().setContentType("text/html;charset=utf-8");
@@ -150,24 +42,24 @@ public class RequestInfoAction extends BaseAction {
 
 		String strId = getRequest().getParameter("id");
 		// 获取页面参数
-		String homeName = getRequest().getParameter("homeName");
-		String homeDesc = getRequest().getParameter("homeDesc");
+		String requestInfoName = getRequest().getParameter("requestInfoName");
+		String requestInfoDesc = getRequest().getParameter("requestInfoDesc");
 		String strdistrictId = getRequest().getParameter("districtId");
 		String errorMsg = "";
 		Integer id = null;
 		Integer districtId = null;
 		Map<String, Object> result = new HashMap<String, Object>();
 		if (null == strId || "".equals(strId)) {
-			errorMsg += "页面传递的区域类型id为空\n";
+			errorMsg += "页面传递的申请信息类型id为空\n";
 		}
-		if (null == homeName || "".equals(homeName)
-				|| homeName.trim().length() == 0) {
-			errorMsg += "页面传递的区域类型名称为空\n";
+		if (null == requestInfoName || "".equals(requestInfoName)
+				|| requestInfoName.trim().length() == 0) {
+			errorMsg += "页面传递的申请信息类型名称为空\n";
 		}
 
 		if (null == strdistrictId || "".equals(strdistrictId)
 				|| "-1".equals(strdistrictId)) {
-			errorMsg += "页面传递的区域类型名称为空\n";
+			errorMsg += "页面传递的申请信息类型名称为空\n";
 		}
 
 		try {
@@ -189,14 +81,14 @@ public class RequestInfoAction extends BaseAction {
 			return "ajax";
 		}
 
-		Home gtc = new Home();
+		RequestInfo gtc = new RequestInfo();
 
 		gtc.setId(id);
-		gtc.setHomename(homeName);
-		gtc.setHomedesc(homeDesc);
+		// gtc.setRequestInfoname(requestInfoName);
+		// gtc.setRequestInfodesc(requestInfoDesc);
 		gtc.setGroupid(districtId);
 		gtc.setSystemcode(Constant.SYSTEM_CODE);
-		Integer iNum = getHomeService().updateByPrimaryKeySelective(gtc);
+		Integer iNum = getRequestInfoService().updateByPrimaryKeySelective(gtc);
 		if (0 >= iNum) {
 			errorMsg += "区在数据库中更新失败\n";
 		}
@@ -207,9 +99,9 @@ public class RequestInfoAction extends BaseAction {
 	}
 
 	/**
-	 * 查询区域操作
+	 * 查询申请信息操作
 	 */
-	public void queryHome() {
+	public void queryRequestInfo() {
 		try {
 			this.getRequest().setCharacterEncoding("UTF-8");
 			this.getResponse().setContentType("text/html;charset=utf-8");
@@ -217,9 +109,8 @@ public class RequestInfoAction extends BaseAction {
 			logger.error(e.getMessage());
 			return;
 		}
-		String homeName = getRequest().getParameter("homeName");// 区域类型名称
+		String userName = getRequest().getParameter("userName");// 申请信息类型名称
 
-		String strdistrictId = getRequest().getParameter("districtId");// 区域类型名称
 		String pageNums = getRequest().getParameter("pageNums"); // 每页显示行数
 		String pageIndex = getRequest().getParameter("pageIndex"); // 第x页
 		Integer districtId = null;
@@ -230,34 +121,15 @@ public class RequestInfoAction extends BaseAction {
 		Map<String, Object> filter = new HashMap<String, Object>();
 		Map<String, Object> result = new HashMap<String, Object>();
 
-		try {
-			if (null == strdistrictId || "".equals(strdistrictId)
-					|| "-1".equals(strdistrictId)) {
-
-			}else{
-				districtId=Integer.valueOf(strdistrictId);
-			}
-			if (null != pageNums && !"".equals(pageNums)) {
-				iPageNums = Integer.valueOf(pageNums);
-			}
-			if (null != pageIndex && !"".equals(pageIndex)) {
-				idx = Integer.valueOf(pageIndex);
-			}
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			errorMsg += "页面输入的数据格式错误\n";
-			result.put("error", errorMsg);
-			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
-		}
-
+		
 		Integer dataStartNum = (idx - 1) * iPageNums;
-		filter.put("homeName", homeName);
-		filter.put("districtId", districtId);
+		filter.put("userName", userName);
 		filter.put("dataStartNum", dataStartNum);
 		filter.put("dataCount", iPageNums);
 
-		Integer totalNum = getHomeService().getHomeNum(filter);
-		List<Home> gtcList = getHomeService().queryHome(filter);
+		Integer totalNum = getRequestInfoService().queryRequestInfoNum(filter);
+		List<RequestInfo> gtcList = getRequestInfoService().queryRequestInfo(
+				filter);
 		if (null == gtcList) {
 			errorMsg = "未查询到符合条件的颜色信息\n";
 			returnErrorInfo(errorMsg);
@@ -274,14 +146,18 @@ public class RequestInfoAction extends BaseAction {
 		retObj.put("records", totalNum); // 记录总数
 		Integer num = dataStartNum + 1;
 
-		for (Home gtc : gtcList) {
+		for (RequestInfo gtc : gtcList) {
 			rowObj = new JSONObject();
 			rowObj.put("num", num);
 			rowObj.put("id", gtc.getId());
+			rowObj.put("UserId", gtc.getUserid());
+			rowObj.put("userName", gtc.getUsername());
+			rowObj.put("sex", gtc.getSex());
+			rowObj.put("groupName", gtc.getGroupname());
 			rowObj.put("homeName", gtc.getHomename());
-			rowObj.put("homeDesc", gtc.getHomedesc());
-			rowObj.put("districtId", gtc.getDistrictid());
-			rowObj.put("districtName", gtc.getDistrictname());
+			rowObj.put("info", gtc.getInfo());
+			rowObj.put("statusinfo", gtc.getStatusinfo());
+			rowObj.put("statusinfoName", returnStatusInfo(gtc.getStatusinfo()));
 			jArr.add(rowObj);
 			num++;
 		}
@@ -298,6 +174,15 @@ public class RequestInfoAction extends BaseAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public String returnStatusInfo(Integer StatusInfo) {
+		if (StatusInfo == 0) {
+			return "申请中";
+		} else {
+			return "服侍者";
+		}
+
 	}
 
 	/**
@@ -318,12 +203,12 @@ public class RequestInfoAction extends BaseAction {
 		}
 	}
 
-	public HomeService getHomeService() {
-		return homeService;
+	public RequestInfoService getRequestInfoService() {
+		return requestInfoService;
 	}
 
-	public void setHomeService(HomeService homeService) {
-		this.homeService = homeService;
+	public void setRequestInfoService(RequestInfoService requestInfoService) {
+		this.requestInfoService = requestInfoService;
 	}
 
 }
