@@ -307,4 +307,7 @@ public class UserInfoAction extends BaseAction {
 		return "ajax";
 
 	}
+	
+	
+	
 }

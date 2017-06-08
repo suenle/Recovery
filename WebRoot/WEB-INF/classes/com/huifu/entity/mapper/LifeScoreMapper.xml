@@ -1,295 +1,602 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="LifeScore" >
-  <resultMap id="BaseResultMap" type="com.huifu.entity.LifeScore" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="INTEGER" />
-    <result column="morningRevialScore" property="morningrevialscore" jdbcType="INTEGER" />
-    <result column="twoAltarPrayScore" property="twoaltarprayscore" jdbcType="INTEGER" />
-    <result column="PSRPScore" property="psrpscore" jdbcType="INTEGER" />
-    <result column="threeOldScore" property="threeoldscore" jdbcType="INTEGER" />
-    <result column="oneNewScore" property="onenewscore" jdbcType="INTEGER" />
-    <result column="personalPrayScore" property="personalprayscore" jdbcType="INTEGER" />
-    <result column="shepherdScore" property="shepherdscore" jdbcType="INTEGER" />
-    <result column="gospelScore" property="gospelscore" jdbcType="INTEGER" />
-    <result column="sundayScore" property="sundayscore" jdbcType="INTEGER" />
-    <result column="sundayProphesy" property="sundayprophesy" jdbcType="INTEGER" />
-    <result column="prayMeeting" property="praymeeting" jdbcType="INTEGER" />
-    <result column="groupMeeting" property="groupmeeting" jdbcType="INTEGER" />
-    <result column="groupShare" property="groupshare" jdbcType="INTEGER" />
-    <result column="PSRPMeeting" property="psrpmeeting" jdbcType="INTEGER" />
-    <result column="birdsEyeMeeting" property="birdseyemeeting" jdbcType="INTEGER" />
-    <result column="startTime" property="starttime" jdbcType="DATE" />
-    <result column="endTime" property="endtime" jdbcType="DATE" />
-    <result column="scoreType" property="scoretype" jdbcType="INTEGER" />
-    <result column="totalScore" property="totalscore" jdbcType="INTEGER" />
-    <result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    id, userId, morningRevialScore, twoAltarPrayScore, PSRPScore, threeOldScore, oneNewScore, 
-    personalPrayScore, shepherdScore, gospelScore, sundayScore, sundayProphesy, prayMeeting, 
-    groupMeeting, groupShare, PSRPMeeting, birdsEyeMeeting, startTime, endTime, scoreType, 
-    totalScore, systemCode
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_lifescore
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_lifescore
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.huifu.entity.LifeScore" >
-    insert into t_lifescore (id, userId, morningRevialScore, 
-      twoAltarPrayScore, PSRPScore, threeOldScore, 
-      oneNewScore, personalPrayScore, shepherdScore, 
-      gospelScore, sundayScore, sundayProphesy, 
-      prayMeeting, groupMeeting, groupShare, 
-      PSRPMeeting, birdsEyeMeeting, startTime, 
-      endTime, scoreType, totalScore, 
-      systemCode)
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{morningrevialscore,jdbcType=INTEGER}, 
-      #{twoaltarprayscore,jdbcType=INTEGER}, #{psrpscore,jdbcType=INTEGER}, #{threeoldscore,jdbcType=INTEGER}, 
-      #{onenewscore,jdbcType=INTEGER}, #{personalprayscore,jdbcType=INTEGER}, #{shepherdscore,jdbcType=INTEGER}, 
-      #{gospelscore,jdbcType=INTEGER}, #{sundayscore,jdbcType=INTEGER}, #{sundayprophesy,jdbcType=INTEGER}, 
-      #{praymeeting,jdbcType=INTEGER}, #{groupmeeting,jdbcType=INTEGER}, #{groupshare,jdbcType=INTEGER}, 
-      #{psrpmeeting,jdbcType=INTEGER}, #{birdseyemeeting,jdbcType=INTEGER}, #{starttime,jdbcType=DATE}, 
-      #{endtime,jdbcType=DATE}, #{scoretype,jdbcType=INTEGER}, #{totalscore,jdbcType=INTEGER}, 
-      #{systemcode,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.huifu.entity.LifeScore" >
-    insert into t_lifescore
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userid != null" >
-        userId,
-      </if>
-      <if test="morningrevialscore != null" >
-        morningRevialScore,
-      </if>
-      <if test="twoaltarprayscore != null" >
-        twoAltarPrayScore,
-      </if>
-      <if test="psrpscore != null" >
-        PSRPScore,
-      </if>
-      <if test="threeoldscore != null" >
-        threeOldScore,
-      </if>
-      <if test="onenewscore != null" >
-        oneNewScore,
-      </if>
-      <if test="personalprayscore != null" >
-        personalPrayScore,
-      </if>
-      <if test="shepherdscore != null" >
-        shepherdScore,
-      </if>
-      <if test="gospelscore != null" >
-        gospelScore,
-      </if>
-      <if test="sundayscore != null" >
-        sundayScore,
-      </if>
-      <if test="sundayprophesy != null" >
-        sundayProphesy,
-      </if>
-      <if test="praymeeting != null" >
-        prayMeeting,
-      </if>
-      <if test="groupmeeting != null" >
-        groupMeeting,
-      </if>
-      <if test="groupshare != null" >
-        groupShare,
-      </if>
-      <if test="psrpmeeting != null" >
-        PSRPMeeting,
-      </if>
-      <if test="birdseyemeeting != null" >
-        birdsEyeMeeting,
-      </if>
-      <if test="starttime != null" >
-        startTime,
-      </if>
-      <if test="endtime != null" >
-        endTime,
-      </if>
-      <if test="scoretype != null" >
-        scoreType,
-      </if>
-      <if test="totalscore != null" >
-        totalScore,
-      </if>
-      <if test="systemcode != null" >
-        systemCode,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="morningrevialscore != null" >
-        #{morningrevialscore,jdbcType=INTEGER},
-      </if>
-      <if test="twoaltarprayscore != null" >
-        #{twoaltarprayscore,jdbcType=INTEGER},
-      </if>
-      <if test="psrpscore != null" >
-        #{psrpscore,jdbcType=INTEGER},
-      </if>
-      <if test="threeoldscore != null" >
-        #{threeoldscore,jdbcType=INTEGER},
-      </if>
-      <if test="onenewscore != null" >
-        #{onenewscore,jdbcType=INTEGER},
-      </if>
-      <if test="personalprayscore != null" >
-        #{personalprayscore,jdbcType=INTEGER},
-      </if>
-      <if test="shepherdscore != null" >
-        #{shepherdscore,jdbcType=INTEGER},
-      </if>
-      <if test="gospelscore != null" >
-        #{gospelscore,jdbcType=INTEGER},
-      </if>
-      <if test="sundayscore != null" >
-        #{sundayscore,jdbcType=INTEGER},
-      </if>
-      <if test="sundayprophesy != null" >
-        #{sundayprophesy,jdbcType=INTEGER},
-      </if>
-      <if test="praymeeting != null" >
-        #{praymeeting,jdbcType=INTEGER},
-      </if>
-      <if test="groupmeeting != null" >
-        #{groupmeeting,jdbcType=INTEGER},
-      </if>
-      <if test="groupshare != null" >
-        #{groupshare,jdbcType=INTEGER},
-      </if>
-      <if test="psrpmeeting != null" >
-        #{psrpmeeting,jdbcType=INTEGER},
-      </if>
-      <if test="birdseyemeeting != null" >
-        #{birdseyemeeting,jdbcType=INTEGER},
-      </if>
-      <if test="starttime != null" >
-        #{starttime,jdbcType=DATE},
-      </if>
-      <if test="endtime != null" >
-        #{endtime,jdbcType=DATE},
-      </if>
-      <if test="scoretype != null" >
-        #{scoretype,jdbcType=INTEGER},
-      </if>
-      <if test="totalscore != null" >
-        #{totalscore,jdbcType=INTEGER},
-      </if>
-      <if test="systemcode != null" >
-        #{systemcode,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.LifeScore" >
-    update t_lifescore
-    <set >
-      <if test="userid != null" >
-        userId = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="morningrevialscore != null" >
-        morningRevialScore = #{morningrevialscore,jdbcType=INTEGER},
-      </if>
-      <if test="twoaltarprayscore != null" >
-        twoAltarPrayScore = #{twoaltarprayscore,jdbcType=INTEGER},
-      </if>
-      <if test="psrpscore != null" >
-        PSRPScore = #{psrpscore,jdbcType=INTEGER},
-      </if>
-      <if test="threeoldscore != null" >
-        threeOldScore = #{threeoldscore,jdbcType=INTEGER},
-      </if>
-      <if test="onenewscore != null" >
-        oneNewScore = #{onenewscore,jdbcType=INTEGER},
-      </if>
-      <if test="personalprayscore != null" >
-        personalPrayScore = #{personalprayscore,jdbcType=INTEGER},
-      </if>
-      <if test="shepherdscore != null" >
-        shepherdScore = #{shepherdscore,jdbcType=INTEGER},
-      </if>
-      <if test="gospelscore != null" >
-        gospelScore = #{gospelscore,jdbcType=INTEGER},
-      </if>
-      <if test="sundayscore != null" >
-        sundayScore = #{sundayscore,jdbcType=INTEGER},
-      </if>
-      <if test="sundayprophesy != null" >
-        sundayProphesy = #{sundayprophesy,jdbcType=INTEGER},
-      </if>
-      <if test="praymeeting != null" >
-        prayMeeting = #{praymeeting,jdbcType=INTEGER},
-      </if>
-      <if test="groupmeeting != null" >
-        groupMeeting = #{groupmeeting,jdbcType=INTEGER},
-      </if>
-      <if test="groupshare != null" >
-        groupShare = #{groupshare,jdbcType=INTEGER},
-      </if>
-      <if test="psrpmeeting != null" >
-        PSRPMeeting = #{psrpmeeting,jdbcType=INTEGER},
-      </if>
-      <if test="birdseyemeeting != null" >
-        birdsEyeMeeting = #{birdseyemeeting,jdbcType=INTEGER},
-      </if>
-      <if test="starttime != null" >
-        startTime = #{starttime,jdbcType=DATE},
-      </if>
-      <if test="endtime != null" >
-        endTime = #{endtime,jdbcType=DATE},
-      </if>
-      <if test="scoretype != null" >
-        scoreType = #{scoretype,jdbcType=INTEGER},
-      </if>
-      <if test="totalscore != null" >
-        totalScore = #{totalscore,jdbcType=INTEGER},
-      </if>
-      <if test="systemcode != null" >
-        systemCode = #{systemcode,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.huifu.entity.LifeScore" >
-    update t_lifescore
-    set userId = #{userid,jdbcType=INTEGER},
-      morningRevialScore = #{morningrevialscore,jdbcType=INTEGER},
-      twoAltarPrayScore = #{twoaltarprayscore,jdbcType=INTEGER},
-      PSRPScore = #{psrpscore,jdbcType=INTEGER},
-      threeOldScore = #{threeoldscore,jdbcType=INTEGER},
-      oneNewScore = #{onenewscore,jdbcType=INTEGER},
-      personalPrayScore = #{personalprayscore,jdbcType=INTEGER},
-      shepherdScore = #{shepherdscore,jdbcType=INTEGER},
-      gospelScore = #{gospelscore,jdbcType=INTEGER},
-      sundayScore = #{sundayscore,jdbcType=INTEGER},
-      sundayProphesy = #{sundayprophesy,jdbcType=INTEGER},
-      prayMeeting = #{praymeeting,jdbcType=INTEGER},
-      groupMeeting = #{groupmeeting,jdbcType=INTEGER},
-      groupShare = #{groupshare,jdbcType=INTEGER},
-      PSRPMeeting = #{psrpmeeting,jdbcType=INTEGER},
-      birdsEyeMeeting = #{birdseyemeeting,jdbcType=INTEGER},
-      startTime = #{starttime,jdbcType=DATE},
-      endTime = #{endtime,jdbcType=DATE},
-      scoreType = #{scoretype,jdbcType=INTEGER},
-      totalScore = #{totalscore,jdbcType=INTEGER},
-      systemCode = #{systemcode,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="LifeScore">
+	<resultMap id="BaseResultMap" type="com.huifu.entity.LifeScore">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="morningRevialScore" property="morningrevialscore"
+			jdbcType="INTEGER" />
+		<result column="twoAltarPrayScore" property="twoaltarprayscore"
+			jdbcType="INTEGER" />
+		<result column="PSRPScore" property="psrpscore" jdbcType="INTEGER" />
+		<result column="threeOldScore" property="threeoldscore"
+			jdbcType="INTEGER" />
+		<result column="oneNewScore" property="onenewscore" jdbcType="INTEGER" />
+		<result column="personalPrayScore" property="personalprayscore"
+			jdbcType="INTEGER" />
+		<result column="shepherdScore" property="shepherdscore"
+			jdbcType="INTEGER" />
+		<result column="gospelScore" property="gospelscore" jdbcType="INTEGER" />
+		<result column="sundayScore" property="sundayscore" jdbcType="INTEGER" />
+		<result column="sundayProphesy" property="sundayprophesy"
+			jdbcType="INTEGER" />
+		<result column="prayMeeting" property="praymeeting" jdbcType="INTEGER" />
+		<result column="groupMeeting" property="groupmeeting" jdbcType="INTEGER" />
+		<result column="groupShare" property="groupshare" jdbcType="INTEGER" />
+		<result column="PSRPMeeting" property="psrpmeeting" jdbcType="INTEGER" />
+		<result column="birdsEyeMeeting" property="birdseyemeeting"
+			jdbcType="INTEGER" />
+		<result column="startTime" property="starttime" jdbcType="DATE" />
+		<result column="endTime" property="endtime" jdbcType="DATE" />
+		<result column="scoreType" property="scoretype" jdbcType="INTEGER" />
+		<result column="totalScore" property="totalscore" jdbcType="INTEGER" />
+		<result column="systemCode" property="systemcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, morningRevialScore, twoAltarPrayScore,
+		PSRPScore,
+		threeOldScore, oneNewScore,
+		personalPrayScore, shepherdScore,
+		gospelScore, sundayScore, sundayProphesy, prayMeeting,
+		groupMeeting,
+		groupShare, PSRPMeeting, birdsEyeMeeting, startTime,
+		endTime,
+		scoreType,
+		totalScore, systemCode
+	</sql>
+	<select id="ListFourWeekIndex" resultMap="BaseResultMap">
+	SELECT startTime as startTime, endTime as endTime from t_lifescore WHERE scoreType=2 GROUP BY endTime ORDER BY endTime DESC
+	</select>
+
+	<select id="LifeScoreByTimeNumPrint" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		t_lifescore t1,
+		t_userinfo t2,
+		t_group t3
+		WHERE
+		t1.userId = t2.userId
+		AND t2.groupId = t3.id
+		AND t2.groupId = t3.id
+		<if test="groupId != null">
+			AND t2.groupId=#{groupId,jdbcType=INTEGER}
+		</if>
+		<if test="userName != null">
+			AND t2.userName=#{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="scoreType != null">
+			AND t1.scoreType=#{scoreType,jdbcType=VARCHAR}
+		</if>
+		<if test="@Ognl@isNotBlank(startTime)">
+			and startTime <![CDATA[>=]]>
+			#{startTime, jdbcType=DATE}
+		</if>
+		<if test="@Ognl@isNotBlank(endTime)">
+			and endTime <![CDATA[<=]]>
+			#{endTime, jdbcType=DATE}
+		</if>
+	</select>
+
+	<select id="listLifeScoreByTimePrint" resultMap="BaseResultMap">
+		SELECT
+		t1.id AS id,
+		t1.userId AS userId,
+		t2.userName AS userName,
+		t2.sex
+		AS sex,
+		t3.districtId AS districtId,
+		t4.districtName AS districtName,
+		t2.groupId AS groupId,
+		t3.groupName AS groupName,
+		t1.morningRevialScore
+		AS morningRevialScore,
+		t1.twoAltarPrayScore AS
+		twoAltarPrayScore,
+		t1.PSRPScore AS PSRPScore,
+		t1.threeOldScore AS
+		threeOldScore,
+		t1.oneNewScore AS oneNewScore,
+		t1.personalPrayScore AS
+		personalPrayScore,
+		t1.shepherdScore AS shepherdScore,
+		t1.gospelScore AS
+		gospelScore,
+		t1.sundayScore AS sundayScore,
+		t1.sundayProphesy AS
+		sundayProphesy,
+		t1.prayMeeting AS prayMeeting,
+		t1.groupMeeting AS
+		groupMeeting,
+		t1.groupShare AS groupShare,
+		t1.PSRPMeeting AS
+		PSRPMeeting,
+		t1.birdsEyeMeeting AS birdsEyeMeeting,
+		t1.startTime AS
+		startTime,
+		t1.endTime AS endTime,
+		t1.scoreType AS scoreType,
+		t1.totalScore AS totalScore
+		FROM
+		t_lifescore t1,
+		t_userinfo t2,
+		t_group
+		t3,
+		t_district t4
+		WHERE
+		t1.userId = t2.userId
+		AND t2.groupId = t3.id
+		AND
+		t2.groupId = t3.id
+		AND t3.districtId=t4.id
+		<if test="districtId != null">
+			AND t3.districtId=#{districtId,jdbcType=INTEGER}
+		</if>
+		<if test="homeId != null">
+			AND t2.homeId=#{homeId,jdbcType=INTEGER}
+		</if>
+		<if test="groupId != null">
+			AND t2.groupId=#{groupId,jdbcType=INTEGER}
+		</if>
+		<if test="userName != null">
+			AND t2.userName=#{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="scoreType != null">
+			AND t1.scoreType=#{scoreType,jdbcType=VARCHAR}
+		</if>
+		<if test="@Ognl@isNotBlank(startTime)">
+			and startTime <![CDATA[>=]]>
+			#{startTime, jdbcType=DATE}
+		</if>
+		<if test="@Ognl@isNotBlank(endTime)">
+			and endTime <![CDATA[<=]]>
+			#{endTime, jdbcType=DATE}
+		</if>
+	</select>
+
+
+	<select id="LifeScoreByTimeNum" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		t_lifescore t1,
+		t_userinfo t2,
+		t_group t3,
+		t_district
+		t4
+		WHERE
+		t1.userId = t2.userId
+		AND t2.groupId = t3.id
+		AND t2.groupId =
+		t3.id
+		AND t3.districtId=t4.id
+		<if test="districtId != null">
+			AND t3.districtId=#{districtId,jdbcType=INTEGER}
+		</if>
+		<if test="homeId != null">
+			AND t2.homeId=#{homeId,jdbcType=INTEGER}
+		</if>
+		<if test="groupId != null">
+			AND t2.groupId=#{groupId,jdbcType=INTEGER}
+		</if>
+		<if test="userName != null">
+			AND t2.userName=#{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="scoreType != null">
+			AND t1.scoreType=#{scoreType,jdbcType=VARCHAR}
+		</if>
+		<if test="@Ognl@isNotBlank(startTime)">
+			and startTime <![CDATA[>=]]>
+			#{startTime, jdbcType=DATE}
+		</if>
+		<if test="@Ognl@isNotBlank(endTime)">
+			and endTime <![CDATA[<=]]>
+			#{endTime, jdbcType=DATE}
+		</if>
+	</select>
+
+	<select id="listLifeScoreByTime" resultMap="BaseResultMap">
+		SELECT
+		t1.id AS id,
+		t1.userId AS userId,
+		t2.userName AS userName,
+		t2.sex
+		AS sex,
+		t3.districtId AS districtId,
+		t4.districtName AS districtName,
+		t2.groupId AS groupId,
+		t3.groupName AS groupName,
+		t1.morningRevialScore
+		AS morningRevialScore,
+		t1.twoAltarPrayScore AS
+		twoAltarPrayScore,
+		t1.PSRPScore AS PSRPScore,
+		t1.threeOldScore AS
+		threeOldScore,
+		t1.oneNewScore AS oneNewScore,
+		t1.personalPrayScore AS
+		personalPrayScore,
+		t1.shepherdScore AS shepherdScore,
+		t1.gospelScore AS
+		gospelScore,
+		t1.sundayScore AS sundayScore,
+		t1.sundayProphesy AS
+		sundayProphesy,
+		t1.prayMeeting AS prayMeeting,
+		t1.groupMeeting AS
+		groupMeeting,
+		t1.groupShare AS groupShare,
+		t1.PSRPMeeting AS
+		PSRPMeeting,
+		t1.birdsEyeMeeting AS birdsEyeMeeting,
+		t1.startTime AS
+		startTime,
+		t1.endTime AS endTime,
+		t1.scoreType AS scoreType,
+		t1.totalScore AS totalScore
+		FROM
+		t_lifescore t1,
+		t_userinfo t2,
+		t_group
+		t3,
+		t_district t4
+		WHERE
+		t1.userId = t2.userId
+		AND t2.groupId = t3.id
+		AND
+		t2.groupId = t3.id
+		AND t3.districtId=t4.id
+		<if test="districtId != null">
+			AND t3.districtId=#{districtId,jdbcType=INTEGER}
+		</if>
+		<if test="homeId != null">
+			AND t2.homeId=#{homeId,jdbcType=INTEGER}
+		</if>
+		<if test="groupId != null">
+			AND t2.groupId=#{groupId,jdbcType=INTEGER}
+		</if>
+		<if test="userName != null">
+			AND t2.userName=#{userName,jdbcType=VARCHAR}
+		</if>
+		<if test="scoreType != null">
+			AND t1.scoreType=#{scoreType,jdbcType=VARCHAR}
+		</if>
+		<if test="@Ognl@isNotBlank(startTime)">
+			and startTime <![CDATA[>=]]>
+			#{startTime, jdbcType=DATE}
+		</if>
+		<if test="@Ognl@isNotBlank(endTime)">
+			and endTime <![CDATA[<=]]>
+			#{endTime, jdbcType=DATE}
+		</if>
+		limit #{dataStartNum, jdbcType=INTEGER}, #{dataCount,
+		jdbcType=INTEGER}
+	</select>
+
+
+
+
+
+
+	<select id="listWeekScoreByTimeAndType" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_lifescore
+		WHERE
+		1=1
+		<if test="scoretype != null">
+			AND scoreType = #{scoretype,jdbcType=INTEGER}
+		</if>
+		<if test="userid != null">
+			AND userId = #{userid,jdbcType=INTEGER}
+		</if>
+		<if test="@Ognl@isNotBlank(startTime)">
+			and startTime <![CDATA[>=]]>
+			#{startTime, jdbcType=DATE}
+		</if>
+		<if test="@Ognl@isNotBlank(endTime)">
+			and endTime <![CDATA[<=]]>
+			#{endTime, jdbcType=DATE}
+		</if>
+	</select>
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_lifescore
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		t_lifescore
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.huifu.entity.LifeScore">
+		insert into t_lifescore (id,
+		userId, morningRevialScore,
+		twoAltarPrayScore, PSRPScore,
+		threeOldScore,
+		oneNewScore, personalPrayScore, shepherdScore,
+		gospelScore, sundayScore, sundayProphesy,
+		prayMeeting, groupMeeting,
+		groupShare,
+		PSRPMeeting, birdsEyeMeeting, startTime,
+		endTime, scoreType,
+		totalScore,
+		systemCode)
+		values (#{id,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{morningrevialscore,jdbcType=INTEGER},
+		#{twoaltarprayscore,jdbcType=INTEGER}, #{psrpscore,jdbcType=INTEGER},
+		#{threeoldscore,jdbcType=INTEGER},
+		#{onenewscore,jdbcType=INTEGER},
+		#{personalprayscore,jdbcType=INTEGER},
+		#{shepherdscore,jdbcType=INTEGER},
+		#{gospelscore,jdbcType=INTEGER},
+		#{sundayscore,jdbcType=INTEGER}, #{sundayprophesy,jdbcType=INTEGER},
+		#{praymeeting,jdbcType=INTEGER}, #{groupmeeting,jdbcType=INTEGER},
+		#{groupshare,jdbcType=INTEGER},
+		#{psrpmeeting,jdbcType=INTEGER},
+		#{birdseyemeeting,jdbcType=INTEGER}, #{starttime,jdbcType=DATE},
+		#{endtime,jdbcType=DATE}, #{scoretype,jdbcType=INTEGER},
+		#{totalscore,jdbcType=INTEGER},
+		#{systemcode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.huifu.entity.LifeScore">
+		insert into t_lifescore
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userid != null">
+				userId,
+			</if>
+			<if test="morningrevialscore != null">
+				morningRevialScore,
+			</if>
+			<if test="twoaltarprayscore != null">
+				twoAltarPrayScore,
+			</if>
+			<if test="psrpscore != null">
+				PSRPScore,
+			</if>
+			<if test="threeoldscore != null">
+				threeOldScore,
+			</if>
+			<if test="onenewscore != null">
+				oneNewScore,
+			</if>
+			<if test="personalprayscore != null">
+				personalPrayScore,
+			</if>
+			<if test="shepherdscore != null">
+				shepherdScore,
+			</if>
+			<if test="gospelscore != null">
+				gospelScore,
+			</if>
+			<if test="sundayscore != null">
+				sundayScore,
+			</if>
+			<if test="sundayprophesy != null">
+				sundayProphesy,
+			</if>
+			<if test="praymeeting != null">
+				prayMeeting,
+			</if>
+			<if test="groupmeeting != null">
+				groupMeeting,
+			</if>
+			<if test="groupshare != null">
+				groupShare,
+			</if>
+			<if test="psrpmeeting != null">
+				PSRPMeeting,
+			</if>
+			<if test="birdseyemeeting != null">
+				birdsEyeMeeting,
+			</if>
+			<if test="starttime != null">
+				startTime,
+			</if>
+			<if test="endtime != null">
+				endTime,
+			</if>
+			<if test="scoretype != null">
+				scoreType,
+			</if>
+			<if test="totalscore != null">
+				totalScore,
+			</if>
+			<if test="systemcode != null">
+				systemCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="morningrevialscore != null">
+				#{morningrevialscore,jdbcType=INTEGER},
+			</if>
+			<if test="twoaltarprayscore != null">
+				#{twoaltarprayscore,jdbcType=INTEGER},
+			</if>
+			<if test="psrpscore != null">
+				#{psrpscore,jdbcType=INTEGER},
+			</if>
+			<if test="threeoldscore != null">
+				#{threeoldscore,jdbcType=INTEGER},
+			</if>
+			<if test="onenewscore != null">
+				#{onenewscore,jdbcType=INTEGER},
+			</if>
+			<if test="personalprayscore != null">
+				#{personalprayscore,jdbcType=INTEGER},
+			</if>
+			<if test="shepherdscore != null">
+				#{shepherdscore,jdbcType=INTEGER},
+			</if>
+			<if test="gospelscore != null">
+				#{gospelscore,jdbcType=INTEGER},
+			</if>
+			<if test="sundayscore != null">
+				#{sundayscore,jdbcType=INTEGER},
+			</if>
+			<if test="sundayprophesy != null">
+				#{sundayprophesy,jdbcType=INTEGER},
+			</if>
+			<if test="praymeeting != null">
+				#{praymeeting,jdbcType=INTEGER},
+			</if>
+			<if test="groupmeeting != null">
+				#{groupmeeting,jdbcType=INTEGER},
+			</if>
+			<if test="groupshare != null">
+				#{groupshare,jdbcType=INTEGER},
+			</if>
+			<if test="psrpmeeting != null">
+				#{psrpmeeting,jdbcType=INTEGER},
+			</if>
+			<if test="birdseyemeeting != null">
+				#{birdseyemeeting,jdbcType=INTEGER},
+			</if>
+			<if test="starttime != null">
+				#{starttime,jdbcType=DATE},
+			</if>
+			<if test="endtime != null">
+				#{endtime,jdbcType=DATE},
+			</if>
+			<if test="scoretype != null">
+				#{scoretype,jdbcType=INTEGER},
+			</if>
+			<if test="totalscore != null">
+				#{totalscore,jdbcType=INTEGER},
+			</if>
+			<if test="systemcode != null">
+				#{systemcode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.huifu.entity.LifeScore">
+		update t_lifescore
+		<set>
+			<if test="userid != null">
+				userId = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="morningrevialscore != null">
+				morningRevialScore =
+				#{morningrevialscore,jdbcType=INTEGER},
+			</if>
+			<if test="twoaltarprayscore != null">
+				twoAltarPrayScore =
+				#{twoaltarprayscore,jdbcType=INTEGER},
+			</if>
+			<if test="psrpscore != null">
+				PSRPScore = #{psrpscore,jdbcType=INTEGER},
+			</if>
+			<if test="threeoldscore != null">
+				threeOldScore = #{threeoldscore,jdbcType=INTEGER},
+			</if>
+			<if test="onenewscore != null">
+				oneNewScore = #{onenewscore,jdbcType=INTEGER},
+			</if>
+			<if test="personalprayscore != null">
+				personalPrayScore =
+				#{personalprayscore,jdbcType=INTEGER},
+			</if>
+			<if test="shepherdscore != null">
+				shepherdScore = #{shepherdscore,jdbcType=INTEGER},
+			</if>
+			<if test="gospelscore != null">
+				gospelScore = #{gospelscore,jdbcType=INTEGER},
+			</if>
+			<if test="sundayscore != null">
+				sundayScore = #{sundayscore,jdbcType=INTEGER},
+			</if>
+			<if test="sundayprophesy != null">
+				sundayProphesy = #{sundayprophesy,jdbcType=INTEGER},
+			</if>
+			<if test="praymeeting != null">
+				prayMeeting = #{praymeeting,jdbcType=INTEGER},
+			</if>
+			<if test="groupmeeting != null">
+				groupMeeting = #{groupmeeting,jdbcType=INTEGER},
+			</if>
+			<if test="groupshare != null">
+				groupShare = #{groupshare,jdbcType=INTEGER},
+			</if>
+			<if test="psrpmeeting != null">
+				PSRPMeeting = #{psrpmeeting,jdbcType=INTEGER},
+			</if>
+			<if test="birdseyemeeting != null">
+				birdsEyeMeeting = #{birdseyemeeting,jdbcType=INTEGER},
+			</if>
+			<if test="starttime != null">
+				startTime = #{starttime,jdbcType=DATE},
+			</if>
+			<if test="endtime != null">
+				endTime = #{endtime,jdbcType=DATE},
+			</if>
+			<if test="scoretype != null">
+				scoreType = #{scoretype,jdbcType=INTEGER},
+			</if>
+			<if test="totalscore != null">
+				totalScore = #{totalscore,jdbcType=INTEGER},
+			</if>
+			<if test="systemcode != null">
+				systemCode = #{systemcode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.huifu.entity.LifeScore">
+		update t_lifescore
+		set userId = #{userid,jdbcType=INTEGER},
+		morningRevialScore =
+		#{morningrevialscore,jdbcType=INTEGER},
+		twoAltarPrayScore =
+		#{twoaltarprayscore,jdbcType=INTEGER},
+		PSRPScore =
+		#{psrpscore,jdbcType=INTEGER},
+		threeOldScore =
+		#{threeoldscore,jdbcType=INTEGER},
+		oneNewScore =
+		#{onenewscore,jdbcType=INTEGER},
+		personalPrayScore =
+		#{personalprayscore,jdbcType=INTEGER},
+		shepherdScore =
+		#{shepherdscore,jdbcType=INTEGER},
+		gospelScore =
+		#{gospelscore,jdbcType=INTEGER},
+		sundayScore =
+		#{sundayscore,jdbcType=INTEGER},
+		sundayProphesy =
+		#{sundayprophesy,jdbcType=INTEGER},
+		prayMeeting =
+		#{praymeeting,jdbcType=INTEGER},
+		groupMeeting =
+		#{groupmeeting,jdbcType=INTEGER},
+		groupShare =
+		#{groupshare,jdbcType=INTEGER},
+		PSRPMeeting =
+		#{psrpmeeting,jdbcType=INTEGER},
+		birdsEyeMeeting =
+		#{birdseyemeeting,jdbcType=INTEGER},
+		startTime =
+		#{starttime,jdbcType=DATE},
+		endTime = #{endtime,jdbcType=DATE},
+		scoreType = #{scoretype,jdbcType=INTEGER},
+		totalScore =
+		#{totalscore,jdbcType=INTEGER},
+		systemCode =
+		#{systemcode,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

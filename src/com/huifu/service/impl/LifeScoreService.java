@@ -53,4 +53,30 @@ public class LifeScoreService implements ILifeScoreService {
 		return getLifeScoreDao().getAllLifeScore();
 	}
 
+	public List<LifeScore> listWeekScoreByTimeAndType(Map<String, Object> data) {
+		return getLifeScoreDao().listWeekScoreByTimeAndType(data);
+	}
+
+	public List<LifeScore> listLifeScoreByTime(Map<String, Object> data) {
+		
+		return getLifeScoreDao().listLifeScoreByTime(data);
+	}
+
+	public int LifeScoreByTimeNum(Map<String, Object> data) {
+		
+		return getLifeScoreDao().LifeScoreByTimeNum(data);
+	}
+
+	public List<LifeScore> listLifeScoreByTimePrint(Map<String, Object> data) {
+		return getLifeScoreDao().listLifeScoreByTimePrint(data);
+	}
+
+	public int LifeScoreByTimeNumPrint(Map<String, Object> data) {
+		return getLifeScoreDao().LifeScoreByTimeNumPrint(data);
+	}
+
+	public List<LifeScore> ListFourWeekIndex() {
+		return getLifeScoreDao().ListFourWeekIndex();
+	}
+
 }

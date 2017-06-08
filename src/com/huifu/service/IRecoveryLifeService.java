@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.huifu.entity.LifeScore;
 import com.huifu.entity.RecoveryLife;
 
 public interface IRecoveryLifeService {
@@ -32,4 +33,6 @@ public interface IRecoveryLifeService {
 	public int queryLifeInfoListByUserIdNum(Map<String, Object> data);
 	
 	public List<RecoveryLife> listLifeInfoByUserIdAndTime(Map<String, Object> data);
+	
+
 }

@@ -38,9 +38,9 @@
 							src="../images/icon_card.gif" width="16" height="16"
 							align="absmiddle" style="margin-bottom: 4px;"> 当前位置&nbsp;<img
 							src="../images/common/rightArrow.png" width="8" height="14"
-							align="absmiddle" style="margin-bottom: 2px;"> 基础数据配置&nbsp;<img
+							align="absmiddle" style="margin-bottom: 2px;"> 添区加排&nbsp;<img
 							src="../images/common/rightArrow.png" width="8" height="14"
-							align="absmiddle" style="margin-bottom: 2px;"> 小排管理</td>
+							align="absmiddle" style="margin-bottom: 2px;"> 家管理</td>
 						<td align="right" class="white" style="padding-right:20px"><a
 							href="#" class="barBtn" id="keyword_id_areasType_addBtn"
 							onclick="addHome();"> <img src="../images/btn_add.gif"

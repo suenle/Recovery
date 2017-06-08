@@ -22,6 +22,9 @@ import com.huifu.entity.User;
 import com.huifu.entity.UserInfo;
 import com.huifu.service.impl.UserInfoService;
 import com.huifu.service.impl.UserService;
+import com.huifu.wechat.pojo.SNSUserInfo;
+import com.huifu.wechat.pojo.WeixinOauth2Token;
+import com.huifu.wechat.util.AdvancedUtil;
 
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
@@ -43,6 +46,78 @@ public class UserAction extends BaseAction {
 	static Logger logger = LogManager.getLogger(UserAction.class.getName());
 
 	/**
+	 * 微信登录实现方法
+	 * 
+	 * @return
+	 */
+	public String weChatLogin() {
+		// 用户同意授权后，能获取到code
+		String code = getRequest().getParameter("code");
+		String state = getRequest().getParameter("state");
+
+		// 用户同意授权
+		if (!"authdeny".equals(code)) {
+			// 获取网页授权access_token
+			WeixinOauth2Token weixinOauth2Token = AdvancedUtil
+					.getOauth2AccessToken(Constant.WECHAT_APPID,
+							Constant.WECHAT_SECRET, code);
+			// 网页授权接口访问凭证
+			String accessToken = weixinOauth2Token.getAccessToken();
+			// 用户标识
+			String openId = weixinOauth2Token.getOpenId();
+			// 获取用户信息
+			SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(accessToken,
+					openId);
+
+			// 查询openId是否注册
+			User user = new User();
+			user.setOpenid(openId);
+
+			User getUser = getUserService().checkLogin(user);
+			if (getUser == null) {
+				user.setStatus(0);
+				user.setUsergroupid("0");
+				int iNum = getUserService().insertSelective(user);
+				if (iNum > 0) {
+					this.getRequest().setAttribute("userId", user.getId());
+					this.getSession().setAttribute("user", user);
+					this.getRequest().getSession()
+							.setAttribute("userId", user.getId());
+
+					Cookie userIdcookie = new Cookie("userId", user.getId()
+							.toString());
+					userIdcookie.setMaxAge(365 * 24 * 3600);
+					userIdcookie.setPath("/");
+					this.getResponse().addCookie(userIdcookie);
+					return "addinfo.do";
+				} else {
+					return "/pages/faileLogin.jsp";
+				}
+			} else {
+				this.getRequest().setAttribute("userId", getUser.getId());
+				this.getSession().setAttribute("user", getUser);
+				this.getRequest().getSession()
+						.setAttribute("userId", getUser.getId());
+
+				Cookie userIdcookie = new Cookie("userId", getUser.getId()
+						.toString());
+				userIdcookie.setMaxAge(365 * 24 * 3600);
+				userIdcookie.setPath("/");
+				this.getResponse().addCookie(userIdcookie);
+				int status = getUser.getStatus();
+				if (status == 0) {
+					return "/pages/addInfo.jsp";
+				} else {
+					return "/pages/recoveryLifeInfo.jsp";
+				}
+			
+			}
+		} else {
+			return "/pages/faileLogin.jsp";
+		}
+	}
+
+	/**
 	 * 用户登录
 	 */
 
@@ -53,8 +128,8 @@ public class UserAction extends BaseAction {
 		String errorMsg = "";
 		Map<String, Object> result = new HashMap<String, Object>();
 		// 超级管理员登陆入口
-		if (Constant.USER_SUPER_USERCODE.equals(userCode)
-				&& Constant.USER_SUPER_PASSWORD.equals(password)) {
+		if (userCode.trim().equals(Constant.USER_SUPER_USERCODE)
+				&& Constant.USER_SUPER_PASSWORD.equals(password.trim())) {
 			this.getRequest().setAttribute("userCode", userCode);
 			this.getRequest().setAttribute("userName",
 					Constant.USER_SUPER_USERNAME);
@@ -66,6 +141,7 @@ public class UserAction extends BaseAction {
 			user.setId(Constant.USER_SUPER_USERID);
 			user.setUsergroupid(Constant.USER_SUPER_USERGROUPID.toString());
 			this.getSession().setAttribute("user", user);
+			this.getRequest().getSession().setAttribute("userId", "-1");
 			return SUCCESS;
 		} else {
 			ServletContext sc = getServletContext();
@@ -79,7 +155,7 @@ public class UserAction extends BaseAction {
 			}
 
 		}
-		return SUCCESS;
+		return INPUT;
 	}
 
 	/**

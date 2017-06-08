@@ -9,200 +9,328 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="this is my page">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<link href="/Recovery/css/style.css" rel="stylesheet" type="text/css"
-	charset="utf-8">
+<!-- <link href="/Recovery/css/style.css" rel="stylesheet" type="text/css"
+	charset="utf-8"> -->
+
 <script src="/Recovery/js/jquery-1.9.1.min.js"></script>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+<!-- <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
+<script type='text/javascript'
+	src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
+<script type='text/javascript'
+	src='//g.alicdn.com/msui/sm/0.6.2/js/sm.js' charset='utf-8'></script> -->
+<link href="https://cdn.bootcss.com/light7/0.4.3/css/light7.css"
+	rel="stylesheet">
+<script src="https://cdn.bootcss.com/light7/0.4.3/js/light7.js"></script>
 
 </head>
 
 <body>
-	<header class="text-center"
-		style="border-bottom:1px solid gainsboro;padding-top: 5px;">神人生活操练</header>
-	<!--content-->
-	<div id="content">
-		<input type="hidden" id="keyword_id_addInfo_oldBook" value="" /> <input
-			type="hidden" id="keyword_id_addInfo_newBook" value="" /> <input
-			type="hidden" id="keyword_id_addInfo_oldBookNum" value="" /> <input
-			type="hidden" id="keyword_id_addInfo_newBookNum" value="" />
-		<div style="width: 90%; margin:0 auto;">
+	<div class="page-group">
+		<!-- 单个page ,第一个.page默认被展示-->
+		<div class="page" style="background-color:#fbf9f3">
+			<!-- 标题栏 -->
+			<header class="bar bar-nav">
+			<h1 class="title">神人生活操练</h1>
+			</header>
+			<!-- 工具栏 -->
+					<nav class="bar bar-tab"> <a class="tab-item external active"
+				href="${ctx}/RecoveryLife/recoveryLifeInfo.do"> <span
+				class="icon icon-star"></span> <span class="tab-label">生活操练</span> </a> <a
+				class="tab-item external" href="${ctx}/pages/meun.jsp"> <span
+				class="icon icon-me"></span> <span class="tab-label">我的</span>
+			</a> </nav>
 			<form method="post" action="${ctx}/RecoveryLife/addLifeInfo.do"
 				onsubmit="return check()">
-				<table border="0" cellpadding="0" cellspacing="0" width="100%"
-					height="650px" style="text-align: center;">
-					<tr style="height:20px;">
-						<td class="" width="40%"><span class="div_front_prompt">*</span>晨兴（同伴）
-							<br>20’：</td>
-						<td width="30%"><input type="checkbox" class="chk_3"
-							style="display:none" id="keyword_id_recoveryLife_morningRevial"
-							name="morningRevial" value="1" /><label
-							for="keyword_id_recoveryLife_morningRevial"></label>
-						</td>
-						<td width="30%"><input class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_morningRevialNum"
-							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
-							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
-							name="morningRevialNum" placeholder=" 时间/分钟" />
-						<td></td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>两坛祷告 <br>（同伴）30’：</td>
-						<td><input type="checkbox" class="chk_3" style="display:none"
-							id="keyword_id_recoveryLife_twoAltarPray" name="twoAltarPray"
-							value="1" /><label for="keyword_id_recoveryLife_twoAltarPray"></label>
-						</td>
-						<td><input class="input_class_re" type="text"
-							name="twoAltarPrayNum"
-							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
-							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
-							id="keyword_id_recoveryLife_twoAltarPrayNum" placeholder=" 时间/分钟" />
-						</td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>祷研背讲<br>默想主话：</td>
-						<td><input type="checkbox" class="chk_3" style="display:none"
-							id="keyword_id_recoveryLife_psrp" name="psrp" value="1" /><label
-							for="keyword_id_recoveryLife_psrp"></label>
-						</td>
+				<!-- 这里是页面内容区 -->
+				<div class="content" style="top: 2rem">
+					<div class="content-block-title" style="margin: 0.7rem 0.75rem 0.3rem">团体操练</div>
+					<div class="card" style="margin: .9rem">
+						<div class="card-content">
+							<div class="card-content-inner">
+								<div class="list-block" style="font-size: 0.75rem">
+									<ul>
+										<!-- Text inputs -->
+										<li>
+											<div class="item-content">
 
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>三旧一新：</td>
-						<td><input type="checkbox" class="chk_3" style="display:none"
-							id="keyword_id_recoveryLife_threeOldAndoneNew"
-							name="threeOldAndoneNew" value="1" /><label
-							for="keyword_id_recoveryLife_threeOldAndoneNew"></label>
-						</td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>三章旧约：</td>
-						<td><div style="margin-right: 5px">
-								<select class="input_class_re" name="threeOld"
-									id="keyword_id_recoveryLife_threeOld">
-								</select>
+												<div class="item-inner">
+													<div class="item-title label">晨兴 20’</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox"
+															id="keyword_id_recoveryLife_morningRevial"
+															name="morningRevial">
+															<div class="checkbox"></div> </label>
+													</div>
+													<div class="item-input">
+														<input type="text" placeholder="时间/分钟"
+															id="keyword_id_recoveryLife_morningRevialNum"
+															onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+															onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+															name="morningRevialNum">
+													</div>
+												</div>
+											</div></li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">两坛祷告 30’</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox" id="keyword_id_recoveryLife_twoAltarPray"
+															name="twoAltarPray">
+															<div class="checkbox"></div> </label>
+													</div>
+													<div class="item-input">
+														<input type="text" placeholder="时间/分钟"
+															name="twoAltarPrayNum"
+															onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+															onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+															id="keyword_id_recoveryLife_twoAltarPrayNum">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">传福音</div>
+													<div class="item-input">
+														<input type="text" placeholder="时间/分钟" name="gospelNum"
+															id="keyword_id_recoveryLife_gospelNum"
+															onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
+															onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
+															placeholder=" 时间/小时">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">看望牧养</div>
+													<div class="item-input">
+														<input type="text" placeholder="时间/分钟"
+															id="keyword_id_recoveryLife_shepherdNum"
+															name="shepherdNum"
+															onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
+															onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')" />
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
 							</div>
-						</td>
-						<td><select class="input_class_re" name="threeOldNum"
-							id="keyword_id_recoveryLife_threeOldNum">
-						</select>
-						</td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>一章新约：</td>
-						<td><div style="margin-right: 5px">
-								<select class="input_class_re" name="oneNew"
-									id="keyword_id_recoveryLife_oneNew">
-								</select>
+						</div>
+					</div>
+
+					<div class="content-block-title" style="margin: 0.7rem 0.75rem 0.3rem">个人操练</div>
+					<div class="card" style="margin: .9rem">
+						<div class="card-content">
+							<div class="card-content-inner">
+								<div class="list-block" style="font-size: 0.75rem">
+									<ul>
+										<!-- Text inputs -->
+										<li>
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">三旧:</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox"
+															id="keyword_id_recoveryLife_threeOldRecord"
+															name="threeOldRecord" value="1">
+															<div class="checkbox"></div> </label>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li style="display: none" id="keyword_id_recoveryLife_threeOld_li">
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">三章旧约：</div>
+													<div class="item-input">
+														<select name="threeOld"
+															id="keyword_id_recoveryLife_threeOld">
+														</select>
+													</div>
+													<div class="item-input">
+														<select name="threeOldNum"
+															id="keyword_id_recoveryLife_threeOldNum">
+														</select>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+										<li>
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">一新:</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox" id="keyword_id_recoveryLife_oneNewRecord"
+															name="oneNewRecord" value="1">
+															<div class="checkbox"></div> </label>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li style="display: none" id="keyword_id_recoveryLife_oneNew_li">
+											<div class="item-content">
+
+												<div class="item-inner">
+													<div class="item-title label">一章新约：</div>
+													<div class="item-input">
+														<select name="oneNew" id="keyword_id_recoveryLife_oneNew">
+														</select>
+													</div>
+													<div class="item-input">
+														<select name="oneNewNum"
+															id="keyword_id_recoveryLife_oneNewNum">
+														</select>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">个人祷告 15’</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox" name="personalPray"
+															id="keyword_id_recoveryLife_personalPray">
+															<div class="checkbox"></div> </label>
+													</div>
+													<div class="item-input">
+														<input type="text" placeholder="时间/分钟"
+															id="keyword_id_recoveryLife_personalPrayNum"
+															onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
+															onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
+															name="personalPrayNum" />
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">祷研背讲</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox" id="keyword_id_recoveryLife_psrp"
+															name="psrp" value="1">
+															<div class="checkbox"></div> </label>
+													</div>
+												</div>
+											</div>
+										</li>
+
+									</ul>
+								</div>
+
 							</div>
-						</td>
-						<td><select class="input_class_re" name="oneNewNum"
-							id="keyword_id_recoveryLife_oneNewNum">
-						</select>
-						</td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>个人祷告 <br>15’：</td>
-						<td><input type="checkbox" class="chk_3" style="display:none"
-							name="personalPray" id="keyword_id_recoveryLife_personalPray" /><label
-							for="keyword_id_recoveryLife_personalPray"></label>
-						</td>
-						<td><input accept="middle" class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_personalPrayNum"
-							onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"
-							onafterpaste="this.value=this.value.replace(/[^0-9]/g,'')"
-							name="personalPrayNum" placeholder=" 时间/分钟" />
-						</td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>传福音时数 <br>（同伴）：</td>
-						<td><input class="input_class_re" type="text"
-							name="gospelNum" id="keyword_id_recoveryLife_gospelNum"
-							onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
-							onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
-							placeholder=" 时间/小时" /></td>
-						<td></td>
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>牧养、看望、 <br>爱筵（同伴）：</td>
-						<td><input class="input_class_re" type="text"
-							id="keyword_id_recoveryLife_shepherdNum" name="shepherdNum"
-							onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"
-							onafterpaste="this.value=this.value.replace(/[^0-9.]/g,'')"
-							placeholder=" 时间/小时" /></td>
-						<td></td>
+						</div>
+					</div>
 
-					</tr>
-					<tr style="height:20px;">
-						<td class=""><span class="div_front_prompt">*</span>聚会到会:</td>
-						<td><select class="input_class_re" name="meeting"
-							id="keyword_id_recoveryLife_meeting">
-								<option value="-1">-请选择-</option>
-								<option value="7">主日聚会</option>
-								<option value="2">祷告聚会</option>
-								<option value="5">小排聚会</option>
-								<option value="1">周初PSRP追求聚会</option>
-								<option value="6">脱稿鸟瞰展览</option>
-						</select>
-						</td>
-						<td><select class="input_class_re" name="meetingType"
-							id="keyword_id_recoveryLife_meetingType">
-								<option value="1">准时</option>
-								<option value="2">迟到</option>
-						</select>
-						</td>
-					</tr>
-					<tr style="height:20px; display: none"
-						id="keyword_id_recoveryLife_tr_prophesy">
-						<td class=""><span class="div_front_prompt">*</span><span
-							id="keyword_id_recoveryLife_prophesyType">主日聚会 <br>申言：</span>
-						</td>
-						<td><input type="checkbox" class="chk_3" style="display:none"
-							name="prophesy" id="keyword_id_recoveryLife_prophesy" value="1" /><label
-							for="keyword_id_recoveryLife_prophesy"></label></td>
+					<div class="content-block-title" style="margin: 0.7rem 0.75rem 0.3rem">聚会参与</div>
+					<div class="card" style="margin: .9rem">
+						<div class="card-content">
+							<div class="card-content-inner">
+								<div class="list-block" style="font-size: 0.75rem">
+									<ul>
+										<!-- Text inputs -->
+										<li>
+											<div class="item-content">
 
-					</tr>
-					<tr style="height:10px;">
-						<td colspan="3"></td>
-					</tr>
-					<tr style="height:50px;">
-						<td colspan="3">
-							<div>
+												<div class="item-inner">
+													<div class="item-title label">聚会到会：</div>
+													<div class="item-input">
+														<select name="meeting"
+															id="keyword_id_recoveryLife_meeting">
+															<option value="-1">请选择</option>
+															<option value="7">主日聚会</option>
+															<option value="2">祷告聚会</option>
+															<option value="5">小排聚会</option>
+															<option value="1">周初PSRP追求聚会</option>
+															<option value="6">脱稿鸟瞰展览</option>
+														</select>
+													</div>
+													<div class="item-input">
+														<select name="meetingType"
+															id="keyword_id_recoveryLife_meetingType">
+															<option value="1">准时</option>
+															<option value="2">迟到</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+										<li style="display: none" id="keyword_id_recoveryLife_tr_prophesy">
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label" id="keyword_id_recoveryLife_prophesyType">分享/申言：</div>
+													<div class="item-input">
+														<label class="label-switch"> <input
+															type="checkbox" name="prophesy"
+															id="keyword_id_recoveryLife_prophesy" value="1">
+															<div class="checkbox"></div> </label>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="content-block" style="height: 4.0rem">
+						<div class="row">
+							<div class="col-50" style="width: 85%;margin-left: 9%">
 								<input type="submit"
-									class="div_button_submit div_button_submit_2" value="提交"
-									onclick="javascript:areasTypeClassifyAddCommit();"
-									style="width: 90%;height: 45px" />
-
+									class="button button-big button-fill button-success"
+									value="提交 " />
 							</div>
-						</td>
-					</tr>
-				</table>
+						</div>
+					</div>
+
+				</div>
 			</form>
 		</div>
 	</div>
-	<div style="height: 50px"></div>
-	<!--bottom-->
-	<div id="menu" class="menu">
-		<a href="${ctx}/RecoveryLife/recoveryLifeInfo.do"><div id="one"
-				class="subMenu text-center">
-				<img class="menu_img" style="margin-top: 3px" />
-				<div class="menu_name">
-					<span style="color: black">神人生活操练</span>
-				</div>
-			</div> </a> <a href="${ctx}/pages/meun.jsp"><div id="two"
-				class="subMenu text-center">
-				<img class="menu_img" style="margin-top: 3px" />
-				<div class="menu_name">
-					<span style="color: black">我的</span>
-				</div>
-			</div> </a>
-	</div>
+
+	<!-- popup, panel 等放在这里 -->
+	<!-- <div class="panel-overlay"></div>
+	Left Panel with Reveal effect
+	<div class="panel panel-left panel-reveal">
+		<div class="content-block">
+			<p>这是一个侧栏</p>
+			<p></p>
+			Click on link with "close-panel" class will close panel
+			<p>
+				<a href="#" class="close-panel">关闭</a>
+			</p>
+		</div>
+	</div> -->
+
+
 
 </body>
 
 </html>
-
 <script language="javascript">
 	$(document)
 			.ready(
@@ -343,17 +471,17 @@
 											if (meeting == 7) {
 												$(
 														"#keyword_id_recoveryLife_tr_prophesy")
-														.show();
+														.show('slow');
 												$(
 														"#keyword_id_recoveryLife_prophesyType")
-														.html("主日聚会 <br>申言：");
+														.html("主日申言：");
 											} else if (meeting == 5) {
 												$(
 														"#keyword_id_recoveryLife_tr_prophesy")
 														.show();
 												$(
 														"#keyword_id_recoveryLife_prophesyType")
-														.html("小排聚会 <br>申言：");
+														.html("小排分享：");
 											} else {
 												$(
 														"#keyword_id_recoveryLife_tr_prophesy")
@@ -378,15 +506,15 @@
 							$.messager.alert("错误提示", errorMsg, "error");
 						}
 						var recoveryLife = data.recoveryLife;
-						if ("" != recoveryLife) {
+						var status = data.status;
+						if ("" != recoveryLife  && null != recoveryLife) {
 							var morningrevial = recoveryLife.morningrevial;
 							var twoaltarpray = recoveryLife.twoaltarpray;
 							var psrp = recoveryLife.psrp;
 							var threeold = recoveryLife.threeold;
 							var threeoldnum = recoveryLife.threeoldnum;
-							//var onenew = recoveryLife.onenew;
+							var onenew = recoveryLife.onenew;
 							var arrthreeoldnum = threeoldnum.split(",");
-
 							var onenewnum = recoveryLife.onenewnum;
 							var arronenewnum = onenewnum.split(",");
 							var personalpray = recoveryLife.personalpray;
@@ -395,7 +523,6 @@
 							var meeting = recoveryLife.meeting;
 							var meetingtype = recoveryLife.meetingtype;
 							var prophesy = recoveryLife.prophesy;
-
 							if ((morningrevial != null || undefined != morningrevial)
 									&& 0 < morningrevial) {
 
@@ -415,9 +542,17 @@
 								$("#keyword_id_recoveryLife_psrp").attr(
 										"checked", "true");
 							}
+							if (onenew == 1) {
+								if (status == 1) {
+									$("#keyword_id_recoveryLife_oneNewRecord")
+											.attr("checked", "true");
+								}
+							}
 							if (threeold == 1) {
-								$("#keyword_id_recoveryLife_threeOldAndoneNew")
-										.attr("checked", "true");
+								if (status == 1) {
+									$("#keyword_id_recoveryLife_threeOldRecord")
+											.attr("checked", "true");
+								}
 							}
 
 							if (threeoldnum != null || undefined != threeoldnum) {
@@ -485,4 +620,42 @@
 				});
 
 	}
+	//checkbox 与 其值得联系
+	$(function() {
+	
+		$("#keyword_id_recoveryLife_morningRevial").click(function() {
+			if (!$("#keyword_id_recoveryLife_morningRevial").is(':checked')) {
+				$("#keyword_id_recoveryLife_morningRevialNum").val("");
+			}
+		})
+
+		$("#keyword_id_recoveryLife_twoAltarPray").click(function() {
+			if (!$("#keyword_id_recoveryLife_twoAltarPray").is(':checked')) {
+				$("#keyword_id_recoveryLife_twoAltarPrayNum").val("");
+			}
+		})
+
+		$("#keyword_id_recoveryLife_personalPray").click(function() {
+			if (!$("#keyword_id_recoveryLife_personalPray").is(':checked')) {
+				$("#keyword_id_recoveryLife_personalPrayNum").val("");
+			}
+		})
+		
+		$("#keyword_id_recoveryLife_threeOldRecord").click(function() {
+			if (!$("#keyword_id_recoveryLife_threeOldRecord").is(':checked')) {
+				$("#keyword_id_recoveryLife_threeOld_li").hide();
+			}else{
+			$("#keyword_id_recoveryLife_threeOld_li").show();
+			}
+		})
+		
+		$("#keyword_id_recoveryLife_oneNewRecord").click(function() {
+			if (!$("#keyword_id_recoveryLife_oneNewRecord").is(':checked')) {
+				$("#keyword_id_recoveryLife_oneNew_li").hide();
+			}else{
+			$("#keyword_id_recoveryLife_oneNew_li").show();
+			}
+		})
+	})
 </script>
+

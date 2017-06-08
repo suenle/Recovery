@@ -1,0 +1,12 @@
+﻿/*----------------- Body -----------------*/
+td {
+	border: solid #000000;
+	border-width: 0px 1px 1px 0px;
+}
+
+table {
+	border: solid #000000;
+	border-width: 1px 0px 0px 1px;
+	text-align: center;
+	font-size: 12px;
+}

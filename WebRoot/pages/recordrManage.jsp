@@ -45,15 +45,13 @@
 					style="line-height: 34px;height: 34px;">
 					<tr>
 						<td class="barWord">&nbsp;&nbsp;<img
-							src="/StoreManagement/images/icon_card.gif" width="16"
-							height="16" align="absmiddle" style="margin-bottom: 4px;">
-							当前位置&nbsp;<img
-							src="/StoreManagement/images/common/rightArrow.png" width="8"
+							src="/Recovery/images/icon_card.gif" width="16" height="16"
+							align="absmiddle" style="margin-bottom: 4px;"> 当前位置&nbsp;<img
+							src="/Recovery/images/common/rightArrow.png" width="8"
 							height="14" align="absmiddle" style="margin-bottom: 2px;">
-							货物管理&nbsp;<img
-							src="/StoreManagement/images/common/rightArrow.png" width="8"
-							height="14" align="absmiddle" style="margin-bottom: 2px;">
-							领料单配置</td>
+							操练查询&nbsp;<img src="/Recovery/images/common/rightArrow.png"
+							width="8" height="14" align="absmiddle"
+							style="margin-bottom: 2px;"> 操练分数查询</td>
 						<td align="right" class="white" style="padding-right:20px"><a
 							href="#" class="barBtn" onClick="javascript:history.go(-1);">
 								<img src="../images/btn_left.gif" width="18" height="18"
@@ -63,9 +61,11 @@
 								align="absmiddle"> 前进 </a> <a href="#" class="barBtn"
 							onclick="javascript:location.reload();"> <img
 								src="../images/btn_refresh.gif" width="18" height="18"
-								align="absmiddle"> 刷新 </a></td>
+								align="absmiddle"> 刷新 </a>
+						</td>
 					</tr>
-				</table></td>
+				</table>
+			</td>
 		</tr>
 		<tr>
 			<td valign="top">
@@ -76,44 +76,37 @@
 							<table width="100%" border="0" cellpadding="3" cellspacing="1">
 								<tr>
 									<td width="10%" align="center" style="margin-left: 20px;">
-										<div class="div_keyword_prompt">所属分区</div>
-									</td>
+										<div class="div_keyword_prompt">所属分区</div></td>
 									<td width="20%"><select class="select_keyword"
 										id="keyword_id_addInfo_district">
 											<option value="-1">-请选择-</option>
-									</select>
-									</td>
+									</select></td>
 									<td width="10%" align="center" style="margin-left: 20px;">
-										<div class="div_keyword_prompt">所属小排</div>
-									</td>
+										<div class="div_keyword_prompt">所属小排</div></td>
 									<td width="20%"><select class="select_keyword"
 										name="groupId" id="keyword_id_addInfo_group">
 											<option value="-1">-请先选择分区-</option>
-									</select> <datalist id="orderTypeList"></datalist>
-									</td>
+									</select> <datalist id="orderTypeList"></datalist></td>
 								</tr>
 								<!-- 第二行 -->
 								<tr>
 									<td width="10%" align="center" style="margin-left: 20px;">
-										<div class="div_keyword_prompt">所属家</div>
-									</td>
+										<div class="div_keyword_prompt">所属家</div></td>
 									<td width="20%"><select class="select_keyword"
 										name="homeID" id="keyword_id_addInfo_home">
 											<option value="-1">-请先选择分区-</option>
-									</select>
-									</td>
+									</select></td>
 									<td width="10%" align="center" style="margin-left: 20px;">
-										<div class="div_keyword_prompt">姓名</div>
-									</td>
+										<div class="div_keyword_prompt">姓名</div></td>
 									<td width="20%"><input accept="middle"
 										class="input_keyword" type="text" id="keyword_id_addInfo_name"
-										name="userName" placeholder="请输入弟兄/姊妹的姓名" /></td>
+										name="userName" placeholder="请输入弟兄/姊妹的姓名" />
+									</td>
 									<td width="10%" align="right" style="padding-right: 20px;">
 										<a href="#" class="query"
 										onclick="javascript:queryInfoList();"> <img
 											src="../images/common/query_logo.png" width="18" height="18"
-											align="absmiddle">查询 </a>
-									</td>
+											align="absmiddle">查询 </a></td>
 								</tr>
 								<!-- 第三行 -->
 								<!-- <tr>
@@ -135,8 +128,7 @@
 							        </td>
 						    	</tr> -->
 								<!-- 第四行 -->
-							</table>
-						</td>
+							</table></td>
 					</tr>
 					<tr>
 						<td valign="top">
@@ -144,17 +136,14 @@
 								<table width="100%" border="0" cellpadding="0" cellspacing="0"
 									id="keyword_id_tab_purchaseOrderList">
 								</table>
-							</div>
-						</td>
+							</div></td>
 					</tr>
 					<tr>
 						<td>
 							<div style="overflow:auto;height:40px; width:100%;"
-								id="keyword_id_div_purchaseOrderListPage"></div>
-						</td>
+								id="keyword_id_div_purchaseOrderListPage"></div></td>
 					</tr>
-				</table>
-			</td>
+				</table></td>
 		</tr>
 	</table>
 
@@ -176,35 +165,21 @@
 								src="../images/icon_card.gif" width="16" height="16"
 								align="absmiddle" style="margin-bottom: 4px;"> 当前位置&nbsp;<img
 								src="../images/common/rightArrow.png" width="8" height="14"
-								align="absmiddle" style="margin-bottom: 2px;">
-								领料商品配置&nbsp;<img src="../images/common/rightArrow.png" width="8"
-								height="14" align="absmiddle" style="margin-bottom: 2px;">
-								商品录入</td>
+								align="absmiddle" style="margin-bottom: 2px;"> 操练查询&nbsp;<img
+								src="../images/common/rightArrow.png" width="8" height="14"
+								align="absmiddle" style="margin-bottom: 2px;"> 详细信息查询</td>
 							<td align="right" class="white" style="padding-right:20px">
-								<a href="#" class="barBtn" id="keyword_id_pgs_addBtn"
-								onclick="addPurchaseGoodsInfos();"> <img
-									src="../images/btn_add.gif" width="18" height="18"
-									align="absmiddle" /> 新增 </a> <a href="#" class="barBtn"
-								onclick="javascript:editPurchaseGoodsInfos();"> <img
-									src="../images/btn_edit.gif" width="18" height="18"
-									align="absmiddle" /> 编辑 </a> <a href="#" class="barBtn"
-								onclick="javascript:delPurchaseGoodsInfos();"> <img
-									src="../images/delete.gif" width="18" height="18"
-									align="absmiddle" /> 删除 </a> <a href="#" class="barBtn"
-								onClick="javascript:history.go(-1);"> <img
-									src="../images/btn_left.gif" width="18" height="18"
-									align="absmiddle"> 后退 </a> <a href="#" class="barBtn"
-								onClick="javascript:history.go(+1);"> <img
-									src="../images/btn_right.gif" width="18" height="18"
-									align="absmiddle"> 前进 </a> <a href="#" class="barBtn"
+								<a href="#" class="barBtn"
 								onclick="javascript:location.reload();"> <img
 									src="../images/btn_refresh.gif" width="18" height="18"
 									align="absmiddle"> 刷新 </a> <a href="#" class="barBtn"
 								onclick="javascript:outPurchaseGoodsInfos();"> <img
 									src="../images/mainpage/out_timg.png" width="18" height="18"
-									align="absmiddle"> 退出 </a></td>
+									align="absmiddle"> 退出 </a>
+							</td>
 						</tr>
-					</table></td>
+					</table>
+				</td>
 			</tr>
 			<tr>
 				<td valign="top">
@@ -215,29 +190,23 @@
 								<table width="100%" border="0" cellpadding="3" cellspacing="1">
 									<tr>
 										<td width="10%" align="center" style="margin-left: 20px;">
-											<div class="div_keyword_prompt">开始日期</div>
-										</td>
+											<div class="div_keyword_prompt">开始日期</div></td>
 										<td width="20%"><input class="input_keyword" type="text"
 											id="keyword_id_purchaseOrder_startPurchaseTime"
-											placeholder="请输入开始日期" />
-										</td>
+											placeholder="请输入开始日期" /></td>
 										<td width="10%" align="center" style="margin-left: 20px;">
-											<div class="div_keyword_prompt">结束日期</div>
-										</td>
+											<div class="div_keyword_prompt">结束日期</div></td>
 										<td width="20%"><input class="input_keyword" type="text"
 											id="keyword_id_purchaseOrder_endPurchaseTime"
-											placeholder="请输入结束日期" />
-										</td>
+											placeholder="请输入结束日期" /></td>
 										<td width="10%" align="right" style="padding-right: 20px;">
 											<a href="#" class="query"
 											onclick="javascript:queryPurchaseGoodsInfos();"> <img
 												src="../images/common/query_logo.png" width="18" height="18"
-												align="absmiddle">查询 </a>
-										</td>
+												align="absmiddle">查询 </a></td>
 									</tr>
 
-								</table>
-							</td>
+								</table></td>
 						</tr>
 						<tr>
 							<td valign="top">
@@ -247,11 +216,9 @@
 									</table>
 								</div>
 								<div style="overflow:auto;height:40px; width:100%;"
-									id="keyword_id_div_purchaseGoodsInfosListPage"></div>
-							</td>
+									id="keyword_id_div_purchaseGoodsInfosListPage"></div></td>
 						</tr>
-					</table>
-				</td>
+					</table></td>
 			</tr>
 		</table>
 	</div>
@@ -748,18 +715,18 @@ var startPurchaseTime = $("#keyword_id_purchaseOrder_startPurchaseTime").val();	
 			    {name:'num',index:'num', align:'center', sortable:false,hidden:true},
 				{name:'id',index:'id', align:'center', sortable:false, key : true,hidden:true},
 				{name:'userId',index:'userId',  align:'center', sortable:false,hidden:true},
-				{name:'time',index:'time',  align:'center', sortable:false},
-				{name:'morningrevial',index:'morningrevial' , align:'center', sortable:false},
-				{name:'twoaltarpray',index:'twoaltarpray' , align:'center', sortable:false},				
-				{name:'psrp',index:'psrp',  align:'center', sortable:false},
-				{name:'threeold',index:'threeold' , align:'center', sortable:false},
-				{name:'onenew',index:'onenew',  align:'center', sortable:false},
-				{name:'personalpray',index:'personalpray' , align:'center', sortable:false},				
-				{name:'shepherd',index:'shepherd' , align:'center', sortable:false},
-				{name:'gospel',index:'gospel', align:'center', sortable:false},							
-				{name:'meeting',index:'meeting',  align:'center', sortable:false,},
-			    {name:'meetingtype',index:'meetingtype' , align:'center', sortable:false},
-				{name:'prophesy',index:'prophesy',  align:'center', sortable:false},
+				{name:'time',index:'time',  align:'center', sortable:false,width:120},
+				{name:'morningrevial',index:'morningrevial' , align:'center', sortable:false,width:100},
+				{name:'twoaltarpray',index:'twoaltarpray' , align:'center', sortable:false,width:100},				
+				{name:'psrp',index:'psrp',  align:'center', sortable:false,width:100},
+				{name:'threeold',index:'threeold' , align:'center', sortable:false,width:100},
+				{name:'onenew',index:'onenew',  align:'center', sortable:false,width:100},
+				{name:'personalpray',index:'personalpray' , align:'center', sortable:false,width:100},				
+				{name:'shepherd',index:'shepherd' , align:'center', sortable:false,width:100},
+				{name:'gospel',index:'gospel', align:'center', sortable:false,width:100},							
+				{name:'meeting',index:'meeting',  align:'center', sortable:false,width:100},
+			    {name:'meetingtype',index:'meetingtype' , align:'center', sortable:false,width:100},
+				{name:'prophesy',index:'prophesy',  align:'center', sortable:false,width:100},
 			],
 			rowNum : pageNums,														// 每页显示数量
 			rowList:[10,20,30],														// 可选择每页显示数量
@@ -769,7 +736,7 @@ var startPurchaseTime = $("#keyword_id_purchaseOrder_startPurchaseTime").val();	
       		viewrecords: true, 															// 是否显示行数
       		pginput : true,																// 显示跳转输入框
       		height : "auto",
-			autowidth : true,
+			autowidth : false,
        		jsonReader : {  																//后台参数返回前台
 			  root: "rows",  														//包含实际数据的数组
 			  page: "page",  														//当前页	
@@ -857,176 +824,7 @@ var startPurchaseTime = $("#keyword_id_purchaseOrder_startPurchaseTime").val();	
 	}
 	//********************************************************************************
 
-	
   	
-	
-	//3.4通过商品名称模糊查询其部分属性(datalist)
-	function getGoods(goodsId,goodsList){
-   	$("#" + goodsId).bind("input propertychange", function(){
-  	 var goodsName=$("#" + goodsId).val();    //货物名称
-   		$.ajax({
-				type:"POST",
-				url:"${ctx}/Goods/getAllGoodsList.do",	
-				data:
-					{
-					goodsName:goodsName
-					},
-				async:false,
-				cache:false,
-				success:function(data){			
-				var goodsInfo=data.goodsInfo;	
-					var str="";
-					$("#" + goodsList).html("");						//清空datalist数据
-					for(var i=0;i<goodsInfo.length;i++){
-						str+="<option value="+goodsInfo[i].goodsName+"["+goodsInfo[i].id+"]"+" data-id="+goodsInfo[i].id+">"+goodsInfo[i].id+"</option>";
-					}					
-					$("#" + goodsList).append(str);				
-				},
-				error : function (data) {
-					$.messager.alert("后台通讯故障");
-				}
-			});
-   });	
-	}
-	//3.2关联其余属性
-	function getGoodsParams(goodsName,goodsList,goodsCode,goodsBatches,goodsSpecification,goodsTypeNameBig,goodsTypeNameSma){
-	$("#" + goodsName).bind("change", function(){
-	
-	
-  	 var val=$("#" + goodsName).val();	 
- 	 if(undefined==val||""==val){
- 	 //alert("未获取到该数据");
- 	 $("#" + goodsCode).val('');//商品编码
-	 $("#" + goodsBatches).val('');//批次
-	 $("#" + goodsSpecification).val('');//规格
-	 $("#" + goodsTypeNameBig).val('');//大类名称
-	 $("#" + goodsTypeNameSma).val('');//细类名称
-	 	
-	 return;
- 	 }else{
- 	     	
- 	  var goodsId=Substr(val);
- 	      	
- 	  $.ajax({
-				type:"POST",
-				url:"${ctx}/Goods/getAllGoodsById.do",	
-				data:
-					{
-					goodsId:goodsId
-					},
-				async:false,
-				cache:false,
-				success:function(data){	
-						var goodsInfos=data.goodsInfos;
-						for(var i=0;i<goodsInfos.length;i++){
-						var strgoodsCode=goodsInfos[i].goodsCode;
-						var strgoodsBatches=goodsInfos[i].goodsBatches;
-						var strgoodsSpecification=goodsInfos[i].goodsSpecification;
-						var strgoodsTypeNameBig=goodsInfos[i].goodsTypeNameBig;
-						var strgoodsTypeNameSma=goodsInfos[i].goodsTypeNameSma;
-					}							
-						//填充部分静态商品属性位置
-					$("#" + goodsCode).val(strgoodsCode);//商品编码
-					$("#" + goodsBatches).val(strgoodsBatches);//批次
-					$("#" + goodsSpecification).val(strgoodsSpecification);//规格
-					$("#" + goodsTypeNameBig).val(strgoodsTypeNameBig);//大类名称
-					$("#" + goodsTypeNameSma).val(strgoodsTypeNameSma);//细类名称	        
-				},
-				error : function (data) {
-					$.messager.alert("后台通讯故障");
-				}
-			});
- 	 
- 	 }
-  	
-  	 });
-	};
-	
-	
-	
-	//3.点击新增按钮，增加商品详情数据
-	
-		//截取[]里的字符串
-	function Substr(obj){
-	var str=obj.substring(obj.indexOf("[")+1,obj.indexOf("]"));
-	return str;
-	};
-//suenle
-	function addPurchaseGoodsInfos()
-	{
-	  var orderStatus=$("#keyword_id_orderStatus").val();
-	if(orderStatus!=0){
-	    alert("该领料单已进行领料流程操作无法修改");
-	       return;
-	}
-	
-		//2403-2430为第一行填充数据的datalist
-	//3.1填充存储方式页面效果
-	var storeModeId="keyword_id_purchaseOrderInfosAdd_modeName";
-	var storeModeList="StoreModeList";	
-  	getStoreMode(storeModeId,storeModeList);
-  	//获取单位
-  	var modeName="keyword_id_purchaseOrderInfosAdd_modeName";
-  	var storeModeList="StoreModeList";
-  	var goodsUnitName="keyword_id_purchaseOrderInfosAdd_goodsUnitName";
-  	getGoodsUnit(modeName,storeModeList,goodsUnitName);
-	
-	//填充颜色页面效果
-	var colourId="keyword_id_purchaseOrderInfosAdd_goodsColour";
-	var colourList="ColourList";	
-  	getColour(colourId,colourList);
-	
-	//填充商品页面效果
-	var goodsId="keyword_id_purchaseOrderInfosAdd_goodsName";
-	var goodsList="GoodsList";	
-  	getGoods(goodsId,goodsList);
-  	//3.2关联其余属性
-  	
-  	var goodsName="keyword_id_purchaseOrderInfosAdd_goodsName"; 	
-  	var goodsCode="keyword_id_purchaseOrderInfosAdd_goodsCode";
-  	var goodsBatches="keyword_id_purchaseOrderInfosAdd_goodsBatch";
-  	var goodsSpecification="keyword_id_purchaseOrderInfosAdd_goodsSpecification";
-  	var goodsTypeNameBig="keyword_id_purchaseOrderInfosAdd_goodsTypeNameBig";
-  	var goodsTypeNameSma="keyword_id_purchaseOrderInfosAdd_goodsTypeNameSma";
- 
-  	getGoodsParams(goodsName,goodsList,goodsCode,goodsBatches,goodsSpecification,goodsTypeNameBig,goodsTypeNameSma);
-	
-	//绑定商品数据添加界面
-	$("#keyword_id_purchaseGoodsInfos_divAddBack").show();
-	$("#keyword_id_purchaseGoodsInfos_divAddFront").show(200);
-	//商品录入显示界面隐藏
-	$("#keyword_id_purchaseGoodsInfos_divFront").css("display", "none");
-	}
-	
-		//新增界面退出功能
-	function outPurchaseGoodsInfosAdd(){
-	$("#keyword_id_purchaseGoodsInfos_divAddBack").css("display", "none");
-	$("#keyword_id_purchaseGoodsInfos_divAddFront").css("display", "none");
-	$("#keyword_id_purchaseGoodsInfos_divFront").show(200);
-	
-	//清空第一行数据   移除其余行
-				$("#keyword_id_purchaseOrderInfosAdd_goodsCode").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsName").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsBatch").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsSpecification").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsTypeNameBig").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsTypeNameSma").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsColour").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_modeName").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsUnitName").val(-1);
-				$("#keyword_id_purchaseOrderInfosAdd_goodsParchaseNum").val('');
-				$("#keyword_id_purchaseOrderInfosAdd_goodsParchasePrice").val('');
-				//移除其余行
-				$("#trDataRow1Hidde").remove();
-	
-	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

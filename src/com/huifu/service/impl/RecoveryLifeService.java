@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.huifu.dao.impl.RecoveryLifeDao;
+import com.huifu.entity.LifeScore;
 import com.huifu.entity.RecoveryLife;
 import com.huifu.service.IRecoveryLifeService;
 
@@ -85,5 +86,6 @@ public class RecoveryLifeService implements IRecoveryLifeService {
 			Map<String, Object> data) {
 		return getRecoveryLifeDao().listLifeInfoByUserIdAndTime(data);
 	}
+
 
 }

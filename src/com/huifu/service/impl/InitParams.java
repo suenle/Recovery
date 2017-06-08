@@ -46,8 +46,10 @@ public class InitParams extends HttpServlet{
 
 			// 以下为需要覆盖的宏定义
 			Constant.SYSTEM_CODE = xml.getParamVal("Application/Server-Param/System_Code").trim();
-			
+			Constant.WECHAT_DOLOGIN = xml.getParamVal("Application/Server-Param/WECHAT_DOLOGIN").trim();
+			Constant.WECHAT_DOLOGIN = xml.getParamVal("Application/Server-Param/WECHAT_DOLOGIN").trim();
 			logger.info("读取到的SYSTEM_CODE参数为：" + Constant.SYSTEM_CODE);
+			logger.info("读取到的SYSTEM_CODE参数为：" + Constant.WECHAT_DOLOGIN);
 			logger.info("=========参数读取完毕=============");
 		}
 		catch(Exception e)

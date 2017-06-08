@@ -12,6 +12,13 @@
 		id, userId, info, statusinfo, systemCode
 	</sql>
 	
+	<select id="selectByUserid" resultMap="BaseResultMap"
+		>
+		select
+		<include refid="Base_Column_List" />
+		from t_requestinfo
+		where userId = #{userid,jdbcType=INTEGER}
+	</select>
 	<select id="queryRequestInfo" resultMap="BaseResultMap">
 		SELECT
 		t1.id AS id,
@@ -22,12 +29,15 @@
 		t1.info AS info,
 		t1.groupName AS groupName,
 		t2.homeName AS
-		homeName
+		homeName,
+		t1.sex AS
+		sex
 		FROM
 		(
 		SELECT
 		t2.id,
 		t1.userName,
+		t1.sex,
 		t1.userId,
 		t2.statusinfo,
 		t2.info,

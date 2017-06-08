@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.huifu.constant.Constant;
 import com.huifu.entity.User;
 import com.huifu.service.impl.UserService;
 import cn.org.rapid_framework.util.holder.ApplicationContextHolder;
@@ -61,7 +62,7 @@ public class loginFilter implements Filter {
 		// 截取到当前文件名用于比较
 		String targetURL = currentURL.substring(currentURL.indexOf("/", 1),
 				currentURL.length());
-		Integer Userid = (Integer) session.getAttribute("userId");
+		Object Userid = session.getAttribute("userId");
 
 		if (Userid != null) {
 			chain.doFilter(request, response);
@@ -69,11 +70,24 @@ public class loginFilter implements Filter {
 			// 为空，说明没有登录
 			// 获取指定cookie
 			// 获取保存cookie的数组
-			Cookie[] cookies = request.getCookies();
+			//Cookie[] cookies = request.getCookies();
 
-			Cookie cookie = MyCookieUtile.findCookieByName(cookies, "userId");
+			//Cookie cookie = MyCookieUtile.findCookieByName(cookies, "userId");
+			
+			if (!"/index.jsp".equals(targetURL)&&!"/OAlogin.do".equals(targetURL)) {
+				// 如果session为空表示用户没有登陆就重定向到login.jsp页面
+				response.sendRedirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd3b4d1cab699520c&redirect_uri="+Constant.WECHAT_DOLOGIN+"&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect");
+				chain.doFilter(request, response);
+				return;
+			} else {
+				chain.doFilter(request, response);
+			}
+			
 			// 判断cookie是否为空
-			if (cookie == null) {
+			
+			
+			
+		/*	if (cookie == null) {
 				if (!"/login.jsp".equals(targetURL)
 						&& !"/login.do".equals(targetURL)&&!"/pages/register.jsp".equals(targetURL) &&!"/User/register.do".equals(targetURL)
 						) {
@@ -111,7 +125,7 @@ public class loginFilter implements Filter {
 
 				}
 
-			}
+			}*/
 
 		}
 

@@ -28,7 +28,7 @@ public abstract class Constant {
 
 	// 用户默认密码
 	public static final String USER_DEFAULT_PASSWORD = "88888888";
-	
+
 	public static final String USER_SUPER_USERCODE = "nanjingzhaohui"; // 用户编号
 	public static final String USER_SUPER_PASSWORD = "weareone"; // 用户密码
 	public static final String USER_SUPER_USERNAME = "超级管理员"; // 用户名称
@@ -42,19 +42,14 @@ public abstract class Constant {
 	public static final String[] USER_OPERATOR_ACTION_DESC = { "用户登录", "手动退录",
 			"自动退录" }; // 用户操作事描述
 
-	// 页面跳转
-	public static final String DIRECT_URL_MAINPAGE = "/mainpage.jsp"; // 主界面
-	public static final String DIRECT_URL_INDEXPAGE = "redirect:/index.jsp"; // 登录界面
-	public static final String DIRECT_URL_INSTOREPAGE = "/pages/inStore.jsp"; // 入库界面(xf)
-	public static final String DIRECT_URL_INSTORDETAILSEPAGE = "/pages/inStoreDetails.jsp"; // 入库详情界面(xf)
-	public static final String DIRECT_URL_QUALITYCHECKPAGE = "/pages/qualityCheck.jsp"; // 质检界面
-																						// (xf)
-	public static final String DIRECT_URL_ONTRANSPORT = "/pages/onTransport.jsp"; // 上架运输界面
-																					// (xf)
-	public static final String DIRECT_URL_DEVICEDETAILSEPAGE = "/pages/onTransportDetails.jsp"; // 上架运输
-																								// 设备详情界面(xf)
+	public static String WECHAT_ACCESS_TOKEN = "";
 
-	public static final String DIRECT_URL_life = "/pages/recoveryLifeInfo.jsp";
+	public static String WECHAT_APPID = "wxd3b4d1cab699520c";
+
+	public static String WECHAT_SECRET = "d4624c36b6795d1d99dcf0547af5443d";
+
+	// 微信登录接口地址
+	public static String WECHAT_DOLOGIN = "http%3a%2f%2fwww.suenle.cn%2fRecovery%2fUser%2fweChatLogin.do";
 
 	public static final String DO_IT = "1"; // 一为做了
 
@@ -64,6 +59,12 @@ public abstract class Constant {
 			"诗篇", "箴言", "传道书", "雅歌", "以赛亚书", "耶利米书", "耶利米哀歌", "以西结书", "但以理书",
 			"何西阿书", "约珥书", "阿摩司书", "俄巴底亚书", "约拿书", "弥迦书", "那鸿书", "哈巴谷书",
 			"西番雅书", "哈该书", "撒迦利亚书", "玛拉基书" };
+	public static final String[] BOOK_OF_THE_OLD_TESTAMENT_LOGOGRAM = { "创", "出",
+		"利", "民", "申", "书", "士", "得", "撒上", "撒下",
+		"王上", "王下", "代上", "代下", "拉", "尼", "斯", "伯",
+		"诗", "箴", "传", "歌", "赛", "耶", "哀", "结", "但",
+		"何", "珥", "摩", "俄", "拿", "弥", "鸿", "哈",
+		"番", "该", "亚", "玛" };
 	public static final Integer[] BOOK_OF_THE_OLD_TESTAMENT_NUM = { 50, 40, 27,
 			36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13, 10, 42, 150, 31,
 			12, 8, 66, 52, 5, 48, 12, 14, 3, 9, 1, 4, 7, 3, 3, 3, 2, 14, 4 };
@@ -73,8 +74,26 @@ public abstract class Constant {
 			"腓立比书", "歌罗西书", "帖撒罗尼迦前书", "帖撒罗尼迦后书", "提摩太前书", "提摩太后书", "提多书",
 			"腓利门书", "希伯来书", "雅各书", "彼得前书", "彼得后书", "约翰一书", "约翰二书", "约翰三书",
 			"犹大书", "启示录" };
+	public static final String[] BOOK_OF_THE_NEW_LOGOGRAM = { "太", "马",
+		"路", "约", "徒", "罗", "林前", "林后", "加","弗",
+		"腓", "西", "帖前", "帖后", "提前", "提后", "多",
+		"门", "来", "雅", "彼前", "彼后", "约壹", "约贰", "约叁",
+		"犹", "启" };
 	public static final Integer[] BOOK_OF_THE_NEW_TESTAMENT_NUM = { 28, 16, 24,
 			21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3, 6, 4, 3, 1, 13, 5, 5, 3, 5,
 			1, 1, 1, 22 };
+
+	// 晨兴
+	public static String WECHAT_CX = "http://www.churchinnanjing.org/appuser/goToChinesePage.do";
+	// 晨兴
+	public static String WECHAT_CX_PASSWORD = "n8n3";
+	// 小排
+	public static String WECHAT_XP = "http://www.churchinnanjing.org/appuser/goToChinesePage.do";
+	
+	public static String WECHAT_XP_PASSWORD = "1222";
+	// 其他
+	public static String WECHAT_QT = "http://www.churchinnanjing.org/appuser/goToChinesePage.do";
+
+	public static String WECHAT_QT_PASSWORD = "1111";
 
 }

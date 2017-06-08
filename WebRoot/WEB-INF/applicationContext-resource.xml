@@ -12,10 +12,9 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-            <!-- 
-                <value>classpath*:jdbc.properties</value>
-            -->
             	<value>/WEB-INF/jdbc.properties</value>
+            		<!--quartztime时间引用  -->
+				<value>/WEB-INF/quartztime.properties</value>
             </list>
         </property>
     </bean>

@@ -38,9 +38,9 @@
 							src="../images/icon_card.gif" width="16" height="16"
 							align="absmiddle" style="margin-bottom: 4px;"> 当前位置&nbsp;<img
 							src="../images/common/rightArrow.png" width="8" height="14"
-							align="absmiddle" style="margin-bottom: 2px;"> 基础数据配置&nbsp;<img
+							align="absmiddle" style="margin-bottom: 2px;"> 其他设置&nbsp;<img
 							src="../images/common/rightArrow.png" width="8" height="14"
-							align="absmiddle" style="margin-bottom: 2px;"> 小排管理</td>
+							align="absmiddle" style="margin-bottom: 2px;"> 服侍审核</td>
 						<td align="right" class="white" style="padding-right:20px"><a
 							href="#" class="barBtn" id="keyword_id_areasType_addBtn"
 							onclick="addHome();"> <img src="../images/btn_add.gif"
@@ -97,60 +97,6 @@
 				</table></td>
 		</tr>
 	</table>
-
-	<!-- 添加小排数据 -->
-	<div id="keyword_id_requestInfo_divAddBack" class="div_background"></div>
-	<div id="keyword_id_requestInfo_divAddFront" class="div_front">
-		<table border="0" cellpadding="0" cellspacing="0" width="450"
-			height="550">
-			<tr style="height:40px;">
-				<td colspan="2"
-					style="border-bottom:1px solid gainsboro;padding-top: 10px;"><h1
-						class="h1">添加小排</h1>
-				</td>
-			</tr>
-			<tr style="height:10px;">
-				<td colspan="2"></td>
-			</tr>
-			<tr style="height:35px;">
-				<td class="div_font_left_word"><span class="div_front_prompt">*</span>小排名称：</td>
-				<td><input type="text"
-					id="keyword_id_id_requestInfoAdd_requestInfoName"
-					class="div_font_right_input" placeholder="请输入小排名称" /></td>
-			</tr>
-			<tr style="height:35px;">
-				<td class="div_font_left_word"><span class="div_front_prompt">*</span>所属分区：</td>
-				<td><select id="keyword_id_requestInfoAdd_districtName"
-					class="select_keyword">
-						<option value="-1">-请选择所属分区-</option>
-				</select></td>
-			</tr>
-			<tr style="height:20px;">
-				<td class="div_font_left_word">小排描述：</td>
-				<td></td>
-			</tr>
-			<tr style="height:38px;">
-				<td colspan="2" align="center"><textarea name="requestInfoDesc"
-						id="keyword_id_id_requestInfoAdd_requestInfoDesc"
-						class="div_font_textarea" placeholder="请给此小排一个描述信息呗。。。">
-					</textarea></td>
-			</tr>
-			<tr style="height:10px;">
-				<td colspan="2"></td>
-			</tr>
-			<tr style="height:50px;">
-				<td colspan="2" style="border-top:1px solid gainsboro;">
-					<div
-						style="text-align:center;padding-top: 7px;padding-bottom: 7px;">
-						<input type="button" class="div_button_cancel div_button_cancel_2"
-							value="取 消" onclick="javascript:requestInfoAddCancel();" /> <input
-							type="button" class="div_button_submit div_button_submit_2"
-							value="提 交" onclick="javascript:requestInfoAddCommit();" />
-					</div></td>
-			</tr>
-		</table>
-	</div>
-
 	<!-- 编辑小排数据 -->
 	<div id="keyword_id_requestInfo_divEditBack" class="div_background"></div>
 	<div id="keyword_id_requestInfo_divEditFront" class="div_front">
@@ -159,27 +105,28 @@
 			<tr style="height:40px;">
 				<td colspan="2"
 					style="border-bottom:1px solid gainsboro;padding-top: 10px;"><h1
-						class="h1">编辑小排</h1>
+						class="h1">编辑请求</h1>
 				</td>
 			</tr>
 			<tr style="height:10px;">
 				<td colspan="2"></td>
 			</tr>
 			<tr style="height:35px;">
-				<td class="div_font_left_word"><span class="div_front_prompt">*</span>小排名称：</td>
+				<td class="div_font_left_word"><span class="div_front_prompt">*</span>姓名：</td>
 				<td><input type="text"
-					id="keyword_id_requestInfoEdit_requestInfoName"
-					class="div_font_right_input" placeholder="请输入小排名称" /></td>
+					id="keyword_id_requestInfoEdit_userName"
+					class="div_font_right_input" /></td>
 			</tr>
 			<tr style="height:35px;">
-				<td class="div_font_left_word"><span class="div_front_prompt">*</span>所属分区：</td>
-				<td><select id="keyword_id_requestInfoEdit_districtName"
+				<td class="div_font_left_word"><span class="div_front_prompt">*</span>状态：</td>
+				<td><select id="keyword_id_requestInfoEdit_status"
 					class="select_keyword">
-						<option value="-1">-请选择所属分区-</option>
+						<option value="0">申请中</option>
+						<option value="1">服侍者</option>
 				</select></td>
 			</tr>
 			<tr style="height:20px;">
-				<td class="div_font_left_word">小排描述：</td>
+				<td class="div_font_left_word">申请理由：</td>
 				<td></td>
 			</tr>
 			<tr style="height:38px;">
@@ -208,52 +155,6 @@
 </html>
 
 <script language="javascript">
-$(function() {
-		//获取会所四级
-		$.ajax({
-			type : "POST",
-			url : "${ctx}//UserInfo/getChurchInfo.do",
-			data : {},
-			async : false,
-			cache : false,
-			success : function(data) {
-				var errorMsg = data.errorMsg;
-				if ("" != errorMsg) {
-					$.messager.alert("错误提示", errorMsg, "error");
-				}
-			
-				var dList = data.districtList;
-				
-				var dstr = "";
-				for ( var u = 0; u < dList.length; u++) {
-					dstr += "<option value="+dList[u].id+">"
-							+ dList[u].districtname + "</option>";
-
-				}
-				$("#keyword_id_requestInfo_districtName").append(dstr);
-				$("#keyword_id_requestInfoEdit_districtName").append(dstr);
-				$("#keyword_id_requestInfoAdd_districtName").append(dstr);
-
-			},
-			error : function(data) {
-
-			}
-
-		});
-
-		$("#keyword_id_addInfo_district").change(function() {
-			var orgSel_id = "#keyword_id_addInfo_district";
-			var sel_requestInfoid = "#keyword_id_addInfo_requestInfo";
-			var sel_requestInfoid = "#keyword_id_addInfo_requestInfo";
-			sel_districtAndHome(orgSel_id, sel_requestInfoid);
-
-			sel_HomeAndHome(orgSel_id, sel_requestInfoid);
-
-		});
-
-	});
-
-
 
 	// 页面初始化
 	$(document).ready(function(){
@@ -300,7 +201,7 @@ $(function() {
 				pageNums : pageNums
 			},
 			//height :  document.body.clientHeight - 165,
-			colNames : ['序号','id','召会ID','所属小排','所属家','姓名','性别','申请缘由','状态id','状态'],
+			colNames : ['序号','id','召会ID','所属小排','所属家','姓名','身份','申请缘由','状态id','状态'],
 			colModel:[
 			    {name:'num',index:'num', align:'center', sortable:false},
 				{name:'id',index:'id', align:'center', sortable:false, key : true,hidden:true},
@@ -409,13 +310,23 @@ $(function() {
 		if(undefined != rowData && null != rowData)
 		{
 			var editId = rowData.id;   //选中的id
-			var requestInfoName = rowData.requestInfoName;  //小排名称
-			var requestInfoDesc= rowData.requestInfoDesc;   
-			var districtId= rowData.districtId;  
+			
+			var UserId = rowData.UserId;  //用户ID
+			
+			var userName= rowData.userName;   
+			
+			var status= rowData.statusinfo;  
+			
+			var info= rowData.info; 
 		
-			$("#keyword_id_requestInfoEdit_requestInfoName").val(requestInfoName);
-			$("#keyword_id_requestInfoEdit_requestInfoDesc").val(requestInfoDesc);
-			$("#keyword_id_requestInfoEdit_districtName").val(districtId);
+			$("#keyword_id_requestInfoEdit_userName").val(userName);
+			$("#keyword_id_requestInfoEdit_requestInfoDesc").val(info);
+			$("#keyword_id_requestInfoEdit_status").val(status);
+			
+			
+			
+			
+			
 			
 			$("#keyword_id_requestInfo_divEditBack").css("display", "block");
 			$("#keyword_id_requestInfo_divEditFront").css("display", "block");
@@ -431,30 +342,33 @@ $(function() {
 	function requestInfoEditCommit()
 	{
 	    var selectId = $("#keyword_id_tab_requestInfoList").jqGrid('getGridParam','selrow');
-		// 检查是否有必填项未填		
-		var requestInfoName = $("#keyword_id_requestInfoEdit_requestInfoName").val();
-		var requestInfoDesc= $("#keyword_id_requestInfoEdit_requestInfoDesc").val();
-		var districtId= $("#keyword_id_requestInfoEdit_districtName").val();
-		
-		if(undefined == requestInfoName || "" == requestInfoName || requestInfoName.trim().length==0)
+	    if(undefined == selectId || 0 > selectId)
 		{
-			$.messager.alert("错误提示","小排名称不能为空","error");
-			return ;
+			$.messager.alert("操作提示","请选择需要编辑的行，再点击编辑按钮","info")
+			return ;	
 		}
-		if(undefined == districtId || "-1" == districtId)
+		var rowData =  $("#keyword_id_tab_requestInfoList").jqGrid('getRowData',selectId);
+		
+		
+		var editId = rowData.id;   //选中的id
+			
+		var UserId = rowData.UserId;  //用户ID
+			
+	    var status= $("#keyword_id_requestInfoEdit_status").val();
+		
+		if(undefined == status || "-1" == status)
 		{
-			$.messager.alert("错误提示","请选择所属分区","error");
+			$.messager.alert("错误提示","请选择","error");
 			return ;
 		}
 		// 向后台提交数据
 		$.ajax({
 			type : "POST",
-			url: "${ctx}/Home/updateHome.do",
+			url: "${ctx}/RequestInfo/updateRequestInfo.do",
 			data : {
 				id : selectId,
-				requestInfoName : requestInfoName,
-				requestInfoDesc: requestInfoDesc,
-				districtId : districtId
+				UserId : UserId,
+				status: status
 			},
 			async: false,
             cache:false,
@@ -466,20 +380,15 @@ $(function() {
 					return ;	
 				}
 				
-				var districtId= $("#keyword_id_requestInfoEdit_districtName").val();
-				var districtName= $("#keyword_id_requestInfoEdit_districtName").find("option:selected").text(); 
+				var statusinfo= $("#keyword_id_requestInfoEdit_status").val();
+				var statusinfoName= $("#keyword_id_requestInfoEdit_status").find("option:selected").text(); 
 				var thisData = {
 					id : selectId,
-					requestInfoName : requestInfoName,
-					requestInfoDesc: requestInfoDesc,
-					districtId : districtId,
-					districtName : districtName
+					statusinfo : statusinfo,
+					statusinfoName : statusinfoName
 				};
 				$("#keyword_id_tab_requestInfoList").jqGrid("setRowData", selectId , thisData);
 				
-				// 隐藏添加数据界面
-				$("#keyword_id_requestInfoEdit_requestInfoName").val();
-				$("#keyword_id_requestInfoEdit_requestInfoDesc").val();
 				$("#keyword_id_requestInfo_divEditBack").css("display", "none");
 				$("#keyword_id_requestInfo_divEditFront").css("display", "none");
 				
@@ -502,64 +411,7 @@ $(function() {
 		$("#keyword_id_areasTypeEdit_requestInfoDesc").val();
 	}
 	
-	// 删除小排
-	function delHome()
-	{
-		// 判断是否有选中记录，如没有则直接退出
-		var selectId = $("#keyword_id_tab_requestInfoList").jqGrid('getGridParam','selrow');
-		if(undefined == selectId || 0 > selectId)
-		{
-			$.messager.alert("操作提示","请选择需要删除的行，再点击删除按钮","info");	
-			return ;
-		}
-		//获取页面参数
-		var rowData =  $("#keyword_id_tab_requestInfoList").jqGrid('getRowData',selectId);
-		if(undefined != rowData && null != rowData)
-		{		
-			var editId = rowData.id;
-			var requestInfoName=rowData.requestInfoName;
-			var requestInfoDesc=rowData.requestInfoDesc;		
-			}
-		// 弹出确认删除对话框，提醒用户是否删除该条记录
-		$.messager.defaults = { ok: "确定", cancel: "取消" };
-		
-		
-		$.messager.confirm("操作提示", "您确定要删除本条记录吗?", function (data){
-      if (data) {
-      	// 向后台发送ajax请求
-      	$.ajax({
-      		type : "POST",
-					url: "${ctx}/Home/deleteHome.do",
-					data : {
-						id : selectId,
-						requestInfoName:requestInfoName,
-						requestInfoDesc:requestInfoDesc
-					},
-					async: false,
-		      cache:false,
-					success: function (data) {
-						var errorMsg = data.errorMsg;
-						if("" != errorMsg)
-						{
-							$.messager.alert("错误提示",errorMsg, "error");
-							return ;	
-						}
-						
-						// 在jqGrid表中删除选中数据
-						$("#keyword_id_tab_requestInfoList").jqGrid("delRowData", selectId);
-						
-						// 提示数据删除成功
-						$.messager.alert("操作提示", "数据删除成功", "info");
-						
-					},
-					error: function(data) {
-						$.messager.alert("错误提示","后台服务通讯故障", "error");	
-					}
-      	});
-      }
-      else {
-    	}
-		});
-	}
+	
+	
 	
 </script>

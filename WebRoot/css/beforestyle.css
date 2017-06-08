@@ -84,10 +84,11 @@ th {
 	font-weight: bolder;
 }
 
-td {
-	font-size: 10pt;
+//font-size: 10pt;
+ td {
+	
 	font-family: Arial, "微软雅黑"
-}
+} 
 
 /*--------------- a 标签 ---------------*/
 a:link {

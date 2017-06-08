@@ -4,9 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>Store Management</display-name>	
+  <display-name>Recovery</display-name>	
   
-   <filter>
+  <!--  <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.huifu.base.loginFilter</filter-class>
   </filter>
@@ -17,7 +17,7 @@
    <filter-mapping>
     <filter-name>loginFilter</filter-name>
     <url-pattern>*.do</url-pattern>
-  </filter-mapping>
+  </filter-mapping>  -->
   
   
    
@@ -33,9 +33,6 @@
 	</filter-mapping>
 	
 	
-	
-	
-	
 	<display-name>Recovery</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -48,20 +45,67 @@
 			org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+
+
 	<servlet>  
 		<servlet-name>initParams</servlet-name>  
 		<servlet-class>  
 			com.huifu.service.impl.InitParams   
 		</servlet-class>  
 		<load-on-startup>1</load-on-startup>  
-	</servlet>  
-	<!-- 设置session会话永不过期 -->
+	</servlet>
+  <!-- 启动时获取accesstoken值 -->
+  <servlet>  
+		<servlet-name>AccessTokenParams</servlet-name>  
+		<servlet-class>  
+			com.huifu.wechat.service.AccessTokenParams   
+		</servlet-class>  
+		<load-on-startup>2</load-on-startup>  
+	</servlet>
+
+
+
+
+
+
+
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CoreServlet</servlet-name>
+    <servlet-class>com.huifu.wechat.service.CoreServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OAuthServlet</servlet-name>
+    <servlet-class>com.huifu.wechat.service.OAuthServlet</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>CoreServlet</servlet-name>
+    <url-pattern>/servlet/CoreServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OAuthServlet</servlet-name>
+    <url-pattern>/servlet/OAuthServlet</url-pattern>
+  </servlet-mapping>  
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
+	<error-page>
+	<error-code>404</error-code>
+	<location>/404.html</location>
+	</error-page>
+	<error-page>
+	<error-code>500</error-code>
+	<location>/404.html</location>
+	</error-page>
 	
 
 	

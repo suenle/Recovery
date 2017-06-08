@@ -184,23 +184,30 @@ public class RecoveryLifeAction extends BaseAction {
 		}
 
 		// 三旧
-		String threeOldAndoneNew = getRequest().getParameter(
-				"threeOldAndoneNew");
-		if (!(threeOldAndoneNew == null)) {
+		String threeOldRecord = getRequest().getParameter("threeOldRecord");
+
+		if (!(threeOldRecord == null)) {
 			recoveryLife.setThreeold(1);
 		} else {
 			recoveryLife.setThreeold(0);
 		}
 
+		// 一新
+		String oneNewRecord = getRequest().getParameter("oneNewRecord");
+
+		if (!(oneNewRecord == null)) {
+			recoveryLife.setOnenew(1);
+		} else {
+			recoveryLife.setOnenew(0);
+		}
+
 		String strthreeold = getRequest().getParameter("threeOld");
 		String strthreeoldNum = getRequest().getParameter("threeOldNum");
-
 		recoveryLife.setThreeoldnum(strthreeold + "," + strthreeoldNum);
 
 		// 一新
 		String stronenew = getRequest().getParameter("oneNew");
 		String stronenewNum = getRequest().getParameter("oneNewNum");
-		recoveryLife.setOnenew(0);
 		recoveryLife.setOnenewnum(stronenew + "," + stronenewNum);
 
 		// 个祷
@@ -285,9 +292,13 @@ public class RecoveryLifeAction extends BaseAction {
 			meetingType = Integer.valueOf(strmeetingType);
 			recoveryLife.setMeetingtype(meetingType);
 			recoveryLife.setMeeting(meeting);
-			if (strmeeting.equals("2") || strmeeting.equals("7")) {
-				prophesy = Integer.valueOf(strprophesy);
-				recoveryLife.setProphesy(prophesy);
+			if (strmeeting.equals("5") || strmeeting.equals("7")) {
+				if (!(strprophesy == null)) {
+					prophesy = Integer.valueOf(strprophesy);
+					recoveryLife.setProphesy(prophesy);
+				} else {
+					recoveryLife.setProphesy(0);
+				}
 			}
 		} else {
 			recoveryLife.setMeeting(0);
@@ -300,12 +311,12 @@ public class RecoveryLifeAction extends BaseAction {
 		try {
 			meetingType = Integer.valueOf(strmeetingType);
 			// meeting = Integer.valueOf(strmeeting);
-			prophesy = Integer.valueOf(strprophesy);
+			// prophesy = Integer.valueOf(strprophesy);
 		} catch (Exception e) {
 
 		}
 		recoveryLife.setMeetingtype(meetingType);
-		recoveryLife.setProphesy(prophesy);
+		// recoveryLife.setProphesy(prophesy);
 		// 获取session中的id
 		Integer userid = (Integer) getSession().getAttribute("userId");
 
@@ -329,7 +340,7 @@ public class RecoveryLifeAction extends BaseAction {
 			getRecoveryLifeService().insertSelective(recoveryLife);
 		} else {
 			recoveryLife.setId(getrecoveryLife.getId());
-			getRecoveryLifeService().updateByPrimaryKeySelective(recoveryLife);
+			getRecoveryLifeService().updateByPrimaryKey(recoveryLife);
 		}
 		return "redirect:RecoveryLife/endinfo.do";
 
@@ -394,9 +405,12 @@ public class RecoveryLifeAction extends BaseAction {
 			RecoveryLife lastrecoveryLife = getRecoveryLifeService()
 					.getLastdayInfoByUseridAndTime(data);
 			result.put("recoveryLife", lastrecoveryLife);
+			// 查询的是最后一次
+			result.put("status", 0);
 		} else {
-
+			// 查询的是新的
 			result.put("recoveryLife", recoveryLife);
+			result.put("status", 1);
 		}
 
 		result.put("errorMsg", errorMsg);
@@ -715,7 +729,6 @@ public class RecoveryLifeAction extends BaseAction {
 		Timestamp startTime = null;
 		Timestamp endTime = null;
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
 		String startPurchaseTime = getRequest().getParameter(
 				"startPurchaseTime"); // 开始时间
 		if (null != startPurchaseTime && !"".equals(startPurchaseTime)) {
@@ -807,10 +820,20 @@ public class RecoveryLifeAction extends BaseAction {
 					returnPersonalpray(recoverylife.getPersonalpray()));
 			rowObj.put("shepherd", returnshepherd(recoverylife.getShepherd()));
 			rowObj.put("gospel", returnGospel(recoverylife.getGospel()));
+
 			rowObj.put("meeting", returnMeeting(recoverylife.getMeeting()));
-			rowObj.put("meetingtype", recoverylife.getMeetingtype());
-			rowObj.put("prophesy", retureProphesy(recoverylife.getProphesy()));
-			rowObj.put("time", getWeekOfDate(recoverylife.getTime()));
+			if (returnMeeting(recoverylife.getMeeting()).equals("")) {
+				rowObj.put("meetingtype", "");
+				rowObj.put("prophesy", "");
+			} else {
+				rowObj.put("meetingtype",
+						returnMeetingType(recoverylife.getMeetingtype()));
+				rowObj.put("prophesy",
+						retureProphesy(recoverylife.getProphesy()));
+			}
+
+			rowObj.put("time", format.format(recoverylife.getTime()) + "("
+					+ getWeekOfDate(recoverylife.getTime()) + ")");
 			jArr.add(rowObj);
 			retObj.put("userName", recoverylife.getUsername());
 			retObj.put("sex", returnSex(recoverylife.getSex()));
@@ -864,11 +887,16 @@ public class RecoveryLifeAction extends BaseAction {
 	}
 
 	public String returnThreeold(String threeoldnum) {
-		return threeoldnum;
+		String[] arr = threeoldnum.split(",");
+
+		return Constant.BOOK_OF_THE_OLD_TESTAMENT_LOGOGRAM[Integer
+				.valueOf(arr[0])] + "," + arr[1];
 	}
 
 	public String returnOnenew(String Onenewnum) {
-		return Onenewnum;
+		String[] arr = Onenewnum.split(",");
+		return Constant.BOOK_OF_THE_NEW_LOGOGRAM[Integer.valueOf(arr[0])] + ","
+				+ arr[1];
 	}
 
 	public String returnPersonalpray(Integer personalpray) {
@@ -928,6 +956,15 @@ public class RecoveryLifeAction extends BaseAction {
 			return "√";
 		} else {
 			return "○";
+		}
+
+	}
+
+	public String returnMeetingType(Integer MeetingType) {
+		if (MeetingType == 2) {
+			return "√";
+		} else {
+			return "";
 		}
 
 	}

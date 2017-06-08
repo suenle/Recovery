@@ -17,31 +17,40 @@
         <property name="waitForJobsToCompleteOnShutdown" value="true"/>
         <property name="triggers">
             <list>
-            <!-- 	<ref bean="preAlarmInfoCronTrigger"/>  -->
-                <ref bean="doTime"/>  
+            	<ref bean="doTime"/> 
+            <!--     <ref bean="accessTokeTaskTime"/>  -->
             </list>
         </property>
     </bean>       
 
     
- <!-- comet -->   
+ <!-- 任务指向 -->   
  	<bean id="jobtask" class="org.springframework.scheduling.quartz.JobDetailBean">
     	<property name="jobClass">
-    		<value>com.huifu.service.impl.CometInfoDetail</value>
+    		<value>com.huifu.service.impl.WeekScoreQuartzJob</value>
     	</property>
     </bean>
 
 <!--     预警信息触发器bean定义 -->
     <bean id="doTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
     	<property name="jobDetail" ref="jobtask" />
-    <!-- 	每天7点到20点之间,每隔1小时逢整点时执行1次
     	
-    	<property name="cronExpression" value="0 0 7-20/1 * * ?" /> -->
     	
-    	<property name="cronExpression" value="0/30 * * * * ?" />
+    	<property name="cronExpression" value="${quartz.time.WeekScoreQuartzJob}" />
     </bean> 
  
- 
+  <!-- 任务指向 -->   
+ 	<bean id="accesstoketask" class="org.springframework.scheduling.quartz.JobDetailBean">
+    	<property name="jobClass">
+    		<value>com.huifu.wechat.service.AccessTokenQuartzJob</value>
+    	</property>
+    </bean>
+
+<!--     预警信息触发器bean定义 -->
+    <bean id="accessTokeTaskTime" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    	<property name="jobDetail" ref="accesstoketask" />
+    	<property name="cronExpression" value="${quartz.time.AccessTokenQuartzJob}" />
+    </bean> 
 
 
 </beans>

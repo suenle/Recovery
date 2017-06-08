@@ -11,6 +11,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -18,7 +19,9 @@ import com.huifu.base.BaseAction;
 import com.huifu.base.BaseUtils;
 import com.huifu.constant.Constant;
 import com.huifu.entity.RequestInfo;
+import com.huifu.entity.User;
 import com.huifu.service.impl.RequestInfoService;
+import com.huifu.service.impl.UserService;
 
 /**
  * 申请信息Action操作
@@ -26,8 +29,17 @@ import com.huifu.service.impl.RequestInfoService;
 @Controller
 public class RequestInfoAction extends BaseAction {
 	private RequestInfoService requestInfoService;
+	private UserService userService;
 	static Logger logger = LogManager.getLogger(RequestInfoAction.class
 			.getName());
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
 
 	/**
 	 * 更新申请信息操作
@@ -42,35 +54,30 @@ public class RequestInfoAction extends BaseAction {
 
 		String strId = getRequest().getParameter("id");
 		// 获取页面参数
-		String requestInfoName = getRequest().getParameter("requestInfoName");
-		String requestInfoDesc = getRequest().getParameter("requestInfoDesc");
-		String strdistrictId = getRequest().getParameter("districtId");
+		String strUserId = getRequest().getParameter("UserId");
+		String strstatus = getRequest().getParameter("status");
 		String errorMsg = "";
 		Integer id = null;
-		Integer districtId = null;
+		Integer UserId = null;
+		Integer status = null;
 		Map<String, Object> result = new HashMap<String, Object>();
 		if (null == strId || "".equals(strId)) {
 			errorMsg += "页面传递的申请信息类型id为空\n";
 		}
-		if (null == requestInfoName || "".equals(requestInfoName)
-				|| requestInfoName.trim().length() == 0) {
+		if (null == strUserId || "".equals(strUserId)
+				|| strUserId.trim().length() == 0) {
 			errorMsg += "页面传递的申请信息类型名称为空\n";
 		}
 
-		if (null == strdistrictId || "".equals(strdistrictId)
-				|| "-1".equals(strdistrictId)) {
+		if (null == strstatus || "".equals(strstatus)
+				|| "-1".equals(strstatus)) {
 			errorMsg += "页面传递的申请信息类型名称为空\n";
-		}
-
-		try {
-			districtId = Integer.valueOf(strdistrictId);
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			errorMsg += "页面传递的区数据格式错误\n";
 		}
 
 		try {
 			id = Integer.valueOf(strId);
+			UserId = Integer.valueOf(strUserId);
+			status = Integer.valueOf(strstatus);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			errorMsg += "页面传递的区数据格式错误\n";
@@ -84,13 +91,20 @@ public class RequestInfoAction extends BaseAction {
 		RequestInfo gtc = new RequestInfo();
 
 		gtc.setId(id);
-		// gtc.setRequestInfoname(requestInfoName);
-		// gtc.setRequestInfodesc(requestInfoDesc);
-		gtc.setGroupid(districtId);
-		gtc.setSystemcode(Constant.SYSTEM_CODE);
+		gtc.setStatusinfo(status);
 		Integer iNum = getRequestInfoService().updateByPrimaryKeySelective(gtc);
-		if (0 >= iNum) {
-			errorMsg += "区在数据库中更新失败\n";
+		
+		User user=new User();
+		if(status==1){
+			user.setId(UserId);
+			user.setUsergroupid("1");
+		}else{
+			user.setId(UserId);
+			user.setUsergroupid("0");
+		}
+		Integer iNumUser = getUserService().updateByPrimaryKeySelective(user);
+		if (0 >= iNumUser) {
+			errorMsg += "更新失败\n";
 		}
 
 		result.put("errorMsg", errorMsg);
@@ -113,15 +127,26 @@ public class RequestInfoAction extends BaseAction {
 
 		String pageNums = getRequest().getParameter("pageNums"); // 每页显示行数
 		String pageIndex = getRequest().getParameter("pageIndex"); // 第x页
-		Integer districtId = null;
 		Integer idx = 0;
 		Integer iPageNums = 20;
 		// Integer dataStartNum = 1;
 		String errorMsg = "";
 		Map<String, Object> filter = new HashMap<String, Object>();
 		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			if (null != pageNums && !"".equals(pageNums)) {
+				iPageNums = Integer.valueOf(pageNums);
+			}
+			if (null != pageIndex && !"".equals(pageIndex)) {
+				idx = Integer.valueOf(pageIndex);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			errorMsg += "页面输入的数据格式错误\n";
+			result.put("error", errorMsg);
+			this.getRequest().setAttribute("GSON_RESULT_OBJECT", result);
+		}
 
-		
 		Integer dataStartNum = (idx - 1) * iPageNums;
 		filter.put("userName", userName);
 		filter.put("dataStartNum", dataStartNum);
@@ -152,7 +177,7 @@ public class RequestInfoAction extends BaseAction {
 			rowObj.put("id", gtc.getId());
 			rowObj.put("UserId", gtc.getUserid());
 			rowObj.put("userName", gtc.getUsername());
-			rowObj.put("sex", gtc.getSex());
+			rowObj.put("sex", returnSex(gtc.getSex()));
 			rowObj.put("groupName", gtc.getGroupname());
 			rowObj.put("homeName", gtc.getHomename());
 			rowObj.put("info", gtc.getInfo());
@@ -183,6 +208,15 @@ public class RequestInfoAction extends BaseAction {
 			return "服侍者";
 		}
 
+	}
+
+	public String returnSex(Integer sex) {
+		if (sex == 0) {
+			return "弟兄";
+		} else {
+			return "姊妹";
+
+		}
 	}
 
 	/**

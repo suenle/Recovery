@@ -60,4 +60,30 @@ public class LifeScoreDao extends BaseIbatis3Dao<LifeScore, Integer> implements
 		return getSqlSession().selectList("LifeScore.getAllLifeScore");
 	}
 
+	public List<LifeScore> listWeekScoreByTimeAndType(Map<String, Object> data) {
+
+		return getSqlSession().selectList("LifeScore.listWeekScoreByTimeAndType", data);
+	}
+
+	public List<LifeScore> listLifeScoreByTime(Map<String, Object> data) {
+		
+		return getSqlSession().selectList("LifeScore.listLifeScoreByTime", data);
+	}
+
+	public int LifeScoreByTimeNum(Map<String, Object> data) {
+		return getSqlSession().selectOne("LifeScore.LifeScoreByTimeNum", data);
+	}
+
+	public List<LifeScore> listLifeScoreByTimePrint(Map<String, Object> data) {
+		return getSqlSession().selectList("LifeScore.listLifeScoreByTimePrint", data);
+	}
+
+	public int LifeScoreByTimeNumPrint(Map<String, Object> data) {
+		return getSqlSession().selectOne("LifeScore.LifeScoreByTimeNumPrint", data);
+	}
+
+	public List<LifeScore> ListFourWeekIndex() {
+		return getSqlSession().selectList("LifeScore.ListFourWeekIndex");
+	}
+
 }

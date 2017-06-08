@@ -22,8 +22,9 @@
 		<include refid="Base_Column_List" />
 		from t_user
 		WHERE
+		1=1
 		<if test="account != null">
-			account=#{account,jdbcType=VARCHAR}
+		    AND account=#{account,jdbcType=VARCHAR}
 		</if>
 		<if test="password != null">
 			AND password=#{password,jdbcType=VARCHAR}

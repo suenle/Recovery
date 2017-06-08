@@ -52,16 +52,17 @@
 		</form>
 	</div>
 	<div style="height: 50px"></div>
+	<!--bottom-->
 	<div id="menu" class="menu">
 		<a href="${ctx}/RecoveryLife/recoveryLifeInfo.do"><div id="one"
 				class="subMenu text-center">
-				<img class="menu_img" style="margin-top: 3px" />
+				<img src="../images/frame1.png" width="23" height="23" style="margin-top: 3px">
 				<div class="menu_name">
 					<span style="color: black">神人生活操练</span>
 				</div>
 			</div> </a> <a href="${ctx}/pages/meun.jsp"><div id="two"
 				class="subMenu text-center">
-				<img class="menu_img" style="margin-top: 3px" />
+				<img src="../images/frame1.png" width="23" height="23" style="margin-top: 3px">
 				<div class="menu_name">
 					<span style="color: black">我的</span>
 				</div>

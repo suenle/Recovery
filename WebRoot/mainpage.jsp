@@ -161,7 +161,7 @@ li {
 												</a>
 													<ul class="nav-children" style="display: none;">
 														<li><a class="childrenMenu"
-															href="${ctx}/pages/areasTypeclassifyManage.jsp"
+															href="${ctx}/pages/recordrScoreManage.jsp"
 															target="page"
 															style="width:100%;height:41px;line-height:41px;display:block;padding-left: 45px;padding-right: 0px;outline:none;"><img
 																src="images/menuTree/arrow.png" height="8" width="8"
@@ -200,6 +200,23 @@ li {
 															style="width:100%;height:41px;line-height:41px;display:block;padding-left: 45px;padding-right: 0px;outline:none;"><img
 																src="images/menuTree/arrow.png" height="8" width="8"
 																align="absmiddle" />&nbsp;&nbsp;<span class="text">家管理</span></a></li>
+													</ul>
+												</li>
+												<li class="nav-parent"><a class="parentMenu"
+													style="width:100%;height:41px;line-height:41px;display:block;"><span
+														class="parentMenuName"><img class="parentImg"
+															src="images/menuTree/fold.png" height="18" width="18"
+															align="absmiddle"
+															style="float: center;padding-bottom:4px;" />&nbsp;&nbsp;其他设置</span>
+												</a>
+													<ul class="nav-children" style="display: none;">
+														<li><a class="childrenMenu"
+															href="${ctx}/pages/downloadLinkManager.jsp"
+															target="page"
+															style="width:100%;height:41px;line-height:41px;display:block;padding-left: 45px;padding-right: 0px;outline:none;"><img
+																src="images/menuTree/arrow.png" height="8" width="8"
+																align="absmiddle" />&nbsp;&nbsp;<span class="text">下载地址管理</span></a></li>
+															
 																<li><a class="childrenMenu"
 															href="${ctx}/pages/requestInfoManage.jsp"
 															target="page"

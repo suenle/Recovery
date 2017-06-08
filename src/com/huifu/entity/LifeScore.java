@@ -46,8 +46,52 @@ public class LifeScore {
     private Integer totalscore;
 
     private String systemcode;
+    
+    
+    private String userName;
+    
+    private String groupname;  
+    
+	private Integer groupid;
+	
+	private Integer sex;
+	
+	
+	
+	
+    public Integer getSex() {
+		return sex;
+	}
 
-    public Integer getId() {
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
+	}
+
+	public Integer getGroupid() {
+		return groupid;
+	}
+
+	public void setGroupid(Integer groupid) {
+		this.groupid = groupid;
+	}
+
+	public Integer getId() {
         return id;
     }
 
